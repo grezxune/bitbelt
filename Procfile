@@ -1,1 +1,1 @@
-web: gunicorn bitbelt.wsgi
+web: gunicorn __init__:app --log-file -
