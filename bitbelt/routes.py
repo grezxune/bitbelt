@@ -1,5 +1,6 @@
 from bitbelt import app
+from flask import render_template
 
 @app.route('/')
 def index():
-    return 'Hello, from BitBelt!'
+    return render_template('home.html', Title='Home')
