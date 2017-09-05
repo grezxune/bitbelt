@@ -1,3 +1,5 @@
+import os
+
 class Config(object):
     MAIL_SERVER = "smtp.gmail.com"
     MAIL_PORT = 587
@@ -17,7 +19,7 @@ class Development(Config):
 
 class Production(Config):
     DEBUG = False
-    MONGO_SERVER = "mongodb://heroku_dqkgkn1l:5cmco9tlc8n1smqhaif4pnu8s7@ds119064.mlab.com:19064/heroku_dqkgkn1l"
+    MONGO_SERVER = os.environ['MONGODB_URI']
     MONGO_PORT = 27017
     MONGO_DB_NAME = "BitBelt"
     MONGO_ALIAS = 'default'
