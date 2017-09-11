@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Create User</title>
+</head>
+
+<body>
+
+    {% macro render_field(field) %}
+    <div>{{ field.label }}
+        <div>{{ field(**kwargs)|safe }} {% if field.errors %}
+            <ul class=errors>
+                {% for error in field.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+    {% endmacro %}
+
+    <form method="POST">
+        <div>
+            {{ form.hidden_tag() }}
+            {{ form.csrf_token }}
+            {{ render_field(form.client) }}
+            {{ render_field(form.left_stile_width) }}
+            {{ render_field(form.right_stile_width) }}
+            {{ render_field(form.top_rail_width) }}
+            {{ render_field(form.bottom_rail_width) }}
+            {{ render_field(form.left_overlay) }}
+            {{ render_field(form.right_overlay) }}
+            {{ render_field(form.top_overlay) }}
+            {{ render_field(form.bottom_overlay) }}
+            {{ render_field(form.panel_gap) }}
+            {{ render_field(form.tennon_length) }}
+        </div>
+        <input type=submit value="Create project"/>
+    </form>
+</body>
+
+</html>

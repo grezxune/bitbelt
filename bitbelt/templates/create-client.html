@@ -2,17 +2,14 @@
 <html>
 
 <head>
-    <title>Login</title>
+    <title>Create User</title>
 </head>
 
 <body>
 
     {% macro render_field(field) %}
-    <div>
-        {{ field.label }}
-        <div>
-            {{ field(**kwargs)|safe }}
-            {% if field.errors %}
+    <div>{{ field.label }}
+        <div>{{ field(**kwargs)|safe }} {% if field.errors %}
             <ul class=errors>
                 {% for error in field.errors %}
                 <li>{{ error }}</li>
@@ -27,10 +24,15 @@
         <div>
             {{ form.hidden_tag() }}
             {{ form.csrf_token }}
+            {{ render_field(form.first_name) }}
+            {{ render_field(form.last_name) }}
+            {{ render_field(form.address) }}
+            {{ render_field(form.city) }}
+            {{ render_field(form.state) }}
+            {{ render_field(form.zip_code) }}
             {{ render_field(form.email) }}
-            {{ render_field(form.password) }}
         </div>
-        <input type=submit value="Sign Up" />
+        <input type=submit value="Create User"/>
     </form>
 </body>
 
