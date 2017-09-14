@@ -1,11 +1,10 @@
-from mongoengine import *
+from mongoengine import Document, ObjectIdField, StringField, EmailField
 from bson.objectid import ObjectId
 
 class User(Document):
-    user_id = StringField(primary_key=True)
+    user_id = ObjectIdField(primary_key=True)
     first_name = StringField(required=True)
     last_name = StringField(required=True)
-    middle_name = StringField(required=False, default=None)
     email = EmailField(required=True)
     password = StringField(required=True)
 
@@ -15,19 +14,10 @@ class User(Document):
 
 
     def get_id(self):
-        return self.user_id
+        return str(self.user_id)
 
 
     def clean(self):
-        self.user_id = str(ObjectId())
-
-
-    def __init__(self, first_name, last_name, middle_name, email, password, *args, **kwargs):
-        super(Document, self).__init__(*args, **kwargs)
-        self.first_name = first_name
-        self.last_name = last_name
-        self.middle_name = middle_name
-        self.email = email
-        self.password = password
-
-    
+        if(self.user_id is None):
+            print('setting user_id')
+            self.user_id = ObjectId()

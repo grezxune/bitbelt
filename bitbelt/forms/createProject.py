@@ -3,9 +3,10 @@ from wtforms import SelectField, DecimalField
 # from wtforms.validators import *
 import wtforms.validators
 import bitbelt.forms
+from bson import ObjectId
 
 class CreateProject(FlaskForm):
-    client = SelectField('Client')
+    client = SelectField('Client', coerce=ObjectId)
 
     # Default Values
     left_stile_width = DecimalField(label="Left Stile Width", default=0.0)

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock title %}</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+        <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}"/>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}"/>
+
+        {% block styles %}
+        {% endblock styles %}
+    </head>
+    <body>
+        {% include "header.html" %}
+
+        {% block body %}
+        {% endblock body %}
+
+        {% include "footer.html" %}
+
+        <script type="text/javascript" src="{{ url_for('static', filename='js/base.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/header.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/footer.js') }}"></script>
+        {% block scripts %}
+        {% endblock scripts %}
+    </body>
+</html>

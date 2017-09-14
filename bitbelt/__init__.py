@@ -20,6 +20,8 @@ login_manager.init_app(app)
 
 mongo_connection = Connection(app.config)
 
+app.jinja_env.trim_blocks = True
+app.jinja_env.lstrip_blocks = True
 import bitbelt.routes
 
 if __name__ == '__main__':

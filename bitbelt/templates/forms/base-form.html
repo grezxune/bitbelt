@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/forms/base-form.css') }}"/>
+{% endblock styles %}
+
+{% from "macros/render-field.html" import render_field %}
+{% block body %}
+{% endblock body %}
+
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/forms/base-form.js') }}"></script>
+{% endblock scripts %}
