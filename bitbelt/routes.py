@@ -9,6 +9,7 @@ from flask_login import login_required, login_user, logout_user, current_user
 from bitbelt.forms import createProject, createUser, createClient, login
 from bson import ObjectId
 
+login_manager.login_view = 'login_form'
 
 @app.route('/')
 def index():
@@ -65,17 +66,15 @@ def create_project():
 @login_required
 def project_list():
     project_query_set = Project.objects(user = ObjectId(current_user.user_id))
-    projects = [{'created_on': project.created_on,
-                 'client_first_name': project.client.first_name,
-                 'client_last_name': project.client.last_name} for project in project_query_set]
-    return jsonify(projects)
+
+    return render_template('project-list.html', title='Project List', projects=project_query_set)
 
 
 @app.route('/project/<string:id>')
 def project_home(id):
-    project = Project.objects(id = ObjectId(id))
-    if(project.count() > 0):
-        return jsonify({'client': project[0].client.first_name + ' ' + project[0].client.last_name})
+    project_query_set = Project.objects(id = ObjectId(id))
+    if(project_query_set.count() > 0):
+        return render_template('project.html', title='Project Details', project=project_query_set[0])
     else:
         return redirect(url_for('index'))
 
@@ -166,7 +165,7 @@ def login_form():
         if(hasattr(current_user, 'user_id')):
             return redirect(url_for('index'))
         else:
-            return render_template('forms/login.html', form=form)
+            return render_template('forms/login.html', form=form, title='Log In')
 
 
 @app.route('/logout')

@@ -1,22 +1,22 @@
 from mongoengine import *
-from models import *
+from bitbelt.models import *
 
 class Door(Document):
     # Set by default values
-    left_stile_width: FloatField(default=0.0)
-    right_stile_width: FloatField(default=0.0)
-    top_rail_width: FloatField(default=0.0)
-    bottom_rail_width: FloatField(default=0.0)
-    left_overlay: FloatField(default=0.0)
-    right_overlay: FloatField(default=0.0)
-    top_overlay: FloatField(default=0.0)
-    bottom_overlay: FloatField(default=0.0)
-    panel_gap: FloatField(default=0.0)
-    tennon_length: FloatField(default=0.0)
+    left_stile_width = FloatField(default=0.0)
+    right_stile_width = FloatField(default=0.0)
+    top_rail_width = FloatField(default=0.0)
+    bottom_rail_width = FloatField(default=0.0)
+    left_overlay = FloatField(default=0.0)
+    right_overlay = FloatField(default=0.0)
+    top_overlay = FloatField(default=0.0)
+    bottom_overlay = FloatField(default=0.0)
+    panel_gap = FloatField(default=0.0)
+    tennon_length = FloatField(default=0.0)
 
     # Custom per door
-    panels: ListField(ReferenceField(Panel))
-    center_rails: ListField(ReferenceField(CenterRail))
+    panels = ListField(ReferenceField('panel.Panel'))
+    center_rails = ListField(ReferenceField('centerRail.CenterRail'))
 
     def __init__(self, default_values, panels, center_rails):
         self.left_stile_width = default_values['left_style_width']

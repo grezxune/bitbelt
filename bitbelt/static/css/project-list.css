@@ -1,0 +1,16 @@
+.project-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+.project {
+    cursor: pointer;
+    margin: 10px;
+    padding: 10px;
+}
+
+.project:hover {
+    background: lightseagreen;
+}

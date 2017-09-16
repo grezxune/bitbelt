@@ -8,9 +8,17 @@ class User(Document):
     email = EmailField(required=True)
     password = StringField(required=True)
 
-    is_authenticated = True
-    is_active = True
-    is_anonymous = True
+
+    def is_authenticated(self):
+        return True
+
+
+    def is_active(self):
+        return True
+
+
+    def is_anonymous(self):
+        return False
 
 
     def get_id(self):
@@ -21,3 +29,11 @@ class User(Document):
         if(self.user_id is None):
             print('setting user_id')
             self.user_id = ObjectId()
+
+
+
+#  if form.validate_on_submit():
+#             if User.query.filter_by(email=form.email.data).first():
+#                 return "Email address already exists"
+#             else:
+#                 return "will create user here"
