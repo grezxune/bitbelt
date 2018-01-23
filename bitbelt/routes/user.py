@@ -3,8 +3,9 @@ from flask import render_template, request, flash, redirect, url_for
 from flask_login import login_required, login_user, logout_user, current_user
 
 # Bitbelt Imports
-from bitbelt.forms import create_user, login
+from bitbelt.forms import login
 from bitbelt import app, login_manager
+from bitbelt.forms.create_user import CreateUser
 
 # Model Imports
 from bitbelt.models.user import User
@@ -25,7 +26,7 @@ def load_user(user_id):
 
 @app.route('/users/create', methods=['GET', 'POST'])
 def create_user():
-    form = create_user.CreateUser()
+    form = CreateUser()
     if(form.validate_on_submit()):
         existing_users = User.objects(email = form.email.data)
         if(existing_users.count() <= 0):

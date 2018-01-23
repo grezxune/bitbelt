@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from bson import ObjectId
 
 # Bitbelt Imports
-from bitbelt.forms import create_project
+from bitbelt.forms.create_project import CreateProject
 from bitbelt import app
 
 # Model Imports
@@ -15,7 +15,7 @@ from bitbelt.models.default_values import DefaultValues
 @app.route('/projects/create', methods=['GET', 'POST'])
 @login_required
 def create_project():
-    form = create_project.CreateProject()
+    form = CreateProject()
     print(current_user.user_id)
     clients = Client.objects(user_id = current_user.user_id)
     form.client.choices = [(client.id, client.first_name + ' ' + client.last_name) for client in clients]
