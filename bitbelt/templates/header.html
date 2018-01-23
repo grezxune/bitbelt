@@ -1,3 +1,6 @@
 <header>
     <a href="/">Home</a>
+    {% if user and user.first_name %}
+    <h3>Logged in user: {{user.first_name}} {{user.last_name}}</h3>
+    {% endif %}
 </header>

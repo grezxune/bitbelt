@@ -8,6 +8,7 @@
 
 {% block body %}
 <div class="project-container">
+    <input type="button" value="Add Door" id={{project.id}} class="btn-add-door"/>
     {{project.client.first_name}}
 
     {% for door in project.doors %}

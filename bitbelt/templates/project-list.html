@@ -1,7 +1,5 @@
 {% extends "base.html" %}
 
-{% block title %}{{ title }}{% endblock title %}
-
 {% block styles %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/project-list.css') }}"/>
 {% endblock styles %}
@@ -10,7 +8,7 @@
 <div class="project-container">
     {% if projects|length <= 0 %}
     <div>
-        <span>You have no projects created. Create one <a href="/project/create">here</a>.</span>
+        <span>You have no projects created. Create one <a href="/projects/create">here</a>.</span>
     </div>
     {% endif %}
 
@@ -18,7 +16,7 @@
     <section class="project" id={{project.id}}>
         <div>
             <span>Doors - </span>
-            <span>{{project.doors|length}}</span>
+            <span>{{project.cabinet_openings|length}}</span>
         </div>
         <div>
             <span>Client - </span>

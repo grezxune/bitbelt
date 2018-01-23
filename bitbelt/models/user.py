@@ -1,4 +1,5 @@
 from mongoengine import Document, ObjectIdField, StringField, EmailField
+from passlib.hash import pbkdf2_sha256
 from bson.objectid import ObjectId
 
 class User(Document):
@@ -9,14 +10,17 @@ class User(Document):
     password = StringField(required=True)
 
 
+    @property
     def is_authenticated(self):
         return True
 
 
+    @property
     def is_active(self):
         return True
 
 
+    @property
     def is_anonymous(self):
         return False
 
@@ -29,7 +33,20 @@ class User(Document):
         if(self.user_id is None):
             print('setting user_id')
             self.user_id = ObjectId()
+    
 
+    def check_login(self, email, password):
+        is_valid_login = False
+
+        if(self.email == email and pbkdf2_sha256.verify(password, self.password)):
+            is_valid_login = True
+
+        return is_valid_login
+
+    
+    def hash_password(self, password):
+        return pbkdf2_sha256.hash(password)
+    
 
 
 #  if form.validate_on_submit():

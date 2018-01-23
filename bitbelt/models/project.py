@@ -1,15 +1,16 @@
 import datetime
 
 from mongoengine import Document, ReferenceField, ListField, DateTimeField, CASCADE
-from bitbelt.models.defaultValues import DefaultValues
+from bitbelt.models.default_values import DefaultValues
 # Fix how this import works, could be done like the default values one in this file
-from bitbelt.models import client, user, door
+from bitbelt.models import client, user
+from bitbelt.models.cabinet_opening import CabinetOpening
 
 class Project(Document):
     user = ReferenceField('user.User', reverse_delete_rule=CASCADE, required=True)
     client = ReferenceField('client.Client', reverse_delete_rule=CASCADE, required=True)
     default_values = ReferenceField('DefaultValues', reverse_delete_rule=CASCADE, required=True)
-    doors = ListField(ReferenceField('door.Door'))
+    cabinet_openings = ListField(ReferenceField('CabinetOpening', reverse_delete_rule=CASCADE))
     created_on = DateTimeField(required=True)
 
 

@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 
 class Config(object):
     MAIL_SERVER = 'smtp.gmail.com'
@@ -10,6 +11,9 @@ class Config(object):
     ADMIN_EMAILS = ['tomtrezb2003@gmail.com']
 
 class Development(Config):
+    dotenv_path = os.path.join(os.path.dirname(__file__), '.env.dev')
+    load_dotenv(dotenv_path)
+
     DEBUG = True
     MONGO_SERVER = 'localhost'
     MONGO_PORT = 27017

@@ -1,23 +1,24 @@
 {% extends "forms/base-form.html" %}
 
-{% block title %}
-{{ title }}
-{% endblock title %}
-
 {% block styles %}
 {{ super() }}
 {% endblock styles %}
 
 {% block body %}
-    <form method="POST">
-        <div>
-            {{ form.hidden_tag() }}
-            {{ form.csrf_token }}
-            {{ render_field(form.first_name) }}
-            {{ render_field(form.last_name) }}
-            {{ render_field(form.email) }}
-            {{ render_field(form.password) }}
-        </div>
+    {% include 'flashed-messages.html' %}
+
+    <form method="POST" action="/users/">
+        <fieldset>
+            <legend style="text-align: center;">Create User</legend>
+            <div>
+                {{ form.hidden_tag() }}
+                {{ form.csrf_token }}
+                {{ render_field(form.first_name) }}
+                {{ render_field(form.last_name) }}
+                {{ render_field(form.email) }}
+                {{ render_field(form.password) }}
+            </div>
+        </fieldset>
         <input type=submit value="Sign Up"/>
     </form>
 {% endblock body %}
