@@ -13,8 +13,8 @@
         <div>
             {{ form.hidden_tag() }}
             {{ form.csrf_token }}
-            {{ render_field(form.email) }}
-            {{ render_field(form.password) }}
+            {{ render_field(form.email, class="text-input") }}
+            {{ render_field(form.password, class="text-input") }}
         </div>
         <input type=submit class="btn-primary" value="Login" />
     </form>

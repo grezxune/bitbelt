@@ -1,9 +1,5 @@
 {% extends "forms/base-form.html" %}
 
-{% block title %}
-{{ title }}
-{% endblock title %}
-
 {% block styles %}
 {{ super() }}
 {% endblock styles %}
@@ -13,15 +9,15 @@
         <div>
             {{ form.hidden_tag() }}
             {{ form.csrf_token }}
-            {{ render_field(form.first_name) }}
-            {{ render_field(form.last_name) }}
-            {{ render_field(form.address) }}
-            {{ render_field(form.city) }}
-            {{ render_field(form.state) }}
-            {{ render_field(form.zip_code) }}
-            {{ render_field(form.email) }}
+            {{ render_field(form.first_name, class="text-input") }}
+            {{ render_field(form.last_name, class="text-input") }}
+            {{ render_field(form.address, class="text-input") }}
+            {{ render_field(form.city, class="text-input") }}
+            {{ render_field(form.state, class="text-input") }}
+            {{ render_field(form.zip_code, class="text-input") }}
+            {{ render_field(form.email, class="text-input") }}
         </div>
-        <input type=submit class="btn-primary" value="Create User"/>
+        <input type=submit class="btn-primary" value="Create Client"/>
     </form>
 {% endblock body %}
 

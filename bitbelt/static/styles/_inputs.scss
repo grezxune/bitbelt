@@ -1,0 +1,15 @@
+.input {
+    padding: $size-s;
+    color: $catskill-white;
+    background: $charcoal;
+    border: none;
+    border-radius: 2px;
+}
+
+.text-input {
+    @extend .input;
+}
+
+.select-input {
+    @extend .input;
+}

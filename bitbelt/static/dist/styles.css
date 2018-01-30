@@ -2485,7 +2485,7 @@ header {
   background-color: #eb505f;
   color: #36454f; }
 
-.container, .vertical-container, .horizontal-container {
+.container, .vertical-container, .horizontal-container, .horizontal-container__right-aligned {
   font-size: 1.8rem;
   display: flex; }
 
@@ -2494,12 +2494,22 @@ header {
   justify-content: center;
   align-items: center; }
 
-.horizontal-container {
+.horizontal-container, .horizontal-container__right-aligned {
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center; }
-  .horizontal-container > * {
+  .horizontal-container > *, .horizontal-container__right-aligned > * {
     margin: 0.8rem; }
 
 .horizontal-container--wrap {
   flex-flow: row wrap; }
+
+.horizontal-container__right-aligned {
+  justify-content: flex-end; }
+
+.input, .text-input, .select-input {
+  padding: 1.2rem;
+  color: #e1e8f0;
+  background: #36454f;
+  border: none;
+  border-radius: 2px; }

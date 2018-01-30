@@ -8,17 +8,14 @@
     {% include 'flashed-messages.html' %}
 
     <form method="POST">
-        <fieldset>
-            <legend style="text-align: center;">Create User</legend>
-            <div>
-                {{ form.hidden_tag() }}
-                {{ form.csrf_token }}
-                {{ render_field(form.first_name) }}
-                {{ render_field(form.last_name) }}
-                {{ render_field(form.email) }}
-                {{ render_field(form.password) }}
-            </div>
-        </fieldset>
+        <div>
+            {{ form.hidden_tag() }}
+            {{ form.csrf_token }}
+            {{ render_field(form.first_name, class="text-input") }}
+            {{ render_field(form.last_name, class="text-input") }}
+            {{ render_field(form.email, class="text-input") }}
+            {{ render_field(form.password, class="text-input") }}
+        </div>
         <input type=submit class="btn-primary" value="Sign Up"/>
     </form>
 {% endblock body %}

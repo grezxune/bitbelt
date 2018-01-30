@@ -26,3 +26,9 @@
 .horizontal-container--wrap {
     flex-flow: row wrap;
 }
+
+.horizontal-container__right-aligned {
+    @extend .horizontal-container;
+
+    justify-content: flex-end;
+}
