@@ -5,11 +5,10 @@
 
 .cabinet-opening__container {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%
 }
 
 .cabinet-opening {
@@ -20,4 +19,8 @@
 
 .cabinet-opening:hover {
     background: $alizarian-crimson;
+}
+
+.project-settings {
+    font-size: $font-size-m;
 }

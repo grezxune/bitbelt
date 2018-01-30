@@ -19,7 +19,7 @@ export default class Project {
         this.createdOn = ko.observable(project.createdOn);
     }
 
-    navigateLink = () => {
+    addCabinetOpening = () => {
         window.location.href = '/projects/' + this.id() + '/cabinet-openings/create';
     }
 }

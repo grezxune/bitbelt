@@ -1,0 +1,16 @@
+.icon {
+    font-size: $font-size-m;
+    margin: $size-xs;
+}
+
+.icon-primary {
+    @extend .icon;
+
+    color: $downy;
+}
+
+.icon-secondary {
+    @extend .icon;
+
+    color: $charcoal;
+}

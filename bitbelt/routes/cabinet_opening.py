@@ -58,10 +58,10 @@ def create_cabinet_opening(project_id):
             form.panel_gap.data = project_defaults.panel_gap
             form.tennon_length.data = project_defaults.tennon_length
 
-            return render_template('forms/cabinet-opening-form.html', title='Create Cabinet Opening', form=form, cabinet_opening=None)
+            return render_template('forms/cabinet-opening-form.html', title='Create Cabinet Opening', form=form, cabinet_opening=None, user=current_user)
     else:
         flash('This project is not available to the current user')
-        return render_template('forms/cabinet-opening-form.html', title='Create Cabinet Opening', form=form, cabinet_opening=None)
+        return render_template('forms/cabinet-opening-form.html', title='Create Cabinet Opening', form=form, cabinet_opening=None, user=current_user)
 
 
 @app.route('/projects/<string:project_id>/cabinet-openings/<string:cabinet_opening_id>', methods=['GET', 'POST'])
@@ -116,7 +116,7 @@ def cabinet_opening_details(project_id, cabinet_opening_id):
                 form.panel_gap.data = cabinet_opening.panel_gap
                 form.tennon_length.data = cabinet_opening.tennon_length
 
-                return render_template('forms/cabinet-opening-form.html', title='Edit Cabinet Opening', form=form, cabinet_opening=cabinet_opening)
+                return render_template('forms/cabinet-opening-form.html', title='Edit Cabinet Opening', form=form, cabinet_opening=cabinet_opening, user=current_user)
         else:
             return redirect(url_for('project_list'))
 

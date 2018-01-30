@@ -1,11 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectField, DecimalField, FloatField
-# from wtforms.validators import *
-import wtforms.validators
+from wtforms import SelectField, DecimalField, FloatField, StringField
+from wtforms.validators import required
 import bitbelt.forms
 from bson import ObjectId
 
 class ProjectForm(FlaskForm):
+    name = StringField('Project Name', validators=[required()])
     client = SelectField('Client', coerce=ObjectId)
 
     # Default Values

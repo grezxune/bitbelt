@@ -3,17 +3,22 @@
     justify-content: center;
     align-items: center;
 
-    > a {
-        margin: $size-xs;
+    a {
         padding: $size-xs;
 
         &:hover {
             transition-property: background, color;
             transition-duration: .5s;
 
-            background: darken($charcoal, 10%);
-            color: $alizarian-crimson;
+            background: $catskill-white;
+            color: $charcoal;
             border-radius: 5px;
+
+            i {
+                transition-property: color;
+                transition-duration: .5s;
+                color: $charcoal;
+            }
         }
     }
 }

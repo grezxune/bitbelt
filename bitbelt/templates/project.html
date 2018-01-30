@@ -8,11 +8,10 @@
     {% include 'flashed-messages.html' %}
 
     <div class="project-container">
-        <input type="button" value="Add Door" class="btn-add-door" data-bind="attr: {id: id()}"/>
-        <a data-bind="attr: {href: '/projects/' + id() + '/settings'}">Settings</a>
-        <span data-bind="text: client().firstName()"></span>
+        <button class="btn-primary horizontal-container" data-bind="attr: {id: id()}, click: addCabinetOpening"><i class="icon-secondary fa fa-plus"></i>Cabinet Opening</button>
+        <a data-bind="attr: {href: '/projects/' + id() + '/settings'}"><i class="fa fa-cog project-settings icon-primary"></i></a>
 
-        <div class="cabinet-opening-container">
+        <div class="cabinet-opening__container">
             <!-- ko foreach: cabinetOpenings() -->
             <a data-bind="attr: { href: '/projects/' + $parent.id() + '/cabinet-openings/' + id()}">
                 <section class="cabinet-opening" data-bind="attr: { id: $parent.id() }">

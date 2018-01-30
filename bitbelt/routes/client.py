@@ -26,4 +26,4 @@ def create_client():
         client.save()
         return redirect(url_for('index'))
     else:
-        return render_template('forms/create-client.html', form=form, title='Create Client')
+        return render_template('forms/create-client.html', form=form, title='Create Client', user=current_user)

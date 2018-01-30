@@ -1,0 +1,28 @@
+.container {
+    font-size: $font-size-s;
+    display: flex;
+}
+
+.vertical-container {
+    @extend .container;
+
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.horizontal-container {
+    @extend .container;
+
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+
+    > * {
+        margin: $size-xs;
+    }
+}
+
+.horizontal-container--wrap {
+    flex-flow: row wrap;
+}

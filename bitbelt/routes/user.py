@@ -44,9 +44,9 @@ def create_user():
             return redirect(url_for('index'))
         else:
             flash('A user with that email already exists')
-            return render_template('forms/create-user.html', form=form, title='Create User')
+            return render_template('forms/create-user.html', form=form, title='Create User', user=current_user)
     else:
-        return render_template('forms/create-user.html', form=form, title='Create User')
+        return render_template('forms/create-user.html', form=form, title='Create User', user=current_user)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -79,13 +79,11 @@ def login_form():
         if(hasattr(current_user, 'user_id')):
             return redirect(url_for('index'))
         else:
-            return render_template('forms/login.html', form=form, title='Log In')
+            return render_template('forms/login.html', form=form, title='Log In', user=current_user)
 
 
 @app.route('/logout')
 @login_required
 def logout():
-    print('logging out')
     logout_user()
-    # return redirect(url_for('index'))
-    return 'Logged out!'
+    return redirect(url_for('index'))

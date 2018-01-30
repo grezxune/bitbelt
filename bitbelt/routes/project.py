@@ -39,6 +39,7 @@ def create_project():
         default_values.save()
 
         project.user = ObjectId(current_user.user_id)
+        project.name = form.name.data
         project.client = form.client.data
 
         project.default_values = default_values
@@ -48,7 +49,7 @@ def create_project():
         flash('Created project for {0} {1}!'.format(project.user.first_name, project.user.last_name))
         return redirect(url_for('create_project'))
     else:
-        return render_template('forms/project-form.html', form=form, title='Create Project')
+        return render_template('forms/project-form.html', form=form, title='Create Project', user=current_user)
 
 
 @app.route('/projects/list')
@@ -56,14 +57,14 @@ def create_project():
 def project_list():
     project_query_set = Project.objects(user = ObjectId(current_user.user_id))
     projects = [proj.jsonify() for proj in project_query_set]
-    return render_template('project-list.html', title='Project List', projects=projects)
+    return render_template('project-list.html', title='Project List', projects=projects, user=current_user)
 
 
 @app.route('/projects/<string:id>')
 def project_home(id):
     project = Project.objects(id = ObjectId(id)).first()
     if(project is not None):
-        return render_template('project.html', title='Project Details', project=project.jsonify())
+        return render_template('project.html', title='Project Details', project=project.jsonify(), user=current_user)
     else:
         return redirect(url_for('index'))
 
@@ -76,7 +77,6 @@ def project_settings(project_id):
         project = Project.objects(id=project_id).first()
         clients = Client.objects(user_id = current_user.user_id)
         form.client.choices = [(client.id, client.first_name + ' ' + client.last_name) for client in clients]
-        print(form.client.choices)
 
         if(form.validate_on_submit()):
             default_values = project.default_values
@@ -114,7 +114,7 @@ def project_settings(project_id):
             form.client.data = project.client.id
             print(project.client)
 
-            return render_template('forms/project-form.html', form=form, title='Edit Project')
+            return render_template('forms/project-form.html', form=form, title='Edit Project', user=current_user)
     else:
         flash('Project does not belong to current user')
         return redirect(url_for('project_list'))
