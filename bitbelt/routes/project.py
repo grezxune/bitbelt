@@ -47,7 +47,7 @@ def create_project():
         
         project = Project.objects(id = project.id).first()
         flash('Created project for {0} {1}!'.format(project.user.first_name, project.user.last_name))
-        return redirect(url_for('project_home', project_id=project.id))
+        return redirect(url_for('project_home', id=project.id))
     else:
         print('Form not validated')
         return render_template('forms/project-form.html', form=form, title='Create Project', user=current_user)
