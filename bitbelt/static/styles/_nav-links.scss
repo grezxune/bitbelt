@@ -11,8 +11,8 @@
             transition-property: background, color;
             transition-duration: .5s;
 
-            background: $alizarian-crimson;
-            color: $catskill-white;
+            background: darken($charcoal, 10%);
+            color: $alizarian-crimson;
             border-radius: 5px;
         }
     }
