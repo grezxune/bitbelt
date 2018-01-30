@@ -20,5 +20,14 @@ export default class CabinetOpening {
         this.bottomOverlay = ko.observable(cabinetOpening.bottomOverlay);
         this.panelGap = ko.observable(cabinetOpening.panelGap);
         this.tennonLength = ko.observable(cabinetOpening.tennonLength);
+
+        this.calculateDoorWidth = ko.computed(() => {
+            let width = this.openingWidth() + this.leftOverlay() + this.rightOverlay();
+            // let width = opening.leftStileWidth() + opening.rightStileWidth();
+            // width += opening.tennonLength() + opening.tennonLength();
+            // width +=
+
+            return width;
+        });
     }
 }

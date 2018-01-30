@@ -15,10 +15,13 @@
     cursor: pointer;
     margin: $size-m;
     padding: $size-m;
-}
+    background: $downy;
+    color: $charcoal;
 
-.cabinet-opening:hover {
-    background: $alizarian-crimson;
+    &:hover {
+        background: $charcoal;
+        color: $catskill-white;
+    }
 }
 
 .project-settings {

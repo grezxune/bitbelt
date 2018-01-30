@@ -2417,11 +2417,13 @@ header {
 
 .project {
   cursor: pointer;
-  margin: 10px;
-  padding: 10px; }
-
-.project:hover {
-  background: lightseagreen; }
+  margin: 1.6rem;
+  padding: 1.6rem;
+  background: #6ed3cf;
+  color: #36454f; }
+  .project:hover {
+    background: #36454f;
+    color: #e1e8f0; }
 
 #project {
   width: 100%;
@@ -2437,10 +2439,12 @@ header {
 .cabinet-opening {
   cursor: pointer;
   margin: 1.6rem;
-  padding: 1.6rem; }
-
-.cabinet-opening:hover {
-  background: #e62739; }
+  padding: 1.6rem;
+  background: #6ed3cf;
+  color: #36454f; }
+  .cabinet-opening:hover {
+    background: #36454f;
+    color: #e1e8f0; }
 
 .project-settings {
   font-size: 2.6rem; }
@@ -2512,4 +2516,6 @@ header {
   color: #e1e8f0;
   background: #36454f;
   border: none;
-  border-radius: 2px; }
+  border-radius: 2px;
+  font-size: 1.8rem;
+  height: 50px; }

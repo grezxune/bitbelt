@@ -7,10 +7,13 @@
 
 .project {
     cursor: pointer;
-    margin: 10px;
-    padding: 10px;
-}
+    margin: $size-m;
+    padding: $size-m;
+    background: $downy;
+    color: $charcoal;
 
-.project:hover {
-    background: lightseagreen;
+    &:hover {
+        background: $charcoal;
+        color: $catskill-white;
+    }
 }
