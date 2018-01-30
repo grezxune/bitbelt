@@ -5,29 +5,15 @@
 
 {% block body %}
 <div id="home">
-    <ul>
-        <li>
-            <a href="/clients/create">Create Client</a>
-        </li>
-        <li>
-            <a href="/users/create">Create User</a>
-        </li>
-        <li>
-            <a href="/projects/create">Create Project</a>
-        </li>
-        <li>
-            <a href="/projects/list">Project List</a>
-        </li>
-        <li>
-            <a href="/logout">Logout</a>
-        </li>
-        <li>
-            <a href="/login">Login</a>
-        </li>
-        <li>
-            <a href="/admin">Admin</a>
-        </li>
-    </ul>
+    <div class="nav-links nav-links--vertical">
+        <a href="/clients/create">Create Client</a>
+        <a href="/users/create">Create User</a>
+        <a href="/projects/create">Create Project</a>
+        <a href="/projects/list">Project List</a>
+        <a href="/logout">Logout</a>
+        <a href="/login">Login</a>
+        <a href="/admin">Admin</a>
+    </div>
 </div>
 {% endblock body %}
 

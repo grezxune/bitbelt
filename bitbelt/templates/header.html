@@ -1,6 +1,17 @@
 <header id="header">
     <a href="/">Home</a>
+
+    <div class="nav-links nav-links--horizontal">
+        <a href="/clients/create">Create Client</a>
+        <a href="/users/create">Create User</a>
+        <a href="/projects/create">Create Project</a>
+        <a href="/projects/list">Project List</a>
+        <a href="/logout">Logout</a>
+        <a href="/login">Login</a>
+        <a href="/admin">Admin</a>
+    </div>
+
     {% if user and user.first_name %}
-    <h3>Logged in user: {{user.first_name}} {{user.last_name}}</h3>
+    <h3>Logged in as {{user.first_name}} {{user.last_name}}</h3>
     {% endif %}
 </header>

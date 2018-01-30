@@ -1,0 +1,27 @@
+.nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > a {
+        margin: $size-xs;
+        padding: $size-xs;
+
+        &:hover {
+            transition-property: background, color;
+            transition-duration: .5s;
+
+            background: $alizarian-crimson;
+            color: $catskill-white;
+            border-radius: 5px;
+        }
+    }
+}
+
+.nav-links--horizontal {
+    flex-flow: row nowrap;
+}
+
+.nav-links--vertical {
+    flex-flow: column nowrap;
+}

@@ -1,5 +1,6 @@
 // import './project';
 // import './project-list';
+import '../styles/_base.scss';
 
 class Index {
     constructor() {
