@@ -12,3 +12,17 @@ class Client(Document):
     zip_code = StringField(required=True)
     phone = ListField(StringField())
     email = EmailField(required=True)
+
+
+    def jsonify(self):
+        return {
+            'userID': str(self.user_id.id),
+            'firstName': self.first_name,
+            'lastName': self.last_name,
+            'address': self.address,
+            'city': self.city,
+            'state': self.state,
+            'zipCode': self.zip_code,
+            'phone': self.phone,
+            'email': self.email
+        }

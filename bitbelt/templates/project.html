@@ -1,23 +1,43 @@
 {% extends "base.html" %}
 
-{% block title %}{{ title }}{% endblock title %}
-
 {% block styles %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/project.css') }}"/>
 {% endblock styles %}
 
 {% block body %}
-<div class="project-container">
-    <input type="button" value="Add Door" id={{project.id}} class="btn-add-door"/>
-    {{project.client.first_name}}
+<div id="project">
+    <!-- <span data-bind="text: client().firstName()"></span> -->
+    <!-- <pre data-bind="text: ko.toJSON($data, null, 2)"></pre> -->
+    {% include 'flashed-messages.html' %}
 
-    {% for door in project.doors %}
-    <div>{{door.left_style_width}}</div>
-    {% endfor %}
+    <div class="project-container">
+        <input type="button" value="Add Door" class="btn-add-door" data-bind="attr: {id: id()}"/>
+        <a data-bind="attr: {href: '/projects/' + id() + '/settings'}">Settings</a>
+        <span data-bind="text: client().firstName()"></span>
+
+        <div class="cabinet-opening-container">
+            <!-- ko foreach: cabinetOpenings() -->
+            <a data-bind="attr: { href: '/projects/' + $parent.id() + '/cabinet-openings/' + id()}">
+                <section class="cabinet-opening" data-bind="attr: { id: $parent.id() }">
+                    <div class="vertical-container">
+                        <span data-bind="text: 'Number of Openings - ' + numberOfOpenings()"></span>
+                        <span data-bind="text: 'Number of Doors - ' + numberOfDoors()"></span>
+                        <span data-bind="text: 'Opening Width - ' + openingWidth()"></span>
+                        <span data-bind="text: 'Opening Height - ' + openingHeight()"></span>
+                        <span data-bind="text: 'Middle Gap - ' + middleGap()"></span>
+                    </div>
+                </section>
+            </a>
+            <!-- /ko -->
+        </div>
+    </div>
 </div>
 {% endblock body %}
 
 
 {% block scripts %}
-<script type="text/javascript" src="{{ url_for('static', filename='js/project.js') }}"></script>
+<script>
+    var projectFromServer = {{project|tojson}};
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename='dist/project.bundle.js') }}"></script>
 {% endblock scripts %}

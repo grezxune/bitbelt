@@ -1,17 +1,17 @@
 {% extends "forms/base-form.html" %}
 
-{% block title %}{{ title }}{% endblock title %}
-
 {% block styles %}
 {{ super() }}
 {% endblock styles %}
 
 {% block body %}
+    {% include 'flashed-messages.html' %}
+
     <form method="POST">
         <div>
             {{ form.hidden_tag() }}
             {{ form.csrf_token }}
-            {{ render_field(form.client) }}
+            <h1>Default Values</h1>
             {{ render_field(form.left_stile_width) }}
             {{ render_field(form.right_stile_width) }}
             {{ render_field(form.top_rail_width) }}
@@ -21,9 +21,21 @@
             {{ render_field(form.top_overlay) }}
             {{ render_field(form.bottom_overlay) }}
             {{ render_field(form.panel_gap) }}
-            {{ render_field(form.tennon_length) }}
+            {{ render_field(form.tennon_length) }} 
+
+            <h1>Custom Values</h1>
+            {{ render_field(form.number_of_openings) }} 
+            {{ render_field(form.number_of_doors) }} 
+            {{ render_field(form.opening_width) }} 
+            {{ render_field(form.opening_height) }} 
+            {{ render_field(form.middle_gap) }} 
         </div>
-        <input type=submit value="Create project"/>
+        <input class="btn-primary" type="submit" value="Submit Opening"/>
+    </form>
+    <form method="DELETE">
+        {% if cabinet_opening is not none %}
+        <input class="btn-secondary" type="submit" value="Remove Opening"/>
+        {% endif %}
     </form>
 {% endblock body %}
 

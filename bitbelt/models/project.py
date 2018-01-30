@@ -18,3 +18,14 @@ class Project(Document):
         print(self.created_on)
         if(self.created_on is None):
             self.created_on = datetime.datetime.now()
+
+    
+    def jsonify(self):
+        return {
+            'id': str(self.id),
+            'user': self.user.jsonify(),
+            'client': self.client.jsonify(),
+            'defaultValues': self.default_values.jsonify(),
+            'cabinetOpenings': [cabinet_opening.jsonify() for cabinet_opening in self.cabinet_openings],
+            'createdOn': self.created_on
+        }

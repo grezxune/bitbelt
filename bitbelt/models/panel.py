@@ -7,3 +7,10 @@ class Panel(Document):
     def __init__(self, width, height):
         self.width = width
         self.height = height
+    
+
+    def jsonify(self):
+        return {
+            'width': self.width,
+            'height': self.height
+        }

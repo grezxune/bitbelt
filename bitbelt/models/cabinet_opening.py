@@ -43,6 +43,28 @@ class CabinetOpening(Document):
 
         #self.center_rails = center_rails
 
+    
+    def jsonify(self):
+        return {
+            'id': str(self.id),
+            'numberOfOpenings': self.number_of_openings,
+            'numberOfDoors': self.number_of_doors,
+            'openingWidth': self.opening_width,
+            'openingHeight': self.opening_height,
+            'middleGap': self.middle_gap,
+
+            'leftStileWidth': self.left_stile_width,
+            'rightStileWidth': self.right_stile_width,
+            'topRailWidth': self.top_rail_width,
+            'bottomRailWidth': self.bottom_rail_width,
+            'leftOverlay': self.left_overlay,
+            'rightOverlay': self.right_overlay,
+            'topOverlay': self.top_overlay,
+            'bottomOverlay': self.bottom_overlay,
+            'panelGap': self.panel_gap,
+            'tennonLength': self.tennon_length
+        }
+
 
 
 # At bottom of create opening, have button "Add Center Rails"

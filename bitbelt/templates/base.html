@@ -20,11 +20,6 @@
 
         {% include "footer.html" %}
 
-        <script type="text/javascript" src="{{ url_for('static', filename='js/libraries/jquery-3.2.1.min.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/libraries/knockout-3.4.2.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/base.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/header.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/footer.js') }}"></script>
         {% block scripts %}
         {% endblock scripts %}
     </body>

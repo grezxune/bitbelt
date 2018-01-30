@@ -5,7 +5,7 @@ import wtforms.validators
 import bitbelt.forms
 from bson import ObjectId
 
-class CreateProject(FlaskForm):
+class ProjectForm(FlaskForm):
     client = SelectField('Client', coerce=ObjectId)
 
     # Default Values

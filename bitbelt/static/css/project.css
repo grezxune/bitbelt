@@ -1,0 +1,18 @@
+.cabinet-opening__container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%
+}
+
+.cabinet-opening {
+    cursor: pointer;
+    margin: 10px;
+    padding: 10px;
+}
+
+.cabinet-opening:hover {
+    background: lightseagreen;
+}

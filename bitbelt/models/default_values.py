@@ -11,3 +11,18 @@ class DefaultValues(Document):
     bottom_overlay = FloatField(default=0.0, precision=5)
     panel_gap = FloatField(default=0.0, precision=5)
     tennon_length = FloatField(default=0.0, precision=5)
+
+
+    def jsonify(self):
+        return {
+            'leftStileWidth': self.left_stile_width,
+            'rightStileWidth': self.right_stile_width,
+            'topRailWidth': self.top_rail_width,
+            'bottomRailWidth': self.bottom_rail_width,
+            'leftOverlay': self.left_overlay,
+            'rightOverlay': self.right_overlay,
+            'topOverlay': self.top_overlay,
+            'bottomOverlay': self.bottom_overlay,
+            'panelGap': self.panel_gap,
+            'tennonLength': self.tennon_length
+        }

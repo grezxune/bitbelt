@@ -5,30 +5,32 @@
 {% endblock styles %}
 
 {% block body %}
-<div class="project-container">
+<div id="project-list" class="project-container">
     {% if projects|length <= 0 %}
     <div>
         <span>You have no projects created. Create one <a href="/projects/create">here</a>.</span>
     </div>
     {% endif %}
 
-    {% for project in projects %}
-    <section class="project" id={{project.id}}>
+    <!-- ko foreach: $data.projects -->
+    <section class="project" data-bind="click: $parent.navigate">
         <div>
             <span>Doors - </span>
-            <span>{{project.cabinet_openings|length}}</span>
+            <span data-bind="text: cabinetOpenings().length"></span>
         </div>
         <div>
             <span>Client - </span>
-            <span>{{project.client.first_name}}</span>
-            <span>{{project.client.last_name}}</span>
+            <span data-bind="text: client().firstName() + ' ' + client().lastName()"></span>
         </div>
     </section>
-    {% endfor %} 
+    <!-- /ko -->
 </div>
 {% endblock body %}
 
 
 {% block scripts %}
-<script type="text/javascript" src="{{ url_for('static', filename='js/project-list.js') }}"></script>
+<script>
+    var projectsFromServer = {{projects|tojson}};
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename='dist/project-list.bundle.js') }}"></script>
 {% endblock scripts %}

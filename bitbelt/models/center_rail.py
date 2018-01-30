@@ -8,3 +8,9 @@ class CenterRail(Document):
         self.width = width
         self.height = height
 
+
+    def jsonify(self):
+        return {
+            'width': self.width,
+            'height': self.height
+        }

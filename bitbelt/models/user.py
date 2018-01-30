@@ -46,7 +46,15 @@ class User(Document):
     
     def hash_password(self, password):
         return pbkdf2_sha256.hash(password)
-    
+
+
+    def jsonify(self):
+        return {
+            'id': str(self.user_id),
+            'firstName': self.first_name,
+            'lastName': self.last_name,
+            'email': self.email
+        }
 
 
 #  if form.validate_on_submit():
