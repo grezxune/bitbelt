@@ -14,6 +14,9 @@
     <!-- ko foreach: $data.projects -->
     <section class="project" data-bind="click: $parent.navigate">
         <div>
+            <span data-bind="text: name()"></span>
+        </div>
+        <div>
             <span>Doors - </span>
             <span data-bind="text: cabinetOpenings().length"></span>
         </div>

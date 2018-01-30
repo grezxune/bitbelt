@@ -47,8 +47,9 @@ def create_project():
         
         project = Project.objects(id = project.id).first()
         flash('Created project for {0} {1}!'.format(project.user.first_name, project.user.last_name))
-        return redirect(url_for('create_project'))
+        return redirect(url_for('project_home', project_id=project.id))
     else:
+        print('Form not validated')
         return render_template('forms/project-form.html', form=form, title='Create Project', user=current_user)
 
 
@@ -93,6 +94,7 @@ def project_settings(project_id):
             default_values.tennon_length = form.tennon_length.data
             default_values.save()
 
+            project.name = form.name.data
             project.client = form.client.data
 
             project.default_values = default_values
@@ -111,8 +113,8 @@ def project_settings(project_id):
             form.panel_gap.data = project.default_values.panel_gap
             form.tennon_length.data = project.default_values.tennon_length
 
+            form.name.data = project.name
             form.client.data = project.client.id
-            print(project.client)
 
             return render_template('forms/project-form.html', form=form, title='Edit Project', user=current_user)
     else:

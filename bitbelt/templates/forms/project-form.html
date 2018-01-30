@@ -11,6 +11,7 @@
         <div>
             {{ form.hidden_tag() }}
             {{ form.csrf_token }}
+            {{ render_field(form.name) }}
             {{ render_field(form.client) }}
             {{ render_field(form.left_stile_width) }}
             {{ render_field(form.right_stile_width) }}

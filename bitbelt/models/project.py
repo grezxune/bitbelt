@@ -8,7 +8,7 @@ from bitbelt.models.cabinet_opening import CabinetOpening
 
 class Project(Document):
     user = ReferenceField('user.User', reverse_delete_rule=CASCADE, required=True)
-    name = StringField('Name', required=True)
+    name = StringField(required=True)
     client = ReferenceField('client.Client', reverse_delete_rule=CASCADE, required=True)
     default_values = ReferenceField('DefaultValues', reverse_delete_rule=CASCADE, required=True)
     cabinet_openings = ListField(ReferenceField('CabinetOpening', reverse_delete_rule=CASCADE))

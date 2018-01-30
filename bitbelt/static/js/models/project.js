@@ -12,6 +12,7 @@ export default class Project {
         }
 
         this.id = ko.observable(project.id);
+        this.name = ko.observable(project.name);
         this.user = ko.observable(new User(project.user));
         this.client = ko.observable(new Client(project.client));
         this.defaultValues = ko.observable(new DefaultValues(project.defaultValues));
