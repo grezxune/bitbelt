@@ -5,7 +5,7 @@ from flask_login import login_required, login_user, logout_user, current_user
 # Bitbelt Imports
 from bitbelt.forms import login
 from bitbelt import app, login_manager
-from bitbelt.forms.create_user import CreateUser
+from bitbelt.forms.sign_up_form import SignUpForm
 
 # Model Imports
 from bitbelt.models.user import User
@@ -24,9 +24,9 @@ def load_user(user_id):
         return None
 
 
-@app.route('/users/create', methods=['GET', 'POST'])
-def create_user():
-    form = CreateUser()
+@app.route('/users/sign-up', methods=['GET', 'POST'])
+def sign_up():
+    form = SignUpForm()
     if(form.validate_on_submit()):
         existing_users = User.objects(email = form.email.data)
         if(existing_users.count() <= 0):
@@ -44,9 +44,9 @@ def create_user():
             return redirect(url_for('index'))
         else:
             flash('A user with that email already exists')
-            return render_template('forms/create-user.html', form=form, title='Create User', user=current_user)
+            return render_template('forms/sign-up-form.html', form=form, title='Create User', user=current_user)
     else:
-        return render_template('forms/create-user.html', form=form, title='Create User', user=current_user)
+        return render_template('forms/sign-up-form.html', form=form, title='Create User', user=current_user)
 
 
 @app.route('/login', methods=['GET', 'POST'])

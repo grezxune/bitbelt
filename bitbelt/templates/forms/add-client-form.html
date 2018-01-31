@@ -5,22 +5,21 @@
 {% endblock styles %}
 
 {% block body %}
-    {% include 'flashed-messages.html' %}
-
-    <form method="POST">
+    <form method="POST" class="vertical-container">
+        <span class="page-header">Add New Client</span>
         <div>
             {{ form.hidden_tag() }}
             {{ form.csrf_token }}
             {{ render_field(form.first_name, class="text-input") }}
             {{ render_field(form.last_name, class="text-input") }}
+            {{ render_field(form.address, class="text-input") }}
+            {{ render_field(form.city, class="text-input") }}
+            {{ render_field(form.state, class="text-input") }}
+            {{ render_field(form.zip_code, class="text-input") }}
+            {{ render_field(form.phone, class="text-input") }}
             {{ render_field(form.email, class="text-input") }}
-            {{ render_field(form.password, class="text-input") }}
         </div>
-        {% if user and user.first_name %}
-        <input type=submit class="btn-action" value="Sign Up"/>
-        {% else %}
-        <input type=submit class="btn-action" value="Save Changes"/>
-        {% endif %}
+        <input type=submit class="btn-action" value="Add Client"/>
     </form>
 {% endblock body %}
 

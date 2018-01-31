@@ -30,7 +30,15 @@ export default class Project {
         });
     }
 
-    addCabinetOpening = () => {
+    navigateToAddOpening = () => {
         window.location.href = '/projects/' + this.id() + '/cabinet-openings/create';
+    }
+
+    navigateToCutlist = () => {
+        window.location.href = '/projects/' + this.id() + '/cutlist';
+    }
+
+    navigateToSettings = () => {
+        window.location.href = '/projects/' + this.id() + '/settings';
     }
 }

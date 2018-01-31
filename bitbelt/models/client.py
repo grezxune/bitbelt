@@ -10,7 +10,7 @@ class Client(Document):
     city = StringField(required=True)
     state = StringField(required=True)
     zip_code = StringField(required=True)
-    phone = ListField(StringField())
+    phone = StringField(required=True)
     email = EmailField(required=True)
 
 

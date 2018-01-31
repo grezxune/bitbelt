@@ -32,11 +32,6 @@ export default class CabinetOpening {
         /*******************************/
 
         this.calculateDoorWidth = ko.computed(() => {
-            console.log('opening width: ' + this.openingWidth());
-            console.log('left overlay: ' + this.leftOverlay());
-            console.log('right overlay: ' + this.rightOverlay());
-            console.log('middle gap: ' + this.middleGap());
-            console.log('number of doors: ' + this.numberOfDoors());
             let width = this.openingWidth() + this.leftOverlay() + this.rightOverlay();
             width -= this.middleGap() * (this.numberOfDoors() - 1);
             width = width / this.numberOfDoors();
@@ -44,15 +39,37 @@ export default class CabinetOpening {
         });
 
         this.calculateDoorHeight = ko.computed(() => {
-            console.log('opening height: ' + this.openingHeight());
-            console.log('top overlay: ' + this.topOverlay());
-            console.log('bottom overlay: ' + this.bottomOverlay());
-            let height = this.openingHeight() + this.topOverlay() + this.bottomOverlay();
-            return height;
+            return this.openingHeight() + this.topOverlay() + this.bottomOverlay();
+        });
+
+        this.calculateInnerDoorWidth = ko.computed(() => {
+            return this.calculateDoorWidth() - this.leftStileWidth() - this.rightStileWidth();
+        });
+
+        this.calculateInnerDoorHeight = ko.computed(() => {
+            return this.calculateDoorHeight() - this.topRailWidth() - this.bottomRailWidth();
         });
 
         this.totalNumberOfDoors = ko.computed(() => {
             return this.numberOfOpenings() * this.numberOfDoors();
+        });
+
+        /**************************************/
+        /*** CENTER RAIL COMPUTED FUNCTIONS ***/
+        /**************************************/
+
+        this.calculateCenterRailLength = ko.computed(() => {
+            let centerRailLength = this.calculateDoorHeight();
+            centerRailLength -= this.topRailWidth();
+            centerRailLength -= this.bottomRailWidth();
+            centerRailLength += this.tennonLength() * 2;
+            centerRailLength -= this.panelGap() * 2;
+
+            return centerRailLength;
+        });
+
+        this.totalNumberOfCenterRails = ko.computed(() => {
+            return this.totalNumberOfDoors() * (this.numberOfPanelsPerDoor() - 1);
         });
 
         /********************************/
@@ -60,9 +77,8 @@ export default class CabinetOpening {
         /********************************/
 
         this.calculatePanelWidth = ko.computed(() => {
-            let panelWidth = this.calculateDoorWidth() / this.numberOfPanelsPerDoor();
-            panelWidth -= this.centerRailWidth() / 2;
-            panelWidth -= this.leftStileWidth();
+            let panelWidth = this.calculateInnerDoorWidth() / this.numberOfPanelsPerDoor();
+            panelWidth -= this.totalNumberOfCenterRails() > 0 ? this.centerRailWidth() / 2 : 0;
             panelWidth += this.tennonLength() * 2;
             panelWidth -= this.panelGap() * 2;
             return panelWidth;
@@ -73,6 +89,7 @@ export default class CabinetOpening {
             panelHeight -= this.topRailWidth();
             panelHeight -= this.bottomRailWidth();
             panelHeight += this.tennonLength() * 2;
+            panelHeight -= this.panelGap() * 2;
             return panelHeight;
         });
 
@@ -117,24 +134,6 @@ export default class CabinetOpening {
 
         this.totalNumberOfRightStiles = ko.computed(() => {
             return this.totalNumberOfDoors();
-        });
-
-        /**************************************/
-        /*** CENTER RAIL COMPUTED FUNCTIONS ***/
-        /**************************************/
-
-        this.calculateCenterRailLength = ko.computed(() => {
-            let centerRailLength = this.calculateDoorHeight();
-            centerRailLength -= this.topRailWidth();
-            centerRailLength -= this.bottomRailWidth();
-            centerRailLength += this.tennonLength() * 2;
-            centerRailLength -= this.panelGap() * 2;
-
-            return centerRailLength;
-        });
-
-        this.totalNumberOfCenterRails = ko.computed(() => {
-            return this.totalNumberOfDoors() * (this.numberOfPanelsPerDoor() - 1);
         });
 
         /************************/

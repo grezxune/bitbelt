@@ -125,6 +125,16 @@ def project_settings(project_id):
         return redirect(url_for('project_list'))
 
 
+@app.route('/projects/<string:id>/cutlist')
+def project_cutlist(id):
+    project = Project.objects(id=id).first()
+
+    if(project is not None):
+        return render_template('project-cutlist.html', title='Project Cutlist', user=current_user, project=project.jsonify())
+    else:
+        return redirect(url_for('project_list'))
+
+
 def verify_valid_project(project_id):
     valid_project = False
 

@@ -2446,6 +2446,13 @@ a {
 #cabinet-opening {
   text-align: center; }
 
+.cutlist-table {
+  background: #6ed3cf;
+  color: #36454f;
+  margin: 3.2rem; }
+  .cutlist-table td {
+    padding: 1.6rem; }
+
 footer {
   width: 100%;
   display: flex;

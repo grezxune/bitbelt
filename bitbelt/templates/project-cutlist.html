@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{% endblock styles %}
+
+{% block body %}
+{% from "macros/render-field.html" import render_field %}
+
+<div id="project-cutlist" class="vertical-container full-width">
+    <div class="horizontal-container full-width">
+        <div class="flex-1"></div>
+        <span data-bind="text: 'Cutlist for ' + project().name()" class="page-header"></span>
+
+        <div class="horizontal-container__right-justified flex-1">
+            <button class="btn-action horizontal-container" data-bind=""><i class="icon-secondary fa fa-print"></i>Print</button>
+        </div>
+    </div>
+
+    <table class="cutlist-table">
+        <tr>
+            <td>Batch #</td>
+            <td>Door</td>
+            <td>Panels</td>
+            <td>Rails</td>
+            <td>Stiles</td>
+            <td>Center Rails</td>
+        </tr>
+        <!-- ko foreach: cutlistItems() -->
+        <tr>
+            <td data-bind="text: $index"></td>
+            <td data-bind="text: doorWidth() + ' x ' + doorHeight() + ' (' + doorQuantity() + ')'"></td>
+            <td data-bind="text: panelWidth() + ' x ' + panelHeight() + ' (' + panelQuantity() + ')'"></td>
+            <td>
+                <div class="vertical-container">
+                    <!-- ko foreach: railDisplays() -->
+                    <span data-bind="text: $data"></span>
+                    <!-- /ko -->
+                </div>
+            </td>
+            <td>
+                <div class="vertical-container">
+                    <!-- ko foreach: stileDisplays() -->
+                    <span data-bind="text: $data"></span>
+                    <!-- /ko -->
+                </div>
+            </td>
+            <td>
+                <div class="vertical-container">
+                    <!-- ko foreach: centerRailDisplays() -->
+                    <span data-bind="text: $data"></span>
+                    <!-- /ko -->
+                </div>
+            </td>
+        </tr>
+        <!-- /ko -->
+    </table>
+</div>
+{% endblock body %}
+
+{% block scripts %}
+<script>
+    var projectFromServer = {{project|tojson}};
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename='dist/project-cutlist.bundle.js') }}"></script>
+{% endblock scripts %}

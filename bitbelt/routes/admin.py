@@ -1,13 +1,13 @@
 from flask import render_template, redirect, url_for
 from flask_login import login_required, login_user, logout_user, current_user
 from bitbelt import app, login_manager
-from bitbelt.forms.create_user import CreateUser
+from bitbelt.forms.sign_up_form import SignUpForm
 from bitbelt.models.user import User
 
 @app.route('/admin', methods=['GET', 'POST'])
 @login_required
 def admin():
-    form = CreateUser()
+    form = SignUpForm()
     if(form.validate_on_submit()):
         existing_user = User.objects(email = form.email.data).first()
 

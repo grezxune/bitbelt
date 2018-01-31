@@ -3,14 +3,14 @@ from flask_login import login_required, current_user
 from bson import ObjectId
 
 from bitbelt import app
-from bitbelt.forms.create_client import CreateClient
+from bitbelt.forms.add_client_form import AddClientForm
 
 from bitbelt.models.client import Client
 
-@app.route('/clients/create', methods=['GET', 'POST'])
+@app.route('/clients/add', methods=['GET', 'POST'])
 @login_required
-def create_client():
-    form = CreateClient()
+def add_client():
+    form = AddClientForm()
     if(form.validate_on_submit()):
         client = Client()
         client.first_name = form.first_name.data
@@ -26,4 +26,4 @@ def create_client():
         client.save()
         return redirect(url_for('index'))
     else:
-        return render_template('forms/create-client.html', form=form, title='Create Client', user=current_user)
+        return render_template('forms/add-client-form.html', form=form, title='Create Client', user=current_user)

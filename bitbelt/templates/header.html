@@ -6,14 +6,14 @@
     <div class="nav-links horizontal-container">
         {% if user and user.first_name %}
         <div class="horizontal-container">
-            <a href="/clients/create">Create Client</a>
+            <a href="/clients/add">Create Client</a>
             <a href="/projects/create">Create Project</a>
             <a href="/projects/list">Project List</a>
         </div>
 
         <span class="horizontal-container"><a href="/admin" class="horizontal-container"><i class="icon-primary fa fa-user"></i> {{user.first_name}} {{user.last_name}}</a> | <a href="/logout">Logout</a></span>
         {% else %}
-        <span class="horizontal-container"><a href="/users/create">Sign Up</a> | <a href="/login">Login</a></span>
+        <span class="horizontal-container"><a href="/users/sign-up">Sign Up</a> | <a href="/login">Login</a></span>
         {% endif %}
     </div>
 </header>

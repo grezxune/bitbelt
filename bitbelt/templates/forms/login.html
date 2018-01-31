@@ -9,7 +9,7 @@
 {% block body %}
     {% include 'flashed-messages.html' %}
 
-    <form method="POST">
+    <form method="POST" class="vertical-container">
         <div>
             {{ form.hidden_tag() }}
             {{ form.csrf_token }}
