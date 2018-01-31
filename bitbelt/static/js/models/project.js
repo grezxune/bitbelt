@@ -18,6 +18,16 @@ export default class Project {
         this.defaultValues = ko.observable(new DefaultValues(project.defaultValues));
         this.cabinetOpenings = ko.observableArray(project.cabinetOpenings.map(co => new CabinetOpening(co)));
         this.createdOn = ko.observable(project.createdOn);
+
+        this.projectPageTitle = ko.computed(() => {
+            return 'Viewing project \"' + this.name() + '\"';
+        });
+
+        this.numberOfOpeningsInProject = ko.computed(() => {
+            const numberOfOpeningsArray = this.cabinetOpenings().map(opening => opening.numberOfOpenings());
+            const reducedNumberOfOpenings = numberOfOpeningsArray.reduce((a, b) => a + b, 0);
+            return reducedNumberOfOpenings;
+        });
     }
 
     addCabinetOpening = () => {

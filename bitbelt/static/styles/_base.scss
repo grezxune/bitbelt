@@ -69,13 +69,35 @@ a {
     }
 }
 
+.full-width {
+    width: 100%;
+}
+
+.full-height {
+    height: 100%;
+}
+
+// Mixins
+@import './mixins/clickable';
+
+// CSS
+// LEAVE AT TOP
 @import './icons';
+
+// FORMS
+@import './forms/base-form';
+
+// PAGES
+@import './pages/project-list';
+@import './pages/project';
+@import './pages/cabinet-opening';
+
+// MISC
 @import './footer';
 @import './header';
-@import './forms/base-form';
-@import './project-list';
-@import './project';
 @import './nav-links';
 @import './button';
 @import './containers';
 @import './inputs';
+@import './text-types';
+@import './self-flex';

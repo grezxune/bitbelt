@@ -22,3 +22,9 @@
     background-color: lighten($alizarian-crimson, 9%);
     color: $charcoal;
 }
+
+.btn-action {
+    @extend .btn-primary;
+
+    @include clickable-secondary();
+}

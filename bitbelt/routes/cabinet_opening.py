@@ -32,9 +32,11 @@ def create_cabinet_opening(project_id):
             new_cabinet_opening.bottom_overlay = form.bottom_overlay.data
             new_cabinet_opening.panel_gap = form.panel_gap.data
             new_cabinet_opening.tennon_length = form.tennon_length.data
+            new_cabinet_opening.center_rail_width = form.center_rail_width.data
 
             new_cabinet_opening.number_of_openings = form.number_of_openings.data
             new_cabinet_opening.number_of_doors = form.number_of_doors.data
+            new_cabinet_opening.number_of_panels_per_door = form.number_of_panels_per_door.data
             new_cabinet_opening.opening_width = form.opening_width.data
             new_cabinet_opening.opening_height = form.opening_height.data
             new_cabinet_opening.middle_gap = form.middle_gap.data
@@ -57,6 +59,7 @@ def create_cabinet_opening(project_id):
             form.bottom_overlay.data = project_defaults.bottom_overlay
             form.panel_gap.data = project_defaults.panel_gap
             form.tennon_length.data = project_defaults.tennon_length
+            form.center_rail_width.data = project_defaults.center_rail_width
 
             return render_template('forms/cabinet-opening-form.html', title='Create Cabinet Opening', form=form, cabinet_opening=None, user=current_user)
     else:
@@ -77,6 +80,7 @@ def cabinet_opening_details(project_id, cabinet_opening_id):
             if(form.validate_on_submit()):
                 cabinet_opening.number_of_openings = form.number_of_openings.data
                 cabinet_opening.number_of_doors = form.number_of_doors.data
+                cabinet_opening.number_of_panels_per_door = form.number_of_panels_per_door.data
                 cabinet_opening.opening_width = form.opening_width.data
                 cabinet_opening.opening_height = form.opening_height.data
                 cabinet_opening.middle_gap = form.middle_gap.data
@@ -92,6 +96,7 @@ def cabinet_opening_details(project_id, cabinet_opening_id):
                 cabinet_opening.bottom_overlay = form.bottom_overlay.data
                 cabinet_opening.panel_gap = form.panel_gap.data
                 cabinet_opening.tennon_length = form.tennon_length.data
+                cabinet_opening.center_rail_width = form.center_rail_width.data
 
                 cabinet_opening.save()
 
@@ -100,6 +105,7 @@ def cabinet_opening_details(project_id, cabinet_opening_id):
             else:
                 form.number_of_openings.data = cabinet_opening.number_of_openings
                 form.number_of_doors.data = cabinet_opening.number_of_doors
+                form.number_of_panels_per_door.data = cabinet_opening.number_of_panels_per_door
                 form.opening_width.data = cabinet_opening.opening_width
                 form.opening_height.data = cabinet_opening.opening_height
                 form.middle_gap.data = cabinet_opening.middle_gap
@@ -115,8 +121,9 @@ def cabinet_opening_details(project_id, cabinet_opening_id):
                 form.bottom_overlay.data = cabinet_opening.bottom_overlay
                 form.panel_gap.data = cabinet_opening.panel_gap
                 form.tennon_length.data = cabinet_opening.tennon_length
+                form.center_rail_width.data = cabinet_opening.center_rail_width
 
-                return render_template('forms/cabinet-opening-form.html', title='Edit Cabinet Opening', form=form, cabinet_opening=cabinet_opening, user=current_user)
+                return render_template('forms/cabinet-opening-form.html', title='Edit Cabinet Opening', form=form, cabinet_opening=cabinet_opening.jsonify(), user=current_user)
         else:
             return redirect(url_for('project_list'))
 

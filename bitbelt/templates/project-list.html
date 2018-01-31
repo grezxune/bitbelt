@@ -4,7 +4,7 @@
 {% endblock styles %}
 
 {% block body %}
-<div id="project-list" class="project-container">
+<div id="project-list" class="horizontal-container horizontal-container--wrap">
     {% if projects|length <= 0 %}
     <div>
         <span>You have no projects created. Create one <a href="/projects/create">here</a>.</span>
@@ -17,8 +17,8 @@
             <span data-bind="text: name()"></span>
         </div>
         <div>
-            <span>Doors - </span>
-            <span data-bind="text: cabinetOpenings().length"></span>
+            <span>Cabinet Openings - </span>
+            <span data-bind="text: numberOfOpeningsInProject()"></span>
         </div>
         <div>
             <span>Client - </span>

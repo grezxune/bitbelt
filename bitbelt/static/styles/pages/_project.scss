@@ -1,0 +1,22 @@
+#project {
+    width: 100%;
+    height: 100%;
+}
+
+.cabinet-opening {
+    cursor: pointer;
+    margin: $size-m;
+    background: $downy;
+    color: $charcoal;
+
+    @include clickable-secondary();
+}
+
+.project-settings {
+    font-size: $font-size-m;
+    background: $downy;
+    color: $charcoal;
+    border-radius: 5px;
+
+    @include clickable-secondary();
+}

@@ -6,39 +6,45 @@
 
 {% block body %}
     {% include 'flashed-messages.html' %}
+    <div id="cabinet-opening">
+        <form method="POST">
+            <div class="vertical-container__right-justified">
+                {{ form.hidden_tag() }}
+                {{ form.csrf_token }}
+                <span class="page-sub-header">Opening Specific Values</span>
+                {{ render_field(form.number_of_openings, class="text-input") }} 
+                {{ render_field(form.number_of_doors, class="text-input") }} 
+                {{ render_field(form.number_of_panels_per_door, class="text-input") }} 
+                {{ render_field(form.opening_width, class="text-input") }} 
+                {{ render_field(form.opening_height, class="text-input") }} 
+                {{ render_field(form.middle_gap, class="text-input") }} 
 
-    <form method="POST">
-        <div>
-            {{ form.hidden_tag() }}
-            {{ form.csrf_token }}
-            <h1>Default Values</h1>
-            {{ render_field(form.left_stile_width, class="text-input") }}
-            {{ render_field(form.right_stile_width, class="text-input") }}
-            {{ render_field(form.top_rail_width, class="text-input") }}
-            {{ render_field(form.bottom_rail_width, class="text-input") }}
-            {{ render_field(form.left_overlay, class="text-input") }}
-            {{ render_field(form.right_overlay, class="text-input") }}
-            {{ render_field(form.top_overlay, class="text-input") }}
-            {{ render_field(form.bottom_overlay, class="text-input") }}
-            {{ render_field(form.panel_gap, class="text-input") }}
-            {{ render_field(form.tennon_length, class="text-input") }} 
+                <input class="btn-action" type="submit" value="Submit Opening"/>
 
-            <h1>Custom Values</h1>
-            {{ render_field(form.number_of_openings, class="text-input") }} 
-            {{ render_field(form.number_of_doors, class="text-input") }} 
-            {{ render_field(form.opening_width, class="text-input") }} 
-            {{ render_field(form.opening_height, class="text-input") }} 
-            {{ render_field(form.middle_gap, class="text-input") }} 
-        </div>
-        <input class="btn-primary" type="submit" value="Submit Opening"/>
-    </form>
-    <form method="DELETE">
-        {% if cabinet_opening is not none %}
-        <input class="btn-secondary" type="submit" value="Remove Opening"/>
-        {% endif %}
-    </form>
+                <span class="page-sub-header">Default Values</span>
+                {{ render_field(form.left_stile_width, class="text-input") }}
+                {{ render_field(form.right_stile_width, class="text-input") }}
+                {{ render_field(form.top_rail_width, class="text-input") }}
+                {{ render_field(form.bottom_rail_width, class="text-input") }}
+                {{ render_field(form.left_overlay, class="text-input") }}
+                {{ render_field(form.right_overlay, class="text-input") }}
+                {{ render_field(form.top_overlay, class="text-input") }}
+                {{ render_field(form.bottom_overlay, class="text-input") }}
+                {{ render_field(form.panel_gap, class="text-input") }}
+                {{ render_field(form.tennon_length, class="text-input") }} 
+                {{ render_field(form.center_rail_width, class="text-input") }} 
+            </div>
+            <input class="btn-action" type="submit" value="Submit Opening"/>
+            {% if cabinet_opening is not none %}
+            <input class="btn-secondary" type="button" value="Remove Opening" data-bind="click: deleteCabinetOpening"/>
+            {% endif %}
+        </form>
+    </div>
 {% endblock body %}
 
 {% block scripts %}
-{{ super() }}
+<script>
+    var cabinetOpeningFromServer = {{cabinet_opening|tojson}};
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename='dist/cabinet-opening.bundle.js') }}"></script>
 {% endblock scripts %}

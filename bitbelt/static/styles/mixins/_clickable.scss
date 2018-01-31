@@ -1,0 +1,41 @@
+.clickable {
+    padding: $size-xs;
+
+    &:hover {
+        transition-property: background, color;
+        transition-duration: .5s;
+
+        border-radius: 5px;
+
+        i {
+            transition-property: color;
+            transition-duration: .5s;
+        }
+    }
+}
+
+@mixin clickable-primary() {
+    @extend .clickable;
+
+    &:hover {
+        background: $catskill-white;
+        color: $charcoal;
+
+        i {
+            color: $charcoal;
+        }
+    }
+}
+
+@mixin clickable-secondary() {
+    @extend .clickable;
+
+    &:hover {
+        background: $charcoal;
+        color: $catskill-white;
+
+        i {
+            color: $catskill-white;
+        }
+    }
+}

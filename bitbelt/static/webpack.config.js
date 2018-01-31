@@ -9,6 +9,7 @@ const config = {
         index: path.join(__dirname, 'js', 'index.js'),
         'project-list': path.join(__dirname, 'js', 'pages', 'project-list.js'),
         project: path.join(__dirname, 'js', 'pages', 'project.js'),
+        'cabinet-opening': path.join(__dirname, 'js', 'pages', 'cabinet-opening.js')
     },
     output: {
         path: path.join(__dirname, 'dist'),

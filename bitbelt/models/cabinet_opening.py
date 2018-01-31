@@ -4,6 +4,7 @@ class CabinetOpening(Document):
     # Custom per door
     number_of_openings = IntField(default=1)
     number_of_doors = IntField(default=1)
+    number_of_panels_per_door = IntField(default=1)
     opening_width = FloatField(default=0.0, precision=5)
     opening_height = FloatField(default=0.0, precision=5)
     middle_gap = FloatField(default=0.0, precision=5)
@@ -22,6 +23,7 @@ class CabinetOpening(Document):
     bottom_overlay = FloatField(default=0.0, precision=5)
     panel_gap = FloatField(default=0.0, precision=5)
     tennon_length = FloatField(default=0.0, precision=5)
+    center_rail_width = FloatField(default=0.0, precision=5)
 
     # def __init__(self, default_values, number_of_openings, number_of_doors, opening_width, opening_height, middle_gap):
     #     self.left_stile_width = default_values['left_style_width']
@@ -49,6 +51,7 @@ class CabinetOpening(Document):
             'id': str(self.id),
             'numberOfOpenings': self.number_of_openings,
             'numberOfDoors': self.number_of_doors,
+            'numberOfPanelsPerDoor': self.number_of_panels_per_door,
             'openingWidth': self.opening_width,
             'openingHeight': self.opening_height,
             'middleGap': self.middle_gap,
@@ -62,7 +65,8 @@ class CabinetOpening(Document):
             'topOverlay': self.top_overlay,
             'bottomOverlay': self.bottom_overlay,
             'panelGap': self.panel_gap,
-            'tennonLength': self.tennon_length
+            'tennonLength': self.tennon_length,
+            'centerRailWidth': self.center_rail_width
         }
 
 

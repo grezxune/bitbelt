@@ -4,22 +4,7 @@
     align-items: center;
 
     a {
-        padding: $size-xs;
-
-        &:hover {
-            transition-property: background, color;
-            transition-duration: .5s;
-
-            background: $catskill-white;
-            color: $charcoal;
-            border-radius: 5px;
-
-            i {
-                transition-property: color;
-                transition-duration: .5s;
-                color: $charcoal;
-            }
-        }
+        @include clickable-primary();
     }
 }
 

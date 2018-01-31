@@ -1,0 +1,18 @@
+.header {
+    margin: $size-l;
+    font-weight: bold;
+}
+
+.page-header {
+    // One Per Page
+    @extend .header;
+
+    font-size: $font-size-xl;
+}
+
+.page-sub-header {
+    // One Per Section on a Page
+    @extend .header;
+
+    font-size: $font-size-l;
+}

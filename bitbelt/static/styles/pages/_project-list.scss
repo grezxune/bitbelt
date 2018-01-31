@@ -1,0 +1,12 @@
+.project-container {
+}
+
+.project {
+    cursor: pointer;
+    margin: $size-m;
+    padding: $size-m;
+    background: $downy;
+    color: $charcoal;
+
+    @include clickable-secondary();
+}

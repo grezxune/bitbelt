@@ -16,7 +16,11 @@
             {{ render_field(form.email, class="text-input") }}
             {{ render_field(form.password, class="text-input") }}
         </div>
-        <input type=submit class="btn-primary" value="Sign Up"/>
+        {% if user and user.first_name %}
+        <input type=submit class="btn-action" value="Sign Up"/>
+        {% else %}
+        <input type=submit class="btn-action" value="Save Changes"/>
+        {% endif %}
     </form>
 {% endblock body %}
 

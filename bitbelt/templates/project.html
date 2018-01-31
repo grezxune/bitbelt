@@ -7,22 +7,28 @@
 <div id="project">
     {% include 'flashed-messages.html' %}
 
-    <div class="project-container">
-        <button class="btn-primary horizontal-container" data-bind="attr: {id: id()}, click: addCabinetOpening"><i class="icon-secondary fa fa-plus"></i>Cabinet Opening</button>
-        <a data-bind="attr: {href: '/projects/' + id() + '/settings'}"><i class="fa fa-cog project-settings icon-primary"></i></a>
+    <div class="vertical-container">
+        <div class="horizontal-container full-width">
+            <div class="flex-1"></div>
+            <span data-bind="text: projectPageTitle()" class="page-header"></span>
 
-        <div class="cabinet-opening__container">
+            <div class="horizontal-container__right-justified flex-1">
+                <button class="btn-action horizontal-container" data-bind="attr: {id: id()}, click: addCabinetOpening"><i class="icon-secondary fa fa-plus"></i>Opening</button>
+                <a data-bind="attr: {href: '/projects/' + id() + '/settings'}"><i class="fa fa-cog project-settings icon-primary"></i></a>
+            </div>
+        </div>
+
+        <span class="page-sub-header">Cabinet Openings</span>
+        <div class="horizontal-container horizontal-container--wrap">
             <!-- ko foreach: cabinetOpenings() -->
-            <a data-bind="attr: { href: '/projects/' + $parent.id() + '/cabinet-openings/' + id()}">
-                <section class="cabinet-opening" data-bind="attr: { id: $parent.id() }">
-                    <div class="vertical-container">
-                        <span data-bind="text: 'Number of Openings - ' + numberOfOpenings()"></span>
-                        <span data-bind="text: 'Number of Doors - ' + numberOfDoors()"></span>
-                        <span data-bind="text: 'Opening Width - ' + openingWidth()"></span>
-                        <span data-bind="text: 'Opening Height - ' + openingHeight()"></span>
-                        <span data-bind="text: 'Middle Gap - ' + middleGap()"></span>
-                        <span data-bind="text: 'Door Width - ' + calculateDoorWidth()"></span>
-                    </div>
+            <a class="" data-bind="attr: { href: '/projects/' + $parent.id() + '/cabinet-openings/' + id()}">
+                <section class="cabinet-opening vertical-container" data-bind="attr: { id: $parent.id() }">
+                    <span data-bind="text: 'Number of Openings (' + numberOfOpenings() + ')'"></span>
+                    <span data-bind="text: 'Number of Doors (' + numberOfDoors() + ')'"></span>
+                    <span data-bind="text: 'Opening Width (' + openingWidth() + ')'"></span>
+                    <span data-bind="text: 'Opening Height (' + openingHeight() + ')'"></span>
+                    <span data-bind="text: 'Middle Gap (' + middleGap() + ')'"></span>
+                    <span data-bind="text: 'Door Width (' + calculateDoorWidth() + ')'"></span>
                 </section>
             </a>
             <!-- /ko -->

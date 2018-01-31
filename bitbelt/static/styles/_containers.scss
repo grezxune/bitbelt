@@ -3,6 +3,8 @@
     display: flex;
 }
 
+// Vertical Containers
+
 .vertical-container {
     @extend .container;
 
@@ -10,6 +12,14 @@
     justify-content: center;
     align-items: center;
 }
+
+.vertical-container__right-justified {
+    @extend .vertical-container;
+
+    justify-content: flex-end;
+}
+
+// Horizontal Containers
 
 .horizontal-container {
     @extend .container;
@@ -27,7 +37,7 @@
     flex-flow: row wrap;
 }
 
-.horizontal-container__right-aligned {
+.horizontal-container__right-justified {
     @extend .horizontal-container;
 
     justify-content: flex-end;
