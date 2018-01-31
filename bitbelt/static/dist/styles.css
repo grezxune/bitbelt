@@ -2505,17 +2505,20 @@ header {
   .btn-action:hover i {
     color: #e1e8f0; }
 
-.container, .vertical-container, .vertical-container__right-justified, .horizontal-container, .horizontal-container__right-justified {
+.container, .vertical-container, .vertical-container__right-justified, .vertical-container__right-aligned, .horizontal-container, .horizontal-container__right-justified {
   font-size: 1.8rem;
   display: flex; }
 
-.vertical-container, .vertical-container__right-justified {
+.vertical-container, .vertical-container__right-justified, .vertical-container__right-aligned {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center; }
 
 .vertical-container__right-justified {
   justify-content: flex-end; }
+
+.vertical-container__right-aligned {
+  align-items: flex-end; }
 
 .horizontal-container, .horizontal-container__right-justified {
   flex-flow: row nowrap;
@@ -2557,3 +2560,6 @@ header {
 
 .flex-1 {
   flex: 1; }
+
+.align-self-flex-start {
+  align-self: flex-start; }

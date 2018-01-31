@@ -6,14 +6,14 @@
 
 {% block body %}
     {% include 'flashed-messages.html' %}
-    <div id="cabinet-opening">
+    <div id="cabinet-opening" class="horizontal-container">
         <form method="POST">
             <div class="vertical-container__right-justified">
                 {{ form.hidden_tag() }}
                 {{ form.csrf_token }}
                 <span class="page-sub-header">Opening Specific Values</span>
                 {{ render_field(form.number_of_openings, class="text-input") }} 
-                {{ render_field(form.number_of_doors, class="text-input") }} 
+                {{ render_field(form.number_of_doors, class="text-input", data_bind="text: numberOfDoors()") }} 
                 {{ render_field(form.number_of_panels_per_door, class="text-input") }} 
                 {{ render_field(form.opening_width, class="text-input") }} 
                 {{ render_field(form.opening_height, class="text-input") }} 
@@ -39,6 +39,18 @@
             <input class="btn-secondary" type="button" value="Remove Opening" data-bind="click: deleteCabinetOpening"/>
             {% endif %}
         </form>
+        <div class="vertical-container align-self-flex-start">
+            <span class="page-sub-header">Door Details</span>
+            <div class="vertical-container__right-aligned">
+                <span data-bind="text: 'Door: ' + calculateDoorWidth() + ' x ' + calculateDoorHeight() + ' (' + totalNumberOfDoors() + ')'"></span>
+                <span data-bind="text: 'Panel: ' + calculatePanelWidth() + ' x ' + calculatePanelHeight() + ' (' + totalNumberOfPanels() + ')'"></span>
+                <span data-bind="text: 'Top Rail: ' + topRailWidth() + ' x ' + calculateRailLength() + ' (' + totalNumberOfTopRails() + ')'"></span>
+                <span data-bind="text: 'Bottom Rail: ' + bottomRailWidth() + ' x ' + calculateRailLength() + ' (' + totalNumberOfBottomRails() + ')'"></span>
+                <span data-bind="text: 'Left Stile: ' + leftStileWidth() + ' x ' + calculateStileLength() + ' (' + totalNumberOfLeftStiles() + ')'"></span>
+                <span data-bind="text: 'Right Stile: ' + rightStileWidth() + ' x ' + calculateStileLength() + ' (' + totalNumberOfRightStiles() + ')'"></span>
+                <span data-bind="text: 'Center Rail: ' + centerRailWidth() + ' x ' + calculateCenterRailLength() + ' (' + totalNumberOfCenterRails() + ')'"></span>
+            </div>
+        </div>
     </div>
 {% endblock body %}
 

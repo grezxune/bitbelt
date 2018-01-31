@@ -19,6 +19,12 @@
     justify-content: flex-end;
 }
 
+.vertical-container__right-aligned {
+    @extend .vertical-container;
+
+    align-items: flex-end;
+}
+
 // Horizontal Containers
 
 .horizontal-container {

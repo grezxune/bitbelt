@@ -22,14 +22,15 @@
         <div class="horizontal-container horizontal-container--wrap">
             <!-- ko foreach: cabinetOpenings() -->
             <a class="" data-bind="attr: { href: '/projects/' + $parent.id() + '/cabinet-openings/' + id()}">
-                <section class="cabinet-opening vertical-container" data-bind="attr: { id: $parent.id() }">
-                    <span data-bind="text: 'Number of Openings (' + numberOfOpenings() + ')'"></span>
-                    <span data-bind="text: 'Number of Doors (' + numberOfDoors() + ')'"></span>
-                    <span data-bind="text: 'Opening Width (' + openingWidth() + ')'"></span>
-                    <span data-bind="text: 'Opening Height (' + openingHeight() + ')'"></span>
-                    <span data-bind="text: 'Middle Gap (' + middleGap() + ')'"></span>
-                    <span data-bind="text: 'Door Width (' + calculateDoorWidth() + ')'"></span>
-                </section>
+                <div class="cabinet-opening vertical-container__right-aligned align-self-flex-start">
+                    <span data-bind="text: 'Door: ' + calculateDoorWidth() + ' x ' + calculateDoorHeight() + ' (' + totalNumberOfDoors() + ')'"></span>
+                    <span data-bind="text: 'Panel: ' + calculatePanelWidth() + ' x ' + calculatePanelHeight() + ' (' + totalNumberOfPanels() + ')'"></span>
+                    <span data-bind="text: 'Top Rail: ' + topRailWidth() + ' x ' + calculateRailLength() + ' (' + totalNumberOfTopRails() + ')'"></span>
+                    <span data-bind="text: 'Bottom Rail: ' + bottomRailWidth() + ' x ' + calculateRailLength() + ' (' + totalNumberOfBottomRails() + ')'"></span>
+                    <span data-bind="text: 'Left Stile: ' + leftStileWidth() + ' x ' + calculateStileLength() + ' (' + totalNumberOfLeftStiles() + ')'"></span>
+                    <span data-bind="text: 'Right Stile: ' + rightStileWidth() + ' x ' + calculateStileLength() + ' (' + totalNumberOfRightStiles() + ')'"></span>
+                    <span data-bind="text: 'Center Rail: ' + centerRailWidth() + ' x ' + calculateCenterRailLength() + ' (' + totalNumberOfCenterRails() + ')'"></span>
+                </div>
             </a>
             <!-- /ko -->
         </div>

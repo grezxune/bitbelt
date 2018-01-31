@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import SelectField, FloatField, IntegerField
+from wtforms.widgets import TextInput
 # from wtforms.validators import *
 import wtforms.validators
 import bitbelt.forms
