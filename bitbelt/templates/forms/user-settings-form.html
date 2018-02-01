@@ -1,0 +1,14 @@
+{% from "macros/render-field.html" import render_field %}
+
+{% include 'flashed-messages.html' %}
+
+<form method="POST" class="vertical-container">
+    {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
+    {{ render_field(form.first_name, class="text-input") }}
+    {{ render_field(form.last_name, class="text-input") }}
+    {{ render_field(form.email, class="text-input") }}
+    {{ render_field(form.rough_sawn_overestimate, class="text-input") }}
+
+    <input type=submit class="btn-action" value="Save Changes"/>
+</form>

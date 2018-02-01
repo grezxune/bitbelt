@@ -4,28 +4,10 @@
 {% endblock styles %}
 
 {% block body %}
-{% from "macros/render-field.html" import render_field %}
-
 <div id="admin">
     <h1>Welcome to your admin screen</h1>
 
-    {% include 'flashed-messages.html' %}
-
-    <form method="POST" class="vertical-container">
-        <div>
-            {{ form.hidden_tag() }}
-            {{ form.csrf_token }}
-            {{ render_field(form.first_name, class="text-input") }}
-            {{ render_field(form.last_name, class="text-input") }}
-            {{ render_field(form.email, class="text-input") }}
-            {{ render_field(form.password, class="text-input") }}
-        </div>
-        {% if user and user.first_name %}
-        <input type=submit class="btn-action" value="Sign Up"/>
-        {% else %}
-        <input type=submit class="btn-action" value="Save Changes"/>
-        {% endif %}
-    </form>
+    {% include 'forms/user-settings-form.html' %}
 </div>
 {% endblock body %}
 

@@ -8,14 +8,12 @@
     {% include 'flashed-messages.html' %}
 
     <form method="POST" class="vertical-container">
-        <div>
-            {{ form.hidden_tag() }}
-            {{ form.csrf_token }}
-            {{ render_field(form.first_name, class="text-input") }}
-            {{ render_field(form.last_name, class="text-input") }}
-            {{ render_field(form.email, class="text-input") }}
-            {{ render_field(form.password, class="text-input") }}
-        </div>
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+        {{ render_field(form.first_name, class="text-input") }}
+        {{ render_field(form.last_name, class="text-input") }}
+        {{ render_field(form.email, class="text-input") }}
+        {{ render_field(form.password, class="text-input") }}
 
         <input type=submit class="btn-action" value="Sign Up"/>
     </form>

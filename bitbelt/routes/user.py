@@ -9,6 +9,7 @@ from bitbelt.forms.sign_up_form import SignUpForm
 
 # Model Imports
 from bitbelt.models.user import User
+from bitbelt.models.user_settings import UserSettings
 
 login_manager.login_view = 'login_form'
 
@@ -31,11 +32,15 @@ def sign_up():
         existing_users = User.objects(email = form.email.data)
         if(existing_users.count() <= 0):
             user = User()
+            user_settings = UserSettings()
+            user_settings.save()
+
             user.first_name = form.first_name.data
             user.last_name = form.last_name.data
             user.email = form.email.data
 
             user.password = user.hash_password(form.password.data)
+            user.settings = user_settings
 
             user.save()
 

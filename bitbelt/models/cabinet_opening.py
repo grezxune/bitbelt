@@ -25,6 +25,7 @@ class CabinetOpening(Document):
     panel_gap = FloatField(default=0.0, precision=5)
     tennon_length = FloatField(default=0.0, precision=5)
     center_rail_width = FloatField(default=0.0, precision=5)
+    rough_sawn_overestimate = FloatField(default=0.0, precision=5)
 
     # def __init__(self, default_values, number_of_openings, number_of_doors, opening_width, opening_height, middle_gap):
     #     self.left_stile_width = default_values['left_style_width']
@@ -68,7 +69,8 @@ class CabinetOpening(Document):
             'panelGap': self.panel_gap,
             'tennonLength': self.tennon_length,
             'centerRailWidth': self.center_rail_width,
-            'centerRailHorizontal': self.center_rail_horizontal
+            'centerRailHorizontal': self.center_rail_horizontal,
+            'roughSawnOverestimate': self.rough_sawn_overestimate
         }
 
 

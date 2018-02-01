@@ -1,6 +1,7 @@
-from mongoengine import Document, ObjectIdField, StringField, EmailField
+from mongoengine import Document, ObjectIdField, StringField, EmailField, ReferenceField, CASCADE
 from passlib.hash import pbkdf2_sha256
 from bson.objectid import ObjectId
+from bitbelt.models.user_settings import UserSettings
 
 class User(Document):
     user_id = ObjectIdField(primary_key=True)
@@ -8,6 +9,7 @@ class User(Document):
     last_name = StringField(required=True)
     email = EmailField(required=True)
     password = StringField(required=True)
+    settings = ReferenceField('UserSettings', reverse_delete_rule=CASCADE, required=True)
 
 
     @property
@@ -53,7 +55,8 @@ class User(Document):
             'id': str(self.user_id),
             'firstName': self.first_name,
             'lastName': self.last_name,
-            'email': self.email
+            'email': self.email,
+            'settings': self.settings.jsonify()
         }
 
 

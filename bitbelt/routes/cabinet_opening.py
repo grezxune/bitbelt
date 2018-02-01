@@ -19,9 +19,9 @@ def create_cabinet_opening(project_id):
         project = Project.objects(id=project_id).first()
         project_defaults = project.default_values
 
-        if(form.validate_on_submit()):
-            new_cabinet_opening = CabinetOpening()
+        new_cabinet_opening = CabinetOpening()
 
+        if(form.validate_on_submit()):
             new_cabinet_opening.left_stile_width = form.left_stile_width.data
             new_cabinet_opening.right_stile_width = form.right_stile_width.data
             new_cabinet_opening.top_rail_width = form.top_rail_width.data
@@ -33,6 +33,7 @@ def create_cabinet_opening(project_id):
             new_cabinet_opening.panel_gap = form.panel_gap.data
             new_cabinet_opening.tennon_length = form.tennon_length.data
             new_cabinet_opening.center_rail_width = form.center_rail_width.data
+            new_cabinet_opening.rough_sawn_overestimate = current_user.settings.rough_sawn_overestimate
 
             new_cabinet_opening.number_of_openings = form.number_of_openings.data
             new_cabinet_opening.number_of_doors = form.number_of_doors.data
@@ -62,13 +63,13 @@ def create_cabinet_opening(project_id):
             form.tennon_length.data = project_defaults.tennon_length
             form.center_rail_width.data = project_defaults.center_rail_width
 
-            return render_template('forms/cabinet-opening-form.html', title='Create Cabinet Opening', form=form, cabinet_opening=None, user=current_user)
+            return render_template('forms/cabinet-opening-form.html', title='Create Cabinet Opening', form=form, cabinet_opening=new_cabinet_opening.jsonify(), user=current_user)
     else:
-        flash('This project is not available to the current user')
-        return render_template('forms/cabinet-opening-form.html', title='Create Cabinet Opening', form=form, cabinet_opening=None, user=current_user)
+        return redirect(url_for('project_list'))
 
 
 @app.route('/projects/<string:project_id>/cabinet-openings/<string:cabinet_opening_id>', methods=['GET', 'POST'])
+@login_required
 def cabinet_opening_details(project_id, cabinet_opening_id):
     print('in get, put')
     if(verify_valid_project(project_id) and verify_valid_cabinet_opening(project_id, cabinet_opening_id)):
@@ -99,6 +100,7 @@ def cabinet_opening_details(project_id, cabinet_opening_id):
                 cabinet_opening.panel_gap = form.panel_gap.data
                 cabinet_opening.tennon_length = form.tennon_length.data
                 cabinet_opening.center_rail_width = form.center_rail_width.data
+                cabinet_opening.rough_sawn_overestimate = current_user.settings.rough_sawn_overestimate
 
                 cabinet_opening.save()
 
@@ -134,6 +136,7 @@ def cabinet_opening_details(project_id, cabinet_opening_id):
 
 
 @app.route('/projects/<string:project_id>/cabinet-openings/<string:cabinet_opening_id>', methods=['DELETE'])
+@login_required
 def delete_cabinet_opening(project_id, cabinet_opening_id):
     print('In delete')
     if(verify_valid_project(project_id) and verify_valid_cabinet_opening(project_id, cabinet_opening_id)):

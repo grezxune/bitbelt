@@ -23,6 +23,7 @@ export default class CabinetOpening {
         this.tennonLength = ko.observable(cabinetOpening.tennonLength);
         this.centerRailWidth = ko.observable(cabinetOpening.centerRailWidth);
         this.centerRailHorizontal = ko.observable(cabinetOpening.centerRailHorizontal);
+        this.roughSawnOverestimate = ko.observable(cabinetOpening.roughSawnOverestimate);
 
         this.numberOfDoors.subscribe(() => {
             console.log('Updating numberOfDoors...');
@@ -134,8 +135,7 @@ export default class CabinetOpening {
 
         this.calculateStileLength = ko.computed(() => {
             let stileLength = this.calculateDoorHeight();
-            // UNCOMMENT ONCE READY
-            // stileLength += this.roughSawnOverestimate();
+            stileLength += this.roughSawnOverestimate();
             return stileLength;
         });
 

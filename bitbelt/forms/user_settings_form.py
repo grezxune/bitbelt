@@ -1,9 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField
+from wtforms import StringField, FloatField
 from wtforms.validators import required, Email, length
 
-class SignUpForm(FlaskForm):
+class UserSettingsForm(FlaskForm):
     first_name = StringField(label='First Name', validators=[required()])
     last_name = StringField(label='Last Name', validators=[required()])
     email = StringField(label='Email Address', validators=[required(), Email()])
-    password = PasswordField(label='Password', validators=[required(), length(min=5, max=15)])
+    rough_sawn_overestimate = FloatField(label='Rough Sawn Overestimate')
