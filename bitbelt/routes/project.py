@@ -63,6 +63,7 @@ def project_list():
 
 
 @app.route('/projects/<string:id>')
+@login_required
 def project_home(id):
     project = Project.objects(id = ObjectId(id)).first()
     if(project is not None):
@@ -72,6 +73,7 @@ def project_home(id):
 
 
 @app.route('/projects/<string:project_id>/settings', methods=['GET', 'POST'])
+@login_required
 def project_settings(project_id):
     form = ProjectForm()
 
@@ -126,6 +128,7 @@ def project_settings(project_id):
 
 
 @app.route('/projects/<string:id>/cutlist')
+@login_required
 def project_cutlist(id):
     project = Project.objects(id=id).first()
 
