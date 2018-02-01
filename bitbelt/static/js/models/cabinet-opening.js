@@ -22,6 +22,7 @@ export default class CabinetOpening {
         this.panelGap = ko.observable(cabinetOpening.panelGap);
         this.tennonLength = ko.observable(cabinetOpening.tennonLength);
         this.centerRailWidth = ko.observable(cabinetOpening.centerRailWidth);
+        this.centerRailHorizontal = ko.observable(cabinetOpening.centerRailHorizontal);
 
         this.numberOfDoors.subscribe(() => {
             console.log('Updating numberOfDoors...');
@@ -59,11 +60,21 @@ export default class CabinetOpening {
         /**************************************/
 
         this.calculateCenterRailLength = ko.computed(() => {
-            let centerRailLength = this.calculateDoorHeight();
-            centerRailLength -= this.topRailWidth();
-            centerRailLength -= this.bottomRailWidth();
-            centerRailLength += this.tennonLength() * 2;
-            centerRailLength -= this.panelGap() * 2;
+            let centerRailLength;
+
+            if(this.centerRailHorizontal()) {
+                // Horizontal Center Rail
+                centerRailLength = this.calculateDoorWidth();
+                centerRailLength -= this.leftStileWidth();
+                centerRailLength -= this.rightStileWidth();
+                centerRailLength += this.tennonLength() * 2;
+            } else {
+                // Vertical Center Rail
+                centerRailLength = this.calculateDoorHeight();
+                centerRailLength -= this.topRailWidth();
+                centerRailLength -= this.bottomRailWidth();
+                centerRailLength += this.tennonLength() * 2;
+            }
 
             return centerRailLength;
         });

@@ -26,15 +26,18 @@ export default class CutlistItem {
 
         this.rails = ko.computed(() => {
             let rails = [];
+            const railWidthDefaultsVary = this.defaultValues().topRailWidth() != this.defaultValues().bottomRailWidth();
+            const topRailWidthIsDefault = this.cabinetOpening().topRailWidth() == this.defaultValues().topRailWidth();
+            const bottomRailWidthIsDefault = this.cabinetOpening().bottomRailWidth() == this.defaultValues().bottomRailWidth();
 
             const topRail = new Rail(this.cabinetOpening().topRailWidth(),
                                         this.cabinetOpening().calculateRailLength(),
-                                        this.cabinetOpening().topRailWidth() != this.defaultValues().topRailWidth(),
+                                        !topRailWidthIsDefault || railWidthDefaultsVary,
                                         this.cabinetOpening().totalNumberOfTopRails());
 
             const bottomRail = new Rail(this.cabinetOpening().bottomRailWidth(),
                                         this.cabinetOpening().calculateRailLength(),
-                                        this.cabinetOpening().bottomRailWidth() != this.defaultValues().bottomRailWidth(),
+                                        !bottomRailWidthIsDefault || railWidthDefaultsVary,
                                         this.cabinetOpening().totalNumberOfBottomRails());
 
             if(topRail.equals(bottomRail)) {
@@ -44,7 +47,6 @@ export default class CutlistItem {
                 rails.push(bottomRail);
             }
 
-            console.log(rails);
             return rails;
         });
 
@@ -55,15 +57,18 @@ export default class CutlistItem {
 
         this.stiles = ko.computed(() => {
             let stiles = [];
+            const stileWidthDefaultsVary = this.defaultValues().leftStileWidth() != this.defaultValues().rightStileWidth();
+            const leftStileWidthIsDefault = this.cabinetOpening().leftStileWidth() == this.defaultValues().leftStileWidth();
+            const rightStileWidthIsDefault = this.cabinetOpening().rightStileWidth() == this.defaultValues().rightStileWidth();
 
             const leftStile = new Stile(this.cabinetOpening().leftStileWidth(),
                                         this.cabinetOpening().calculateStileLength(),
-                                        this.cabinetOpening().leftStileWidth() != this.defaultValues().leftStileWidth(),
+                                        !leftStileWidthIsDefault || stileWidthDefaultsVary,
                                         this.cabinetOpening().totalNumberOfLeftStiles());
 
             const rightStile = new Stile(this.cabinetOpening().rightStileWidth(),
                                             this.cabinetOpening().calculateStileLength(),
-                                            this.cabinetOpening().rightStileWidth() != this.defaultValues().rightStileWidth(),
+                                            !rightStileWidthIsDefault || stileWidthDefaultsVary,
                                             this.cabinetOpening().totalNumberOfRightStiles());
 
             if(leftStile.equals(rightStile)) {
@@ -83,10 +88,11 @@ export default class CutlistItem {
 
         this.centerRails = ko.computed(() => {
             let centerRails = [];
+            const centerRailWidthIsDefault = this.cabinetOpening().centerRailWidth() == this.defaultValues().centerRailWidth();
 
             const centerRail = new Rail(this.cabinetOpening().centerRailWidth(),
                                         this.cabinetOpening().calculateCenterRailLength(),
-                                        this.cabinetOpening().centerRailWidth() != this.defaultValues().centerRailWidth(),
+                                        !centerRailWidthIsDefault,
                                         this.cabinetOpening().totalNumberOfCenterRails());
             
             centerRails.push(centerRail);

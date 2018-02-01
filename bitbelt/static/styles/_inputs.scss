@@ -16,3 +16,24 @@
 .select-input {
     @extend .input;
 }
+
+.checkbox-input {
+    cursor: pointer;
+    -moz-appearance: none;
+    -ms-progress-appearance: none;
+    -webkit-appearance: none;
+    padding: $size-s;
+    border-radius: 4px;
+    background: $charcoal;
+    color: $catskill-white;
+    width: $size-s !important;
+    height: $size-s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:checked:after {
+        content: '\2714';
+    }
+}

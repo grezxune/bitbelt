@@ -1,4 +1,4 @@
-from mongoengine import Document, FloatField, ReferenceField, IntField, CASCADE
+from mongoengine import Document, FloatField, ReferenceField, IntField, BooleanField, CASCADE
 
 class CabinetOpening(Document):
     # Custom per door
@@ -8,6 +8,7 @@ class CabinetOpening(Document):
     opening_width = FloatField(default=0.0, precision=5)
     opening_height = FloatField(default=0.0, precision=5)
     middle_gap = FloatField(default=0.0, precision=5)
+    center_rail_horizontal = BooleanField(default=True)
 
     # A center rail should consist of a width, and location
     #center_rails = ListField(ReferenceField('centerRail.CenterRail'))
@@ -66,7 +67,8 @@ class CabinetOpening(Document):
             'bottomOverlay': self.bottom_overlay,
             'panelGap': self.panel_gap,
             'tennonLength': self.tennon_length,
-            'centerRailWidth': self.center_rail_width
+            'centerRailWidth': self.center_rail_width,
+            'centerRailHorizontal': self.center_rail_horizontal
         }
 
 

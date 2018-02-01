@@ -2549,6 +2549,23 @@ header {
   font-size: 1.8rem;
   height: 50px; }
 
+.checkbox-input {
+  cursor: pointer;
+  -moz-appearance: none;
+  -ms-progress-appearance: none;
+  -webkit-appearance: none;
+  padding: 1.2rem;
+  border-radius: 4px;
+  background: #36454f;
+  color: #e1e8f0;
+  width: 1.2rem !important;
+  height: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .checkbox-input:checked:after {
+    content: '\2714'; }
+
 .header, .page-header, .page-sub-header {
   margin: 3.2rem;
   font-weight: bold; }
