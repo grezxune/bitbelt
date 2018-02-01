@@ -7,13 +7,26 @@ $fa-font-path: "~font-awesome/fonts";
     box-sizing: border-box;
 }
 
-html, body {
-    font-size: 62.5%;
-    width: 100%;
-    background-color: $catskill-white;
-    color: $charcoal;
-    font-family: $sarala;
-    margin: 0px;
+@media screen {
+    html, body {
+        font-size: 62.5%;
+        width: 100%;
+        background-color: $catskill-white;
+        color: $charcoal;
+        font-family: $sarala;
+        margin: 0px;
+    }
+}
+
+@media print {
+    html, body {
+        font-size: 62.5%;
+        width: 100%;
+        background-color: white;
+        color: $charcoal;
+        font-family: $sarala;
+        margin: 0px;
+    }
 }
 
 #app {

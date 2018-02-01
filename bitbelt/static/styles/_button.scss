@@ -28,3 +28,9 @@
 
     @include clickable-secondary();
 }
+
+@media print {
+    .btn, .btn-primary, .btn-secondary, .btn-action {
+        display: none !important;
+    }
+}

@@ -5,5 +5,26 @@
 
     td {
         padding: $size-m;
+        text-align: center;
+    }
+}
+
+@media print {
+    .cutlist-table {
+        background: white !important;
+        margin: $size-xs !important;
+        font-size: $font-size-xs !important;
+
+        td {
+            padding: $size-xs !important;
+        }
+
+        tr:nth-child(even) {
+            background: lightgray !important;
+        }
+
+        tr:nth-child(odd) {
+            background: white !important;
+        }
     }
 }

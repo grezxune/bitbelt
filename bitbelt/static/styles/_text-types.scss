@@ -16,3 +16,17 @@
 
     font-size: $font-size-l;
 }
+
+@media print {
+    .header, .page-header, .page-sub-header {
+        margin: $size-s !important;
+    }
+
+    .page-header {
+        font-size: $font-size-m !important;
+    }
+
+    .page-sub-header {
+        font-size: $font-size-s !important;
+    }
+}

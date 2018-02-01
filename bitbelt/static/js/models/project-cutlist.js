@@ -12,4 +12,8 @@ export default class ProjectCutlist {
         this.project = ko.observable(new Project(project));
         this.cutlistItems = ko.observableArray(this.project().cabinetOpenings().map(opening => new CutlistItem(opening, this.project().defaultValues)));
     }
+
+    printPage = () => {
+        window.print();
+    }
 }
