@@ -28,6 +28,10 @@ export default class Project {
             const reducedNumberOfOpenings = numberOfOpeningsArray.reduce((a, b) => a + b, 0);
             return reducedNumberOfOpenings;
         });
+
+        this.totalNumberOfCenterRails = ko.computed(() => {
+            return this.cabinetOpenings().reduce((accumulated, current) => accumulated + current.totalNumberOfCenterRails(), 0);
+        });
     }
 
     navigateToAddOpening = () => {

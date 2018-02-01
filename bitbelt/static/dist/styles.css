@@ -2457,8 +2457,8 @@ a {
   text-align: center; }
 
 .cutlist-table {
-  background: #6ed3cf;
-  color: #36454f;
+  background: #36454f;
+  color: #6ed3cf;
   margin: 3.2rem; }
   .cutlist-table td {
     padding: 1.6rem;
@@ -2468,7 +2468,8 @@ a {
   .cutlist-table {
     background: white !important;
     margin: 0.8rem !important;
-    font-size: 1.4rem !important; }
+    font-size: 1.4rem !important;
+    color: #36454f !important; }
     .cutlist-table td {
       padding: 0.8rem !important; }
     .cutlist-table tr:nth-child(even) {

@@ -12,6 +12,6 @@ export default class DefaultValues {
         this.bottomOverlay = ko.observable(defaultValues.bottomOverlay);
         this.panelGap = ko.observable(defaultValues.panelGap);
         this.tennonLength = ko.observable(defaultValues.tennonLength);
-        this.centerRailWidth = ko.observable(defaultValues.centerRailwidth);
+        this.centerRailWidth = ko.observable(defaultValues.centerRailWidth);
     }
 }

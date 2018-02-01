@@ -9,7 +9,10 @@
 <div id="project-cutlist" class="vertical-container full-width">
     <div class="horizontal-container full-width">
         <div class="flex-1"></div>
-        <span data-bind="text: 'Cutlist for ' + project().name()" class="page-header"></span>
+        <div class="vertical-container">
+            <span data-bind="text: clientDisplay()" class=""></span>
+            <span data-bind="text: projectNameDisplay()" class=""></span>
+        </div>
 
         <div class="horizontal-container__right-justified flex-1">
             <button class="btn-action horizontal-container" data-bind="click: printPage"><i class="icon-secondary fa fa-print"></i>Print</button>
@@ -21,9 +24,24 @@
             <td>Batch #</td>
             <td>Door</td>
             <td>Panels</td>
-            <td>Rails</td>
-            <td>Stiles</td>
-            <td>Center Rails</td>
+            <td>
+                <div class="vertical-container">
+                    <span>Rails</span>
+                    <span data-bind="text: railDefaultWidthDisplay()"></span>
+                </div>
+            </td>
+            <td>
+                <div class="vertical-container">
+                    <span>Stiles</span>
+                    <span data-bind="text: stileDefaultWidthDisplay()"></span>
+                </div>
+            </td>
+            <td>
+                <div class="vertical-container">
+                    <span>Center Rails</span>
+                    <span data-bind="text: centerRailDefaultWidthDisplay()"></span>
+                </div>
+            </td>
         </tr>
         <!-- ko foreach: cutlistItems() -->
         <tr>
