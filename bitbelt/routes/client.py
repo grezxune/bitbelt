@@ -19,6 +19,7 @@ def add_client():
         client.city = form.city.data
         client.state = form.state.data
         client.zip_code = form.zip_code.data
+        client.phone = form.phone.data
         client.email = form.email.data
 
         client.user_id = ObjectId(current_user.user_id)

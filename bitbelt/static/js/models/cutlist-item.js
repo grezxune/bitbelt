@@ -44,6 +44,7 @@ export default class CutlistItem {
                 rails.push(bottomRail);
             }
 
+            console.log(rails);
             return rails;
         });
 
