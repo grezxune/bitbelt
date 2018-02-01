@@ -1,7 +1,9 @@
 import ko from 'knockout';
+import $ from 'jquery';
 
 export default class CabinetOpening {
-    constructor(cabinetOpening) {
+    constructor(cabinetOpening, projectId) {
+        this.projectId = ko.observable(projectId);
         this.id = ko.observable(cabinetOpening.id);
 
         this.numberOfOpenings = ko.observable(cabinetOpening.numberOfOpenings);
@@ -24,10 +26,6 @@ export default class CabinetOpening {
         this.centerRailWidth = ko.observable(cabinetOpening.centerRailWidth);
         this.centerRailHorizontal = ko.observable(cabinetOpening.centerRailHorizontal);
         this.roughSawnOverestimate = ko.observable(cabinetOpening.roughSawnOverestimate);
-
-        this.numberOfDoors.subscribe(() => {
-            console.log('Updating numberOfDoors...');
-        });
 
         /*******************************/
         /*** DOOR COMPUTED FUNCTIONS ***/
@@ -151,7 +149,21 @@ export default class CabinetOpening {
         /*** BUTTON LISTENERS ***/
         /************************/
         this.deleteCabinetOpening = (opening) => {
-            console.log('Need to delete this guy! He has an id of: ' + opening.id());
+            $.ajax({
+                method: 'DELETE',
+                url: `/projects/${this.projectId()}/cabinet-openings/${this.id()}`,
+                success: () => {
+                    alert('Successfully removed cabinet opening');
+                    if(window.location.hostname === 'localhost') {
+                        window.location.href = `//${window.location.hostname}:5000/projects/${this.projectId()}`;
+                    } else {
+                        window.location.href = `//${window.location.hostname}/projects/${this.projectId()}`;
+                    }
+                },
+                error: (error) => {
+                    alert('Failed to remove cabinet opening');
+                }
+            });
         }
     }
 }

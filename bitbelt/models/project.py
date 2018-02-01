@@ -12,6 +12,7 @@ class Project(Document):
     client = ReferenceField('client.Client', reverse_delete_rule=CASCADE, required=True)
     default_values = ReferenceField('DefaultValues', reverse_delete_rule=CASCADE, required=True)
     cabinet_openings = ListField(ReferenceField('CabinetOpening', reverse_delete_rule=CASCADE))
+    wood_species = StringField(required=False)
     created_on = DateTimeField(required=True)
 
 
@@ -29,5 +30,6 @@ class Project(Document):
             'client': self.client.jsonify(),
             'defaultValues': self.default_values.jsonify(),
             'cabinetOpenings': [cabinet_opening.jsonify() for cabinet_opening in self.cabinet_openings],
+            'woodSpecies': self.wood_species,
             'createdOn': self.created_on
         }

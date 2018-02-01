@@ -42,6 +42,7 @@ def create_project():
         project.user = ObjectId(current_user.user_id)
         project.name = form.name.data
         project.client = form.client.data
+        project.wood_species = form.wood_species.data
 
         project.default_values = default_values
         project.save()
@@ -100,6 +101,7 @@ def project_settings(project_id):
 
             project.name = form.name.data
             project.client = form.client.data
+            project.wood_species = form.wood_species.data
 
             project.default_values = default_values
             project.save()
@@ -120,6 +122,7 @@ def project_settings(project_id):
 
             form.name.data = project.name
             form.client.data = project.client.id
+            form.wood_species.data = project.wood_species
 
             return render_template('forms/project-form.html', form=form, title='Edit Project', user=current_user)
     else:

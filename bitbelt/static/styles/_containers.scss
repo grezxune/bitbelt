@@ -48,3 +48,9 @@
 
     justify-content: flex-end;
 }
+
+.horizontal-container__space-between-justified {
+    @extend .horizontal-container;
+
+    justify-content: space-between;
+}

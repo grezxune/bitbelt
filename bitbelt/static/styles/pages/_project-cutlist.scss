@@ -16,6 +16,10 @@
         font-size: $font-size-xs !important;
         color: $charcoal !important;
 
+        * {
+            font-size: $font-size-xs !important;
+        }
+
         td {
             padding: $size-xs !important;
         }

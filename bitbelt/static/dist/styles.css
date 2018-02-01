@@ -2470,6 +2470,8 @@ a {
     margin: 0.8rem !important;
     font-size: 1.4rem !important;
     color: #36454f !important; }
+    .cutlist-table * {
+      font-size: 1.4rem !important; }
     .cutlist-table td {
       padding: 0.8rem !important; }
     .cutlist-table tr:nth-child(even) {
@@ -2550,7 +2552,7 @@ a {
   .btn, .btn-primary, .btn-action, .btn-secondary, .btn-primary, .btn-action, .btn-secondary, .btn-action {
     display: none !important; } }
 
-.container, .vertical-container, .vertical-container__right-justified, .vertical-container__right-aligned, .horizontal-container, .horizontal-container__right-justified {
+.container, .vertical-container, .vertical-container__right-justified, .vertical-container__right-aligned, .horizontal-container, .horizontal-container__right-justified, .horizontal-container__space-between-justified {
   font-size: 1.8rem;
   display: flex; }
 
@@ -2565,11 +2567,11 @@ a {
 .vertical-container__right-aligned {
   align-items: flex-end; }
 
-.horizontal-container, .horizontal-container__right-justified {
+.horizontal-container, .horizontal-container__right-justified, .horizontal-container__space-between-justified {
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center; }
-  .horizontal-container > *, .horizontal-container__right-justified > * {
+  .horizontal-container > *, .horizontal-container__right-justified > *, .horizontal-container__space-between-justified > * {
     margin: 0.8rem; }
 
 .horizontal-container--wrap {
@@ -2577,6 +2579,9 @@ a {
 
 .horizontal-container__right-justified {
   justify-content: flex-end; }
+
+.horizontal-container__space-between-justified {
+  justify-content: space-between; }
 
 .input, .text-input, .select-input {
   padding: 1.2rem;

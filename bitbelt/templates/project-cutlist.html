@@ -9,9 +9,14 @@
 <div id="project-cutlist" class="vertical-container full-width">
     <div class="horizontal-container full-width">
         <div class="flex-1"></div>
-        <div class="vertical-container">
-            <span data-bind="text: clientDisplay()" class=""></span>
-            <span data-bind="text: projectNameDisplay()" class=""></span>
+        <div class="vertical-container full-width">
+            <div class="horizontal-container__space-between-justified full-width">
+                <span data-bind="text: clientDisplay()" class=""></span>
+                <span data-bind="text: projectNameDisplay()" class=""></span>
+            </div>
+            <div class="horizontal-container align-self-flex-start">
+                <span data-bind="text: woodSpeciesDisplay()"></span>
+            </div>
         </div>
 
         <div class="horizontal-container__right-justified flex-1">

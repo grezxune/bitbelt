@@ -16,7 +16,8 @@ export default class Project {
         this.user = ko.observable(new User(project.user));
         this.client = ko.observable(new Client(project.client));
         this.defaultValues = ko.observable(new DefaultValues(project.defaultValues));
-        this.cabinetOpenings = ko.observableArray(project.cabinetOpenings.map(co => new CabinetOpening(co, this.user)));
+        this.cabinetOpenings = ko.observableArray(project.cabinetOpenings.map(co => new CabinetOpening(co)));
+        this.woodSpecies = ko.observable(project.woodSpecies);
         this.createdOn = ko.observable(project.createdOn);
 
         this.projectPageTitle = ko.computed(() => {

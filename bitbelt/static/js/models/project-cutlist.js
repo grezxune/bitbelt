@@ -13,11 +13,15 @@ export default class ProjectCutlist {
         this.cutlistItems = ko.observableArray(this.project().cabinetOpenings().map(opening => new CutlistItem(opening, this.project().defaultValues)));
 
         this.clientDisplay = ko.computed(() => {
-            return `Cutlist for ${this.project().client().firstName()} ${this.project().client().lastName()}`;
+            return `Client ${this.project().client().firstName()} ${this.project().client().lastName()}`;
         });
 
         this.projectNameDisplay = ko.computed(() => {
-            return `Project "${this.project().name()}"`;
+            return `${this.project().name()}`;
+        });
+
+        this.woodSpeciesDisplay = ko.computed(() => {
+            return `Wood Species: ${this.project().woodSpecies()}`;
         });
 
         this.railDefaultWidthDisplay = ko.computed(() => {

@@ -52,7 +52,7 @@
             </div>
             <div class="horizontal-container">
                 <input class="btn-action" type="submit" value="Submit Opening"/>
-                {% if cabinet_opening is not none %}
+                {% if is_edit %}
                 <input class="btn-secondary" type="button" value="Remove Opening" data-bind="click: deleteCabinetOpening"/>
                 {% endif %}
             </div>
@@ -63,6 +63,10 @@
 {% block scripts %}
 <script>
     var cabinetOpeningFromServer = {{cabinet_opening|tojson}};
+</script>
+
+<script>
+    var projectIdFromServer = {{project_id|tojson}};
 </script>
 <script type="text/javascript" src="{{ url_for('static', filename='dist/cabinet-opening.bundle.js') }}"></script>
 {% endblock scripts %}
