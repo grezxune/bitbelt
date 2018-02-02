@@ -2459,10 +2459,17 @@ a {
 .cutlist-table {
   background: #36454f;
   color: #6ed3cf;
-  margin: 3.2rem; }
+  margin: 3.2rem;
+  border-collapse: collapse; }
   .cutlist-table td {
     padding: 1.6rem;
     text-align: center; }
+  .cutlist-table tr:nth-child(even) {
+    background: #36454f !important;
+    color: #6ed3cf !important; }
+  .cutlist-table tr:nth-child(odd) {
+    background: #6ed3cf !important;
+    color: #36454f !important; }
 
 @media print {
   .cutlist-table {
@@ -2475,9 +2482,11 @@ a {
     .cutlist-table td {
       padding: 0.8rem !important; }
     .cutlist-table tr:nth-child(even) {
-      background: lightgray !important; }
+      background: lightgray !important;
+      color: #36454f !important; }
     .cutlist-table tr:nth-child(odd) {
-      background: white !important; } }
+      background: white !important;
+      color: #36454f !important; } }
 
 @media screen {
   footer {

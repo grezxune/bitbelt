@@ -27,7 +27,7 @@ export default class CutlistItem {
         });
 
         this.doorDisplay = ko.computed(() => {
-            return `${this.doorWidth()} x ${this.doorHeight()} (${this.doorQuantity()})`;
+            return `(${this.doorQuantity()}) ${this.doorWidth()} x ${this.doorHeight()}`;
         });
 
         /************************************/
@@ -47,7 +47,7 @@ export default class CutlistItem {
         });
 
         this.panelDisplay = ko.computed(() => {
-            return `${this.panelWidth()} x ${this.panelHeight()} (${this.panelQuantity()})`;
+            return `(${this.panelQuantity()}) ${this.panelWidth()} x ${this.panelHeight()}`;
         });
 
         /***********************************/
@@ -81,7 +81,7 @@ export default class CutlistItem {
         });
 
         this.railDisplays = ko.computed(() => {
-            const displays = this.rails().map(rail => `${rail.showWidth() ? `${convertDecimalToFraction(rail.width())} x ` : ''}${convertDecimalToFraction(rail.length())} (${rail.quantity()})`);
+            const displays = this.rails().map(rail => `(${rail.quantity()}) ${rail.showWidth() ? `${convertDecimalToFraction(rail.width())} x ` : ''}${convertDecimalToFraction(rail.length())}`);
             return displays;
         });
 
@@ -116,7 +116,7 @@ export default class CutlistItem {
         });
 
         this.stileDisplays = ko.computed(() => {
-            const displays = this.stiles().map(stile => `${stile.showWidth() ? `${convertDecimalToFraction(stile.width())} x ` : ''}${convertDecimalToFraction(stile.length())} (${stile.quantity()})`);
+            const displays = this.stiles().map(stile => `(${stile.quantity()}) ${stile.showWidth() ? `${convertDecimalToFraction(stile.width())} x ` : ''}${convertDecimalToFraction(stile.length())}`);
             return displays;
         });
 
@@ -137,8 +137,8 @@ export default class CutlistItem {
         this.centerRailDisplays = ko.computed(() => {
             const displays = this.centerRails().map(centerRail =>
                 `${this.cabinetOpening().totalNumberOfCenterRails() > 0 ?
-                    `${centerRail.showWidth() ?
-                        `${convertDecimalToFraction(centerRail.width())} x ` : ''}${convertDecimalToFraction(centerRail.length())} (${centerRail.quantity()})` : 'N/A'}`);
+                    `(${centerRail.quantity()}) ${centerRail.showWidth() ?
+                        `${convertDecimalToFraction(centerRail.width())} x ` : ''}${convertDecimalToFraction(centerRail.length())}` : 'N/A'}`);
             return displays;
         });
     }

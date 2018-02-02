@@ -2,10 +2,21 @@
     background: $charcoal;
     color: $downy;
     margin: $size-l;
+    border-collapse: collapse;
 
     td {
         padding: $size-m;
         text-align: center;
+    }
+
+    tr:nth-child(even) {
+        background: $charcoal !important;
+        color: $downy !important;
+    }
+
+    tr:nth-child(odd) {
+        background: $downy !important;
+        color: $charcoal !important;
     }
 }
 
@@ -26,10 +37,12 @@
 
         tr:nth-child(even) {
             background: lightgray !important;
+            color: $charcoal !important;
         }
 
         tr:nth-child(odd) {
             background: white !important;
+            color: $charcoal !important;
         }
     }
 }
