@@ -2,27 +2,57 @@ import ko from 'knockout';
 
 import Rail from './rail';
 import Stile from './Stile';
+import { convertDecimalToFraction } from '../utils';
 
 export default class CutlistItem {
     constructor(cabinetOpening, defaultValues) {
         this.cabinetOpening = ko.observable(cabinetOpening);
         this.defaultValues = defaultValues;
 
-        this.doorWidth = this.cabinetOpening().calculateDoorWidth;
-        this.doorHeight = this.cabinetOpening().calculateDoorHeight;
-        this.doorQuantity = this.cabinetOpening().totalNumberOfDoors;
+
+        /***********************************/
+        /*** Door Dimensions (FRACTIONS) ***/
+        /***********************************/
+
+        this.doorWidth = ko.computed(() => {
+            return convertDecimalToFraction(this.cabinetOpening().calculateDoorWidth());
+        });
+
+        this.doorHeight = ko.computed(() => {
+            return convertDecimalToFraction(this.cabinetOpening().calculateDoorHeight());
+        });
+
+        this.doorQuantity = ko.computed(() => {
+            return this.cabinetOpening().totalNumberOfDoors();
+        });
 
         this.doorDisplay = ko.computed(() => {
             return `${this.doorWidth()} x ${this.doorHeight()} (${this.doorQuantity()})`;
         });
 
-        this.panelWidth = this.cabinetOpening().calculatePanelWidth;
-        this.panelHeight = this.cabinetOpening().calculatePanelHeight;
-        this.panelQuantity = this.cabinetOpening().totalNumberOfPanels;
+        /************************************/
+        /*** Panel Dimensions (FRACTIONS) ***/
+        /************************************/
+
+        this.panelWidth = ko.computed(() => {
+            return convertDecimalToFraction(this.cabinetOpening().calculatePanelWidth());
+        });
+
+        this.panelHeight = ko.computed(() => {
+            return convertDecimalToFraction(this.cabinetOpening().calculatePanelHeight());
+        });
+
+        this.panelQuantity = ko.computed(() => {
+            return this.cabinetOpening().totalNumberOfPanels();
+        });
 
         this.panelDisplay = ko.computed(() => {
             return `${this.panelWidth()} x ${this.panelHeight()} (${this.panelQuantity()})`;
         });
+
+        /***********************************/
+        /*** Rail Dimensions (FRACTIONS) ***/
+        /***********************************/
 
         this.rails = ko.computed(() => {
             let rails = [];
@@ -51,9 +81,13 @@ export default class CutlistItem {
         });
 
         this.railDisplays = ko.computed(() => {
-            const displays = this.rails().map(rail => `${rail.showWidth() ? `${rail.width()} x ` : ''}${rail.length()} (${rail.quantity()})`);
+            const displays = this.rails().map(rail => `${rail.showWidth() ? `${convertDecimalToFraction(rail.width())} x ` : ''}${convertDecimalToFraction(rail.length())} (${rail.quantity()})`);
             return displays;
         });
+
+        /************************************/
+        /*** Stile Dimensions (FRACTIONS) ***/
+        /************************************/
 
         this.stiles = ko.computed(() => {
             let stiles = [];
@@ -82,7 +116,7 @@ export default class CutlistItem {
         });
 
         this.stileDisplays = ko.computed(() => {
-            const displays = this.stiles().map(stile => `${stile.showWidth() ? `${stile.width()} x ` : ''}${stile.length()} (${stile.quantity()})`);
+            const displays = this.stiles().map(stile => `${stile.showWidth() ? `${convertDecimalToFraction(stile.width())} x ` : ''}${convertDecimalToFraction(stile.length())} (${stile.quantity()})`);
             return displays;
         });
 
@@ -104,7 +138,7 @@ export default class CutlistItem {
             const displays = this.centerRails().map(centerRail =>
                 `${this.cabinetOpening().totalNumberOfCenterRails() > 0 ?
                     `${centerRail.showWidth() ?
-                        `${centerRail.width()} x ` : ''}${centerRail.length()} (${centerRail.quantity()})` : 'N/A'}`);
+                        `${convertDecimalToFraction(centerRail.width())} x ` : ''}${convertDecimalToFraction(centerRail.length())} (${centerRail.quantity()})` : 'N/A'}`);
             return displays;
         });
     }

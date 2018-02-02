@@ -87,19 +87,41 @@ export default class CabinetOpening {
         /********************************/
 
         this.calculatePanelWidth = ko.computed(() => {
-            let panelWidth = this.calculateInnerDoorWidth() / this.numberOfPanelsPerDoor();
-            panelWidth -= this.totalNumberOfCenterRails() > 0 ? this.centerRailWidth() / 2 : 0;
-            panelWidth += this.tennonLength() * 2;
-            panelWidth -= this.panelGap() * 2;
+            let panelWidth;
+
+            if(this.centerRailHorizontal()) {
+                // Horizontal Center Rail
+                panelWidth = this.calculateInnerDoorWidth();
+                panelWidth += this.tennonLength() * 2;
+                panelWidth -= this.panelGap() * 2;
+            } else {
+                // Vertical Center Rail
+                panelWidth = this.calculateInnerDoorWidth() / this.numberOfPanelsPerDoor();
+                panelWidth -= this.totalNumberOfCenterRails() > 0 ? this.centerRailWidth() / 2 : 0;
+                panelWidth += this.tennonLength() * 2;
+                panelWidth -= this.panelGap() * 2;
+            }
+
             return panelWidth;
         });
 
         this.calculatePanelHeight = ko.computed(() => {
-            let panelHeight = this.calculateDoorHeight();
-            panelHeight -= this.topRailWidth();
-            panelHeight -= this.bottomRailWidth();
-            panelHeight += this.tennonLength() * 2;
-            panelHeight -= this.panelGap() * 2;
+            let panelHeight;
+
+            if(this.centerRailHorizontal()) {
+                // Horizontal Center Rail
+                panelHeight = this.calculateInnerDoorHeight() / this.numberOfPanelsPerDoor();
+                panelHeight -= this.totalNumberOfCenterRails() > 0 ? this.centerRailWidth() / 2 : 0;
+                panelHeight += this.tennonLength() * 2;
+                panelHeight -= this.panelGap() * 2;
+            } else {
+                // Vertical Center Rail
+                panelHeight = this.calculateDoorHeight();
+                panelHeight -= this.topRailWidth();
+                panelHeight -= this.bottomRailWidth();
+                panelHeight += this.tennonLength() * 2;
+                panelHeight -= this.panelGap() * 2;
+            }
             return panelHeight;
         });
 
@@ -148,6 +170,7 @@ export default class CabinetOpening {
         /************************/
         /*** BUTTON LISTENERS ***/
         /************************/
+
         this.deleteCabinetOpening = (opening) => {
             $.ajax({
                 method: 'DELETE',
