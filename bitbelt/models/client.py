@@ -6,12 +6,12 @@ class Client(Document):
 
     first_name = StringField(required=True)
     last_name = StringField(required=True)
-    address = StringField(required=True)
-    city = StringField(required=True)
-    state = StringField(required=True)
-    zip_code = StringField(required=True)
-    phone = StringField(required=True)
-    email = EmailField(required=True)
+    address = StringField()
+    city = StringField()
+    state = StringField()
+    zip_code = StringField()
+    phone = StringField()
+    email = EmailField()
 
 
     def jsonify(self):
