@@ -12,3 +12,4 @@ class AddClientForm(FlaskForm):
     zip_code = StringField(label='Zip Code')
     phone = StringField(label='Phone')
     email = StringField(label='Email Address')
+    print('test')
