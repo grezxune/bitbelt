@@ -8,6 +8,12 @@
 {% include 'flashed-messages.html' %}
 
     <form method="POST" class="vertical-container">
+        {% if is_edit %}
+        <span class="page-header">Edit Project</span>
+        {% else %}
+        <span class="page-header">Add Project</span>
+        {% endif %}
+
         <div>
             {{ form.hidden_tag() }}
             {{ form.csrf_token }}

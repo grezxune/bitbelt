@@ -20,19 +20,12 @@
         </div>
 
         <span class="page-sub-header">Cabinet Openings</span>
+
         <div class="horizontal-container horizontal-container--wrap">
             <!-- ko foreach: cabinetOpenings() -->
-            <a class="" data-bind="attr: { href: '/projects/' + $parent.id() + '/cabinet-openings/' + id()}">
-                <div class="cabinet-opening vertical-container__right-aligned align-self-flex-start">
-                    <span data-bind="text: 'Door: ' + calculateDoorWidth() + ' x ' + calculateDoorHeight() + ' (' + totalNumberOfDoors() + ')'"></span>
-                    <span data-bind="text: 'Panel: ' + calculatePanelWidth() + ' x ' + calculatePanelHeight() + ' (' + totalNumberOfPanels() + ')'"></span>
-                    <span data-bind="text: 'Top Rail: ' + topRailWidth() + ' x ' + calculateRailLength() + ' (' + totalNumberOfTopRails() + ')'"></span>
-                    <span data-bind="text: 'Bottom Rail: ' + bottomRailWidth() + ' x ' + calculateRailLength() + ' (' + totalNumberOfBottomRails() + ')'"></span>
-                    <span data-bind="text: 'Left Stile: ' + leftStileWidth() + ' x ' + calculateStileLength() + ' (' + totalNumberOfLeftStiles() + ')'"></span>
-                    <span data-bind="text: 'Right Stile: ' + rightStileWidth() + ' x ' + calculateStileLength() + ' (' + totalNumberOfRightStiles() + ')'"></span>
-                    <span data-bind="text: 'Center Rail: ' + centerRailWidth() + ' x ' + calculateCenterRailLength() + ' (' + totalNumberOfCenterRails() + ')'"></span>
-                </div>
-            </a>
+            <div class="cabinet-opening__clickable" data-bind="click: $parent.navigateToCabinetOpening">
+                {% include 'cabinet-opening-display.html' %}
+            </div>
             <!-- /ko -->
         </div>
     </div>

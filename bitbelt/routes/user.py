@@ -13,24 +13,18 @@ from bitbelt.models.user_settings import UserSettings
 
 login_manager.login_view = 'login_form'
 
+
 @login_manager.user_loader
 def load_user(user_id):
-    print('**************************** load_user(user_id)')
-    print('user_id --- ' + str(user_id))
-    user_query_set = User.objects(user_id = user_id)
-
-    if(user_query_set.count() > 0):
-        return user_query_set[0]
-    else:
-        return None
+    return User.objects(user_id = user_id).first()
 
 
 @app.route('/users/sign-up', methods=['GET', 'POST'])
 def sign_up():
     form = SignUpForm()
     if(form.validate_on_submit()):
-        existing_users = User.objects(email = form.email.data)
-        if(existing_users.count() <= 0):
+        existing_user = User.objects(email = form.email.data).first()
+        if(existing_user is None):
             user = User()
             user_settings = UserSettings()
             user_settings.save()
@@ -56,15 +50,10 @@ def sign_up():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login_form():
-    print('Logging in page about to start')
     form = login.Login()
 
     if(form.validate_on_submit()):
-        user = None
-        user_query_set = User.objects(email=form.email.data)
-
-        if(user_query_set.count() > 0):
-            user = user_query_set[0]
+        user = User.objects(email=form.email.data).first()
 
         if(user is not None and user.check_login(form.email.data, form.password.data)):
             print('user! ' + str(user.first_name))

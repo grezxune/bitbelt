@@ -7,6 +7,9 @@
 {% endblock styles %}
 
 {% block body %}
+<div id="login" class="vertical-container">
+    <span class="page-header">Login</span>
+
     {% include 'flashed-messages.html' %}
 
     <form method="POST" class="vertical-container">
@@ -18,6 +21,7 @@
         </div>
         <input type=submit class="btn-action" value="Login" />
     </form>
+</div>
 {% endblock body %}
 
 {% block scripts %}

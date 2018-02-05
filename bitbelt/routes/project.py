@@ -17,10 +17,8 @@ from bitbelt.models.default_values import DefaultValues
 @login_required
 def create_project():
     form = ProjectForm()
-    print(current_user.user_id)
-    clients = Client.objects(user_id = current_user.user_id)
+    clients = current_user.clients
     form.client.choices = [(client.id, client.first_name + ' ' + client.last_name) for client in clients]
-    print(form.client.choices)
 
     if(form.validate_on_submit()):
         project = Project()
@@ -39,34 +37,33 @@ def create_project():
         default_values.center_rail_width = form.center_rail_width.data
         default_values.save()
 
-        project.user = ObjectId(current_user.user_id)
         project.name = form.name.data
         project.client = form.client.data
         project.wood_species = form.wood_species.data
 
         project.default_values = default_values
         project.save()
+
+        current_user.projects.append(project)
+        current_user.save()
         
-        project = Project.objects(id = project.id).first()
-        flash('Created project for {0} {1}!'.format(project.user.first_name, project.user.last_name))
-        return redirect(url_for('project_home', id=project.id))
+        flash('Created project for {0} {1}!'.format(current_user.first_name, current_user.last_name))
+        return redirect(url_for('project_home', id=str(project.id)))
     else:
-        print('Form not validated')
-        return render_template('forms/project-form.html', form=form, title='Create Project', user=current_user)
+        return render_template('forms/project-form.html', form=form, title='Create Project', user=current_user, is_edit=False)
 
 
 @app.route('/projects/list')
 @login_required
 def project_list():
-    project_query_set = Project.objects(user = ObjectId(current_user.user_id))
-    projects = [proj.jsonify() for proj in project_query_set]
+    projects = [proj.jsonify() for proj in current_user.projects]
     return render_template('project-list.html', title='Project List', projects=projects, user=current_user)
 
 
 @app.route('/projects/<string:id>')
 @login_required
 def project_home(id):
-    project = Project.objects(id = ObjectId(id)).first()
+    project = next(filter(lambda proj: str(proj.id) == id, current_user.projects), None)
     if(project is not None):
         return render_template('project.html', title='Project Details', project=project.jsonify(), user=current_user)
     else:
@@ -79,8 +76,8 @@ def project_settings(project_id):
     form = ProjectForm()
 
     if(verify_valid_project(project_id)):
-        project = Project.objects(id=project_id).first()
-        clients = Client.objects(user_id = current_user.user_id)
+        project = next(filter(lambda proj: str(proj.id) == project_id, current_user.projects), None)
+        clients = current_user.clients
         form.client.choices = [(client.id, client.first_name + ' ' + client.last_name) for client in clients]
 
         if(form.validate_on_submit()):
@@ -105,8 +102,7 @@ def project_settings(project_id):
 
             project.default_values = default_values
             project.save()
-            flash('Successfully updated project!')
-            return redirect(url_for('project_settings', project_id=project_id))
+            return redirect(url_for('project_home', id=project_id))
         else:
             form.left_stile_width.data = project.default_values.left_stile_width
             form.right_stile_width.data = project.default_values.right_stile_width
@@ -124,30 +120,25 @@ def project_settings(project_id):
             form.client.data = project.client.id
             form.wood_species.data = project.wood_species
 
-            return render_template('forms/project-form.html', form=form, title='Edit Project', user=current_user)
+            return render_template('forms/project-form.html', form=form, title='Edit Project', user=current_user, is_edit=True)
     else:
-        flash('Project does not belong to current user')
         return redirect(url_for('project_list'))
 
 
 @app.route('/projects/<string:id>/cutlist')
 @login_required
 def project_cutlist(id):
-    project = Project.objects(id=id).first()
+    if(verify_valid_project(id)):
+        project = next(filter(lambda proj: str(proj.id) == id, current_user.projects), None)
 
-    if(project is not None):
-        return render_template('project-cutlist.html', title='Project Cutlist', user=current_user, project=project.jsonify())
+        if(project is not None):
+            return render_template('project-cutlist.html', title='Project Cutlist', user=current_user, project=project.jsonify())
+        else:
+            return redirect(url_for('project_list'))
     else:
         return redirect(url_for('project_list'))
 
 
 def verify_valid_project(project_id):
-    valid_project = False
-
-    if(ObjectId.is_valid(project_id)):
-        project = Project.objects(id=project_id).first()
-
-        if(project is not None and project.user.user_id == current_user.user_id):
-            valid_project = True
-    
-    return valid_project
+    project = next(filter(lambda proj: str(proj.id) == project_id, current_user.projects), None)
+    return project is not None

@@ -1,0 +1,38 @@
+<div class="vertical-container">
+    <div class="horizontal-container__space-between-justified full-width">
+        <span data-bind="text: 'Door:'" class="self-justify-left"></span>
+        <span data-bind="text: '(' + totalNumberOfDoors() + ') ' + calculateDoorWidth() + ' x ' + calculateDoorHeight()" class="self-justify-right"></span>
+    </div>
+
+    <div class="horizontal-container__space-between-justified full-width">
+        <span data-bind="text: 'Panel:'" class="self-justify-left"></span>
+        <span data-bind="text:  ' (' + totalNumberOfPanels() + ') ' + calculatePanelWidth() + ' x ' + calculatePanelHeight()" class="self-justify-right"></span>
+    </div>
+
+    <div class="horizontal-container__space-between-justified full-width">
+        <span data-bind="text: 'Top Rail:'" class="self-justify-left"></span>
+        <span data-bind="text: '(' + totalNumberOfTopRails() + ') ' + topRailWidth() + ' x ' + calculateRailLength()" class="self-justify-right"></span>
+    </div>
+
+    <div class="horizontal-container__space-between-justified full-width">
+        <span data-bind="text: 'Bottom Rail:'" class="self-justify-left"></span>
+        <span data-bind="text:  '(' + totalNumberOfBottomRails() + ') ' + bottomRailWidth() + ' x ' + calculateRailLength()" class="self-justify-right"></span>
+    </div>
+
+    <div class="horizontal-container__space-between-justified full-width">
+        <span data-bind="text: 'Left Stile:'" class="self-justify-left"></span>
+        <span data-bind="text:  '(' + totalNumberOfLeftStiles() + ') ' + leftStileWidth() + ' x ' + calculateStileLength()" class="self-justify-right"></span>
+    </div>
+
+    <div class="horizontal-container__space-between-justified full-width">
+        <span data-bind="text: 'Right Stile:'" class="self-justify-left"></span>
+        <span data-bind="text:  '(' + totalNumberOfRightStiles() + ') ' + rightStileWidth() + ' x ' + calculateStileLength()" class="self-justify-right"></span>
+    </div>
+
+    <!-- ko if: totalNumberOfCenterRails() > 0 -->
+    <div class="horizontal-container__space-between-justified full-width">
+        <span data-bind="text: 'Center Rail:'" class="self-justify-left"></span>
+        <span data-bind="text:  '(' + totalNumberOfCenterRails() + ') ' + centerRailWidth() + ' x ' + calculateCenterRailLength()" class="self-justify-right"></span>
+    </div>
+    <!-- /ko -->
+</div>

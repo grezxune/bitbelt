@@ -4,28 +4,32 @@
 {% endblock styles %}
 
 {% block body %}
-<div id="project-list" class="horizontal-container horizontal-container--wrap">
-    {% if projects|length <= 0 %}
-    <div>
-        <span>You have no projects created. Create one <a href="/projects/create">here</a>.</span>
-    </div>
-    {% endif %}
+<div id="project-list" class="vertical-container">
+    <span class="page-header">Project List</span>
 
-    <!-- ko foreach: $data.projects -->
-    <section class="project" data-bind="click: $parent.navigate">
+    <div class="horizontal-container horizontal-container--wrap">
+        {% if projects|length <= 0 %}
         <div>
-            <span data-bind="text: name()"></span>
+            <span class="page-sub-header">You have no projects created. Create one <a href="/projects/create">here</a>.</span>
         </div>
-        <div>
-            <span>Cabinet Openings - </span>
-            <span data-bind="text: numberOfOpeningsInProject()"></span>
-        </div>
-        <div>
-            <span>Client - </span>
-            <span data-bind="text: client().firstName() + ' ' + client().lastName()"></span>
-        </div>
-    </section>
-    <!-- /ko -->
+        {% endif %}
+
+        <!-- ko foreach: $data.projects -->
+        <section class="project" data-bind="click: $parent.navigate">
+            <div>
+                <span data-bind="text: name()"></span>
+            </div>
+            <div>
+                <span>Cabinet Openings - </span>
+                <span data-bind="text: numberOfOpeningsInProject()"></span>
+            </div>
+            <div>
+                <span>Client - </span>
+                <span data-bind="text: client().firstName() + ' ' + client().lastName()"></span>
+            </div>
+        </section>
+        <!-- /ko -->
+    </div>
 </div>
 {% endblock body %}
 

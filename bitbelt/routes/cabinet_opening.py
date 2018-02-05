@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request, abort
+from flask import render_template, redirect, url_for, request, abort
 from flask_login import login_required, current_user
 from bson import ObjectId
 
@@ -16,9 +16,8 @@ from bitbelt.routes.project import verify_valid_project
 def create_cabinet_opening(project_id):
     form = CreateCabinetOpening()
     if(verify_valid_project(project_id)):
-        project = Project.objects(id=project_id).first()
+        project = next(filter(lambda proj: str(proj.id) == project_id, current_user.projects), None)
         project_defaults = project.default_values
-
         new_cabinet_opening = CabinetOpening()
 
         if(form.validate_on_submit()):
@@ -65,20 +64,19 @@ def create_cabinet_opening(project_id):
 
             return render_template('forms/cabinet-opening-form.html', title='Create Cabinet Opening', form=form, cabinet_opening=new_cabinet_opening.jsonify(), user=current_user, project_id=project_id, is_edit=False)
     else:
+        print('project {0} not validated'.format(project_id))
         return redirect(url_for('project_list'))
 
 
 @app.route('/projects/<string:project_id>/cabinet-openings/<string:cabinet_opening_id>', methods=['GET', 'POST', 'DELETE'])
 @login_required
 def cabinet_opening_details(project_id, cabinet_opening_id):
-    if(request.method == 'DELETE'):
-        if(verify_valid_project(project_id) and verify_valid_cabinet_opening(project_id, cabinet_opening_id)):
-            print('All validated!')
-            project = Project.objects(id=project_id).first()
-            cabinet_opening = next(filter(lambda x: str(x.id) == cabinet_opening_id, project.cabinet_openings), None)
+    project = next(filter(lambda proj: str(proj.id) == project_id, current_user.projects), None)
+    if(project is not None and verify_valid_project(project_id) and verify_valid_cabinet_opening(project_id, cabinet_opening_id)):
+        cabinet_opening = next(filter(lambda x: str(x.id) == cabinet_opening_id, project.cabinet_openings), None)
 
+        if(request.method == 'DELETE'):
             if(cabinet_opening is not None):
-                print('Cabinet opening is NOT NONE!')
                 project.cabinet_openings.remove(cabinet_opening)
                 project.save()
                 cabinet_opening.delete()
@@ -86,12 +84,6 @@ def cabinet_opening_details(project_id, cabinet_opening_id):
             else:
                 abort(400)
         else:
-            abort(400)
-    else:
-        if(verify_valid_project(project_id) and verify_valid_cabinet_opening(project_id, cabinet_opening_id)):
-            cabinet_openings = Project.objects(id=project_id).first().cabinet_openings
-            cabinet_opening = next(filter(lambda x: str(x.id) == cabinet_opening_id, cabinet_openings), None)
-
             if(cabinet_opening is not None):
                 form = CreateCabinetOpening()
 
@@ -120,7 +112,7 @@ def cabinet_opening_details(project_id, cabinet_opening_id):
 
                     cabinet_opening.save()
 
-                    flash('Successfully saved cabinet opening')
+                    current_user.save()
                     return redirect(url_for('project_home', id=project_id))
                 else:
                     form.number_of_openings.data = cabinet_opening.number_of_openings
@@ -145,21 +137,20 @@ def cabinet_opening_details(project_id, cabinet_opening_id):
                     form.center_rail_width.data = cabinet_opening.center_rail_width
 
                     return render_template('forms/cabinet-opening-form.html', title='Edit Cabinet Opening', form=form, cabinet_opening=cabinet_opening.jsonify(), user=current_user, project_id=project_id, is_edit=True)
-            else:
-                return redirect(url_for('project_list'))
-
+            return redirect(url_for('project_list'))
+    else:
+        print('Not validated')
+        print('project id ({0}), opening id ({1})'.format(project_id, cabinet_opening_id))
         return redirect(url_for('project_list'))
 
 
+
 def verify_valid_cabinet_opening(project_id, cabinet_opening_id):
-    valid_cabinet_opening = False
-    project = Project.objects(id=project_id).first()
+    cabinet_opening_verified = False
+    project = next(filter(lambda proj: str(proj.id) == project_id, current_user.projects), None)
 
     if(project is not None):
-        cabinet_openings = project.cabinet_openings
-        valid_cabinet_openings = list(filter(lambda opening: str(opening.id) == cabinet_opening_id, cabinet_openings))
-
-        if(len(valid_cabinet_openings) > 0):
-            valid_cabinet_opening = True
+        valid_cabinet_opening = next(filter(lambda opening: str(opening.id) == cabinet_opening_id, project.cabinet_openings), None)
+        cabinet_opening_verified = valid_cabinet_opening is not None
     
-    return valid_cabinet_opening
+    return cabinet_opening_verified

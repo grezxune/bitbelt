@@ -2395,13 +2395,13 @@ a {
 .full-height {
   height: 100%; }
 
-.clickable, .project, .cabinet-opening, .project-settings, .nav-links a, .btn-action {
+.clickable, .project, .cabinet-opening__clickable, .project-settings, .nav-links a, .btn-action {
   padding: 0.8rem; }
-  .clickable:hover, .project:hover, .cabinet-opening:hover, .project-settings:hover, .nav-links a:hover, .btn-action:hover {
+  .clickable:hover, .project:hover, .cabinet-opening__clickable:hover, .project-settings:hover, .nav-links a:hover, .btn-action:hover {
     transition-property: background, color;
     transition-duration: .5s;
     border-radius: 5px; }
-    .clickable:hover i, .project:hover i, .cabinet-opening:hover i, .project-settings:hover i, .nav-links a:hover i, .btn-action:hover i {
+    .clickable:hover i, .project:hover i, .cabinet-opening__clickable:hover i, .project-settings:hover i, .nav-links a:hover i, .btn-action:hover i {
       transition-property: color;
       transition-duration: .5s; }
 
@@ -2432,14 +2432,19 @@ a {
   height: 100%; }
 
 .cabinet-opening {
+  margin: 1.6rem;
+  background: #e1e8f0;
+  color: #36454f; }
+
+.cabinet-opening__clickable {
   cursor: pointer;
   margin: 1.6rem;
   background: #6ed3cf;
   color: #36454f; }
-  .cabinet-opening:hover {
+  .cabinet-opening__clickable:hover {
     background: #36454f;
     color: #e1e8f0; }
-    .cabinet-opening:hover i {
+    .cabinet-opening__clickable:hover i {
       color: #e1e8f0; }
 
 .project-settings {
@@ -2454,7 +2459,7 @@ a {
       color: #e1e8f0; }
 
 #cabinet-opening {
-  text-align: center; }
+  text-align: left; }
 
 .cutlist-table {
   background: #36454f;
@@ -2626,6 +2631,7 @@ a {
   font-size: 3rem; }
 
 .page-sub-header {
+  margin: 1.6rem;
   font-size: 2.6rem; }
 
 @media print {

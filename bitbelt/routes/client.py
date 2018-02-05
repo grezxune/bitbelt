@@ -25,6 +25,9 @@ def add_client():
         client.user_id = ObjectId(current_user.user_id)
 
         client.save()
+
+        current_user.clients.append(client)
+        current_user.save()
         return redirect(url_for('index'))
     else:
         return render_template('forms/add-client-form.html', form=form, title='Create Client', user=current_user)

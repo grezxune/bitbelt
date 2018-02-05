@@ -4,6 +4,12 @@
 }
 
 .cabinet-opening {
+    margin: $size-m;
+    background: $catskill-white;
+    color: $charcoal;
+}
+
+.cabinet-opening__clickable {
     cursor: pointer;
     margin: $size-m;
     background: $downy;
