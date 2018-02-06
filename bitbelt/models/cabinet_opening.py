@@ -1,17 +1,17 @@
 from mongoengine import Document, FloatField, ReferenceField, IntField, BooleanField, CASCADE
+import time
 
 class CabinetOpening(Document):
+    date_created = IntField(required=True)
+    last_modified = IntField(required=True)
+
     # Custom per door
     number_of_openings = IntField(default=1)
     number_of_doors = IntField(default=1)
     number_of_panels_per_door = IntField(default=1)
     opening_width = FloatField(default=0.0, precision=5)
     opening_height = FloatField(default=0.0, precision=5)
-    middle_gap = FloatField(default=0.0, precision=5)
     center_rail_horizontal = BooleanField(default=True)
-
-    # A center rail should consist of a width, and location
-    #center_rails = ListField(ReferenceField('centerRail.CenterRail'))
 
     # Set by default values
     left_stile_width = FloatField(default=0.0, precision=5)
@@ -23,40 +23,30 @@ class CabinetOpening(Document):
     top_overlay = FloatField(default=0.0, precision=5)
     bottom_overlay = FloatField(default=0.0, precision=5)
     panel_gap = FloatField(default=0.0, precision=5)
+    middle_gap = FloatField(default=0.0, precision=5)
     tennon_length = FloatField(default=0.0, precision=5)
     center_rail_width = FloatField(default=0.0, precision=5)
     rough_sawn_overestimate = FloatField(default=0.0, precision=5)
 
-    # def __init__(self, default_values, number_of_openings, number_of_doors, opening_width, opening_height, middle_gap):
-    #     self.left_stile_width = default_values['left_style_width']
-    #     self.right_stile_width = default_values['right_style_width']
-    #     self.top_rail_width = default_values['top_rail_width']
-    #     self.bottom_rail_width = default_values['bottom_rail_width']
-    #     self.left_overlay = default_values['left_overlay']
-    #     self.right_overlay = default_values['right_overlay']
-    #     self.top_overlay = default_values['top_overlay']
-    #     self.bottom_overlay = default_values['bottom_overlay']
-    #     self.panel_gap = default_values['panel_gap']
-    #     self.tennon_length = default_values['tennon_length']
 
-    #     self.number_of_openings = number_of_openings
-    #     self.number_of_doors = number_of_doors
-    #     self.opening_width = opening_width
-    #     self.opening_height = opening_height
-    #     self.middle_gap = middle_gap
-
-        #self.center_rails = center_rails
+    def clean(self):
+        currentTime = int(round(time.time() * 1000))
+        if(self.date_created is None):
+            self.date_created = currentTime
+        self.last_modified = currentTime
 
     
     def jsonify(self):
         return {
+            'dateCreated': self.date_created,
+            'lastModified': self.last_modified,
+
             'id': str(self.id),
             'numberOfOpenings': self.number_of_openings,
             'numberOfDoors': self.number_of_doors,
             'numberOfPanelsPerDoor': self.number_of_panels_per_door,
             'openingWidth': self.opening_width,
             'openingHeight': self.opening_height,
-            'middleGap': self.middle_gap,
 
             'leftStileWidth': self.left_stile_width,
             'rightStileWidth': self.right_stile_width,
@@ -67,10 +57,11 @@ class CabinetOpening(Document):
             'topOverlay': self.top_overlay,
             'bottomOverlay': self.bottom_overlay,
             'panelGap': self.panel_gap,
+            'middleGap': self.middle_gap,
             'tennonLength': self.tennon_length,
             'centerRailWidth': self.center_rail_width,
             'centerRailHorizontal': self.center_rail_horizontal,
-            'roughSawnOverestimate': self.rough_sawn_overestimate
+            'roughSawnOverestimate': self.rough_sawn_overestimate,
         }
 
 

@@ -14,18 +14,27 @@
         </div>
         {% endif %}
 
-        <!-- ko foreach: $data.projects -->
+        <!-- ko foreach: $data.projects() -->
         <section class="project" data-bind="click: $parent.navigate">
-            <div>
+            <div class="horizontal-container__space-between-justified full-width">
+                <span data-bind="text: 'Project Name:'"></span>
                 <span data-bind="text: name()"></span>
             </div>
-            <div>
-                <span>Cabinet Openings - </span>
-                <span data-bind="text: numberOfOpeningsInProject()"></span>
-            </div>
-            <div>
-                <span>Client - </span>
+            <div class="horizontal-container__space-between-justified full-width">
+                <span data-bind="text: 'Client:'"></span>
                 <span data-bind="text: client().firstName() + ' ' + client().lastName()"></span>
+            </div>
+            <div class="horizontal-container__space-between-justified full-width">
+                <span data-bind="text: 'Date Created:'"></span>
+                <span data-bind="text: dateCreated()"></span>
+            </div>
+            <div class="horizontal-container__space-between-justified full-width">
+                <span data-bind="text: 'Last Modified:'"></span>
+                <span data-bind="text: lastModified()"></span>
+            </div>
+            <div class="horizontal-container__space-between-justified full-width">
+                <span data-bind="text: 'Cabinet Openings:'"></span>
+                <span data-bind="text: numberOfOpeningsInProject()"></span>
             </div>
         </section>
         <!-- /ko -->

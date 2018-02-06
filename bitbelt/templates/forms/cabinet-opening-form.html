@@ -24,7 +24,6 @@
                     {{ render_field(form.number_of_panels_per_door, class="text-input") }} 
                     {{ render_field(form.opening_width, class="text-input") }} 
                     {{ render_field(form.opening_height, class="text-input") }} 
-                    {{ render_field(form.middle_gap, class="text-input") }} 
                     {{ render_field(form.center_rail_horizontal, class="checkbox-input") }} 
                 </div>
 
@@ -39,6 +38,7 @@
                     {{ render_field(form.top_overlay, class="text-input") }}
                     {{ render_field(form.bottom_overlay, class="text-input") }}
                     {{ render_field(form.panel_gap, class="text-input") }}
+                    {{ render_field(form.middle_gap, class="text-input") }} 
                     {{ render_field(form.tennon_length, class="text-input") }} 
                     {{ render_field(form.center_rail_width, class="text-input") }} 
                 </div>
@@ -53,9 +53,11 @@
                 {% endif %}
             </div>
             <div class="horizontal-container">
-                <input class="btn-action" type="submit" value="Submit Opening"/>
                 {% if is_edit %}
+                <input class="btn-action" type="submit" value="Save Opening"/>
                 <input class="btn-secondary" type="button" value="Remove Opening" data-bind="click: deleteCabinetOpening"/>
+                {% else %}
+                <input class="btn-action" type="submit" value="Add Opening"/>
                 {% endif %}
             </div>
         </form>

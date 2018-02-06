@@ -17,6 +17,7 @@ class CreateCabinetOpening(FlaskForm):
     top_overlay = FloatField(label="Top Overlay", default=0.0)
     bottom_overlay = FloatField(label="Bottom Overlay", default=0.0)
     panel_gap = FloatField(label="Panel Gap", default=0.0)
+    middle_gap = FloatField(label="Middle Gap", default=0.0)
     tennon_length = FloatField(label="Tennon Length", default=0.0)
     center_rail_width = FloatField(label="Center Rail Width", default=0.0)
 
@@ -26,6 +27,4 @@ class CreateCabinetOpening(FlaskForm):
     number_of_panels_per_door = IntegerField(label="Panels per Door", default=1)
     opening_width = FloatField(label="Opening Width")
     opening_height = FloatField(label="Opening Height")
-    # Make this (middle gap) a default value
-    middle_gap = FloatField(label="Middle Gap", default=0.0)
     center_rail_horizontal = BooleanField(label="Horizontal Center Rail", default=True)

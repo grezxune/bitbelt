@@ -5,10 +5,12 @@
 {% endblock styles %}
 
 {% block body %}
+<div id="sign-up" class="vertical-container">
+    <span class="page-header">Sign Up</span>
+
     {% include 'flashed-messages.html' %}
 
     <form method="POST" class="vertical-container">
-        {{ form.hidden_tag() }}
         {{ form.csrf_token }}
         {{ render_field(form.first_name, class="text-input") }}
         {{ render_field(form.last_name, class="text-input") }}
@@ -17,6 +19,7 @@
 
         <input type=submit class="btn-action" value="Sign Up"/>
     </form>
+</div>
 {% endblock body %}
 
 {% block scripts %}

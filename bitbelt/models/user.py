@@ -1,11 +1,16 @@
-from mongoengine import Document, ObjectIdField, StringField, EmailField, ReferenceField, ListField, CASCADE
+from mongoengine import Document, ObjectIdField, StringField, EmailField, ReferenceField, ListField, CASCADE, IntField
 from passlib.hash import pbkdf2_sha256
 from bson.objectid import ObjectId
+import time
+
 from bitbelt.models.user_settings import UserSettings
 from bitbelt.models.project import Project
 from bitbelt.models.client import Client
 
 class User(Document):
+    date_created = IntField(required=True)
+    last_modified = IntField(required=True)
+
     user_id = ObjectIdField(primary_key=True)
     first_name = StringField(required=True)
     last_name = StringField(required=True)
@@ -36,9 +41,15 @@ class User(Document):
 
 
     def clean(self):
+        currentTime = int(round(time.time() * 1000))
+
         if(self.user_id is None):
-            print('setting user_id')
             self.user_id = ObjectId()
+
+        if(self.date_created is None):
+            self.date_created = currentTime
+
+        self.last_modified = currentTime
     
 
     def check_login(self, email, password):
@@ -56,6 +67,8 @@ class User(Document):
 
     def jsonify(self):
         return {
+            'dateCreated': self.date_created,
+            'lastModified': self.last_modified,
             'id': str(self.user_id),
             'firstName': self.first_name,
             'lastName': self.last_name,

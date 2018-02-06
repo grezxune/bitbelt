@@ -33,6 +33,7 @@ def create_project():
         default_values.top_overlay = form.top_overlay.data
         default_values.bottom_overlay = form.bottom_overlay.data
         default_values.panel_gap = form.panel_gap.data
+        default_values.middle_gap = form.middle_gap.data
         default_values.tennon_length = form.tennon_length.data
         default_values.center_rail_width = form.center_rail_width.data
         default_values.save()
@@ -92,6 +93,7 @@ def project_settings(project_id):
             default_values.top_overlay = form.top_overlay.data
             default_values.bottom_overlay = form.bottom_overlay.data
             default_values.panel_gap = form.panel_gap.data
+            default_values.middle_gap = form.middle_gap.data
             default_values.tennon_length = form.tennon_length.data
             default_values.center_rail_width = form.center_rail_width.data
             default_values.save()
@@ -113,6 +115,7 @@ def project_settings(project_id):
             form.top_overlay.data = project.default_values.top_overlay
             form.bottom_overlay.data = project.default_values.bottom_overlay
             form.panel_gap.data = project.default_values.panel_gap
+            form.middle_gap.data = project.default_values.middle_gap
             form.tennon_length.data = project.default_values.tennon_length
             form.center_rail_width.data = project.default_values.center_rail_width
 

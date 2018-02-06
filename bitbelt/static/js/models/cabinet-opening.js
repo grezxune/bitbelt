@@ -1,8 +1,13 @@
 import ko from 'knockout';
 import $ from 'jquery';
 
+import { formatMomentDate } from '../utils';
+
 export default class CabinetOpening {
     constructor(cabinetOpening, projectId) {
+        this.dateCreated = ko.observable(formatMomentDate(cabinetOpening.dateCreated));
+        this.lastModified = ko.observable(formatMomentDate(cabinetOpening.lastModified));
+
         this.projectId = ko.observable(projectId);
         this.id = ko.observable(cabinetOpening.id);
 
@@ -11,7 +16,6 @@ export default class CabinetOpening {
         this.numberOfPanelsPerDoor = ko.observable(cabinetOpening.numberOfPanelsPerDoor);
         this.openingWidth = ko.observable(cabinetOpening.openingWidth);
         this.openingHeight = ko.observable(cabinetOpening.openingHeight);
-        this.middleGap = ko.observable(cabinetOpening.middleGap);
 
         this.leftStileWidth = ko.observable(cabinetOpening.leftStileWidth);
         this.rightStileWidth = ko.observable(cabinetOpening.rightStileWidth);
@@ -22,6 +26,7 @@ export default class CabinetOpening {
         this.topOverlay = ko.observable(cabinetOpening.topOverlay);
         this.bottomOverlay = ko.observable(cabinetOpening.bottomOverlay);
         this.panelGap = ko.observable(cabinetOpening.panelGap);
+        this.middleGap = ko.observable(cabinetOpening.middleGap);
         this.tennonLength = ko.observable(cabinetOpening.tennonLength);
         this.centerRailWidth = ko.observable(cabinetOpening.centerRailWidth);
         this.centerRailHorizontal = ko.observable(cabinetOpening.centerRailHorizontal);

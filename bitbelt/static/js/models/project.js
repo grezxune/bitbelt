@@ -5,19 +5,24 @@ import Client from './client';
 import DefaultValues from './default-values';
 import CabinetOpening from './cabinet-opening';
 
+import { formatMomentDate, capitalizeFirstLetterOfEachWordAndLowercaseAllOthers } from '../utils';
+
 export default class Project {
     constructor(project) {
         if (!project) {
             throw 'the parameter \'project\' must be provided';
         }
 
+        this.dateCreated = ko.observable(formatMomentDate(project.dateCreated));
+        this.lastModified = ko.observable(formatMomentDate(project.lastModified));
+
         this.id = ko.observable(project.id);
-        this.name = ko.observable(project.name);
+        this.name = ko.observable(capitalizeFirstLetterOfEachWordAndLowercaseAllOthers(project.name));
         this.client = ko.observable(new Client(project.client));
         this.defaultValues = ko.observable(new DefaultValues(project.defaultValues));
         this.cabinetOpenings = ko.observableArray(project.cabinetOpenings.map(co => new CabinetOpening(co)));
-        this.woodSpecies = ko.observable(project.woodSpecies);
-        this.createdOn = ko.observable(project.createdOn);
+        this.woodSpecies = ko.observable(capitalizeFirstLetterOfEachWordAndLowercaseAllOthers(project.woodSpecies));
+        this.isFinished = ko.observable(project.isFinished);
 
         this.projectPageTitle = ko.computed(() => {
             return 'Viewing project \"' + this.name() + '\"';

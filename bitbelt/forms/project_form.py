@@ -19,5 +19,6 @@ class ProjectForm(FlaskForm):
     top_overlay = FloatField(label="Top Overlay")
     bottom_overlay = FloatField(label="Bottom Overlay")
     panel_gap = FloatField(label="Panel Gap")
+    middle_gap = FloatField(label="Middle Gap")
     tennon_length = FloatField(label="Tennon Length")
     center_rail_width = FloatField(label="Center Rail Width")
