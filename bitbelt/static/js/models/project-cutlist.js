@@ -1,8 +1,9 @@
 import ko from 'knockout';
+import _ from 'lodash';
 
 import Project from './project';
 import CutlistItem from './cutlist-item';
-import { convertDecimalToFraction } from '../utils';
+import { convertDecimalToFraction, combineObjectKeysAddValues } from '../utils';
 
 export default class ProjectCutlist {
     constructor(project) {
@@ -47,6 +48,36 @@ export default class ProjectCutlist {
             if (centerRailsWithHiddenWidths > 0 && this.project().totalNumberOfCenterRails() > 0) {
                 return `Default Width: ${convertDecimalToFraction(this.project().defaultValues().centerRailWidth())}`;
             }
+        });
+
+        this.stileLinearFootageDisplay = ko.computed(() => {
+            const stileLinearFootage = combineObjectKeysAddValues(this.cutlistItems().map(item => item.stileLinearFeet()));
+
+            const keys = Object.keys(stileLinearFootage);
+
+            return keys.map((key) => {
+                return `${convertDecimalToFraction(stileLinearFootage[key] / 12)}' @ ${convertDecimalToFraction(key)}''`;
+            });
+        });
+
+        this.railLinearFootageDisplay = ko.computed(() => {
+            const railLinearFootage = combineObjectKeysAddValues(this.cutlistItems().map(item => item.railLinearFeet()));
+
+            const keys = Object.keys(railLinearFootage);
+
+            return keys.map((key) => {
+                return `${convertDecimalToFraction(railLinearFootage[key] / 12)}' @ ${convertDecimalToFraction(key)}''`;
+            });
+        });
+
+        this.centerRailLinearFootageDisplay = ko.computed(() => {
+            const centerRailLinearFootage = combineObjectKeysAddValues(this.cutlistItems().map(item => item.centerRailLinearFeet()));
+
+            const keys = Object.keys(centerRailLinearFootage);
+
+            return keys.map((key) => {
+                return `${convertDecimalToFraction(centerRailLinearFootage[key] / 12)}' @ ${convertDecimalToFraction(key)}''`;
+            });
         });
     }
 

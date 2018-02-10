@@ -11,11 +11,11 @@
         <div class="flex-1"></div>
         <div class="vertical-container full-width">
             <div class="horizontal-container__space-between-justified full-width">
-                <span data-bind="text: clientDisplay()" class=""></span>
-                <span data-bind="text: projectNameDisplay()" class=""></span>
+                <span data-bind="text: clientDisplay()" class="page-sub-header"></span>
+                <span data-bind="text: projectNameDisplay()" class="page-sub-header"></span>
             </div>
             <div class="horizontal-container align-self-flex-start">
-                <span data-bind="text: woodSpeciesDisplay()"></span>
+                <span data-bind="text: woodSpeciesDisplay()" class="page-sub-header"></span>
             </div>
         </div>
 
@@ -81,6 +81,30 @@
         </tr>
         <!-- /ko -->
     </table>
+    <div class="horizontal-container">
+        <div class="vertical-container">
+            <span class="page-sub-header">Stile Linear Feet</span>
+            <!-- ko foreach: stileLinearFootageDisplay() -->
+            <span data-bind="text: $data"></span>
+            <!-- /ko -->
+        </div>
+
+        <div class="vertical-container">
+            <span class="page-sub-header">Rail Linear Feet</span>
+            <!-- ko foreach: railLinearFootageDisplay() -->
+            <span data-bind="text: $data"></span>
+            <!-- /ko -->
+        </div>
+
+        <!-- ko if: project().totalNumberOfCenterRails() > 0 -->
+        <div class="vertical-container">
+            <span class="page-sub-header">Center Rail Linear Feet</span>
+            <!-- ko foreach: centerRailLinearFootageDisplay() -->
+            <span data-bind="text: $data"></span>
+            <!-- /ko -->
+        </div>
+        <!-- /ko -->
+    </div>
 </div>
 {% endblock body %}
 

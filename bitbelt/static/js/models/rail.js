@@ -6,6 +6,10 @@ export default class Rail {
         this.length = ko.observable(length);
         this.showWidth = ko.observable(showWidth);
         this.quantity = ko.observable(quantity);
+
+        this.linearFeet = ko.computed(() => {
+            return this.length() * this.quantity();
+        });
     }
 
     equals = (railToCompare) => {

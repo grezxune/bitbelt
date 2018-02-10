@@ -80,6 +80,14 @@ export default class CutlistItem {
             return rails;
         });
 
+        this.railLinearFeet = ko.computed(() => {
+            return this.rails().map(rail => {
+                return {
+                    [rail.width()]: rail.length() * rail.quantity()
+                };
+            });
+        });
+
         this.railDisplays = ko.computed(() => {
             const displays = this.rails().map(rail => `(${rail.quantity()}) ${rail.showWidth() ? `${convertDecimalToFraction(rail.width())} x ` : ''}${convertDecimalToFraction(rail.length())}`);
             return displays;
@@ -115,10 +123,22 @@ export default class CutlistItem {
             return stiles;
         });
 
+        this.stileLinearFeet = ko.computed(() => {
+            return this.stiles().map(stile => {
+                return {
+                    [stile.width()]: stile.length() * stile.quantity()
+                };
+            });
+        });
+
         this.stileDisplays = ko.computed(() => {
             const displays = this.stiles().map(stile => `(${stile.quantity()}) ${stile.showWidth() ? `${convertDecimalToFraction(stile.width())} x ` : ''}${convertDecimalToFraction(stile.length())}`);
             return displays;
         });
+
+        /******************************************/
+        /*** Center Rail Dimensions (FRACTIONS) ***/
+        /******************************************/
 
         this.centerRails = ko.computed(() => {
             let centerRails = [];
@@ -132,6 +152,14 @@ export default class CutlistItem {
             centerRails.push(centerRail);
 
             return centerRails;
+        });
+
+        this.centerRailLinearFeet = ko.computed(() => {
+            return this.centerRails().map(centerRail => {
+                return {
+                    [centerRail.width()]: centerRail.length() * centerRail.quantity()
+                };
+            });
         });
 
         this.centerRailDisplays = ko.computed(() => {

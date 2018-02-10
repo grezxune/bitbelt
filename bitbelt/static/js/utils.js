@@ -26,9 +26,30 @@ const capitalizeFirstLetterOfEachWordAndLowercaseAllOthers = (word) => {
     return finalVersion;
 }
 
+const combineObjectKeysAddValues = (arrayOfObjects) => {
+    let result = {};
+
+    arrayOfObjects.forEach((val, index) => {
+        val.forEach((val2, index2) => {
+            const keys = Object.keys(val2);
+
+            keys.forEach((key, index) => {
+                if(result.hasOwnProperty(key)) {
+                    result[key] += val2[key];
+                } else {
+                    result[key] = val2[key];
+                }
+            });
+        });
+    });
+
+    return result;
+};
+
 export {
     formatMomentDate,
     momentFormat,
     convertDecimalToFraction,
-    capitalizeFirstLetterOfEachWordAndLowercaseAllOthers
+    capitalizeFirstLetterOfEachWordAndLowercaseAllOthers,
+    combineObjectKeysAddValues
 };
