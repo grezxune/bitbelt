@@ -13,6 +13,11 @@
     @extend .input;
 }
 
+.text-area-input {
+    @extend .input;
+    resize: vertical;
+}
+
 .select-input {
     @extend .input;
 }

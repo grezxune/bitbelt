@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectField, FloatField, IntegerField, BooleanField
+from wtforms import SelectField, FloatField, IntegerField, BooleanField, TextAreaField
 from wtforms.widgets import TextInput
 # from wtforms.validators import *
 import wtforms.validators
@@ -28,3 +28,4 @@ class CreateCabinetOpening(FlaskForm):
     opening_width = FloatField(label="Opening Width")
     opening_height = FloatField(label="Opening Height")
     center_rail_horizontal = BooleanField(label="Horizontal Center Rail", default=True)
+    comments = TextAreaField(label="Comments")

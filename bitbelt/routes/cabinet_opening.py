@@ -41,6 +41,7 @@ def create_cabinet_opening(project_id):
             new_cabinet_opening.opening_width = form.opening_width.data
             new_cabinet_opening.opening_height = form.opening_height.data
             new_cabinet_opening.center_rail_horizontal = form.center_rail_horizontal.data
+            new_cabinet_opening.comments = form.comments.data
 
             new_cabinet_opening.save()
 
@@ -95,6 +96,7 @@ def cabinet_opening_details(project_id, cabinet_opening_id):
                     cabinet_opening.opening_width = form.opening_width.data
                     cabinet_opening.opening_height = form.opening_height.data
                     cabinet_opening.center_rail_horizontal = form.center_rail_horizontal.data
+                    cabinet_opening.comments = form.comments.data
 
                     # Set by default values
                     cabinet_opening.left_stile_width = form.left_stile_width.data
@@ -122,6 +124,7 @@ def cabinet_opening_details(project_id, cabinet_opening_id):
                     form.opening_width.data = cabinet_opening.opening_width
                     form.opening_height.data = cabinet_opening.opening_height
                     form.center_rail_horizontal.data = cabinet_opening.center_rail_horizontal
+                    form.comments.data = cabinet_opening.comments
 
                     # Set by default values
                     form.left_stile_width.data = cabinet_opening.left_stile_width

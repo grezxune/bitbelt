@@ -1,4 +1,4 @@
-from mongoengine import Document, FloatField, ReferenceField, IntField, BooleanField, CASCADE
+from mongoengine import Document, FloatField, ReferenceField, IntField, BooleanField, CASCADE, StringField
 import time
 
 class CabinetOpening(Document):
@@ -12,6 +12,7 @@ class CabinetOpening(Document):
     opening_width = FloatField(default=0.0, precision=5)
     opening_height = FloatField(default=0.0, precision=5)
     center_rail_horizontal = BooleanField(default=True)
+    comments = StringField()
 
     # Set by default values
     left_stile_width = FloatField(default=0.0, precision=5)
@@ -47,6 +48,7 @@ class CabinetOpening(Document):
             'numberOfPanelsPerDoor': self.number_of_panels_per_door,
             'openingWidth': self.opening_width,
             'openingHeight': self.opening_height,
+            'comments': self.comments,
 
             'leftStileWidth': self.left_stile_width,
             'rightStileWidth': self.right_stile_width,

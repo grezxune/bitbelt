@@ -16,6 +16,7 @@ export default class CabinetOpening {
         this.numberOfPanelsPerDoor = ko.observable(cabinetOpening.numberOfPanelsPerDoor);
         this.openingWidth = ko.observable(cabinetOpening.openingWidth);
         this.openingHeight = ko.observable(cabinetOpening.openingHeight);
+        this.comments = ko.observable(cabinetOpening.comments);
 
         this.leftStileWidth = ko.observable(cabinetOpening.leftStileWidth);
         this.rightStileWidth = ko.observable(cabinetOpening.rightStileWidth);

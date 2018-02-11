@@ -24,8 +24,13 @@
         </div>
     </div>
 
+    <!-- ko if: project().numberOfOpeningsInProject() <= 0 -->
+    <span class="page-header">You have no openings in this project</span>
+    <!-- /ko -->
+
+    <!-- ko if: project().numberOfOpeningsInProject() > 0 -->
     <table class="cutlist-table">
-        <tr>
+        <tr class="header-row">
             <td>Batch #</td>
             <td>Door</td>
             <td>Panels</td>
@@ -51,6 +56,7 @@
             <!-- /ko -->
         </tr>
         <!-- ko foreach: cutlistItems() -->
+        <div class="row">
         <tr>
             <td data-bind="text: $index"></td>
             <td data-bind="text: doorDisplay()"></td>
@@ -63,10 +69,8 @@
                 </div>
             </td>
             <td>
-                <div class="vertical-container">
-                    <!-- ko foreach: stileDisplays() -->
+                <div class="vertical-container" data-bind="foreach: stileDisplays()">
                     <span data-bind="text: $data"></span>
-                    <!-- /ko -->
                 </div>
             </td>
             <!-- ko if: $parent.project().totalNumberOfCenterRails() > 0 -->
@@ -74,22 +78,31 @@
                 <div class="vertical-container">
                     <!-- ko foreach: centerRailDisplays() -->
                     <span data-bind="text: $data"></span>
-                    <!-- /ko -->
+                    <!-- /ko --> <!-- /foreach centerRailDisplays() -->
                 </div>
             </td>
             <!-- /ko -->
         </tr>
+        <!-- ko if: cabinetOpening().comments() -->
+        <tr>
+            <td colspan="15">
+                <span data-bind="text: cabinetOpening().comments()"></span>
+            </td>
+        </tr>
         <!-- /ko -->
+        </div>
+        <!-- /ko --> <!-- / cutlistItems() -->
     </table>
-    <div class="horizontal-container">
-        <div class="vertical-container">
+    <!-- ko if: project().numberOfOpeningsInProject() > 0 -->
+    <div class="horizontal-container" data-bind="if: project().numberOfOpeningsInProject() > 0">
+        <div class="vertical-container align-self-flex-start">
             <span class="page-sub-header">Stile Linear Feet</span>
             <!-- ko foreach: stileLinearFootageDisplay() -->
             <span data-bind="text: $data"></span>
             <!-- /ko -->
         </div>
 
-        <div class="vertical-container">
+        <div class="vertical-container align-self-flex-start">
             <span class="page-sub-header">Rail Linear Feet</span>
             <!-- ko foreach: railLinearFootageDisplay() -->
             <span data-bind="text: $data"></span>
@@ -97,7 +110,7 @@
         </div>
 
         <!-- ko if: project().totalNumberOfCenterRails() > 0 -->
-        <div class="vertical-container">
+        <div class="vertical-container align-self-flex-start">
             <span class="page-sub-header">Center Rail Linear Feet</span>
             <!-- ko foreach: centerRailLinearFootageDisplay() -->
             <span data-bind="text: $data"></span>
@@ -105,6 +118,8 @@
         </div>
         <!-- /ko -->
     </div>
+    <!-- /ko -->
+    <!-- /ko -->
 </div>
 {% endblock body %}
 

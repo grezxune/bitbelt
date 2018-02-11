@@ -2469,12 +2469,12 @@ a {
   .cutlist-table td {
     padding: 1.6rem;
     text-align: center; }
-  .cutlist-table tr:nth-child(even) {
-    background: #36454f !important;
-    color: #6ed3cf !important; }
   .cutlist-table tr:nth-child(odd) {
-    background: #6ed3cf !important;
-    color: #36454f !important; }
+    background: #36454f;
+    color: #6ed3cf; }
+  .cutlist-table tr:nth-child(even) {
+    background: #6ed3cf;
+    color: #36454f; }
 
 @media print {
   .cutlist-table {
@@ -2486,10 +2486,10 @@ a {
       font-size: 1.4rem !important; }
     .cutlist-table td {
       padding: 0.8rem !important; }
-    .cutlist-table tr:nth-child(even) {
+    .cutlist-table tr:nth-child(odd) {
       background: lightgray !important;
       color: #36454f !important; }
-    .cutlist-table tr:nth-child(odd) {
+    .cutlist-table tr:nth-child(even) {
       background: white !important;
       color: #36454f !important; } }
 
@@ -2597,7 +2597,7 @@ a {
 .horizontal-container__space-between-justified {
   justify-content: space-between; }
 
-.input, .text-input, .select-input {
+.input, .text-input, .text-area-input, .select-input {
   padding: 1.2rem;
   color: #e1e8f0;
   background: #36454f;
@@ -2605,6 +2605,9 @@ a {
   border-radius: 2px;
   font-size: 1.8rem;
   height: 50px; }
+
+.text-area-input {
+  resize: vertical; }
 
 .checkbox-input {
   cursor: pointer;
@@ -2653,3 +2656,6 @@ a {
 
 .align-self-flex-start {
   align-self: flex-start; }
+
+.span-all-columns {
+  column-span: all; }
