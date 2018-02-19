@@ -16,7 +16,7 @@
         <form method="POST">
             {{ form.hidden_tag() }}
             {{ form.csrf_token }}
-            <div class="horizontal-container">
+            <div class="horizontal-container horizontal-container--wrap">
                 <div class="vertical-container__right-justified align-self-flex-start">
                     <span class="page-sub-header">Opening Specific Values</span>
                     {{ render_field(form.number_of_openings, class="text-input") }} 

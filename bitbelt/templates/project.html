@@ -16,10 +16,19 @@
                 <button class="btn-action horizontal-container" data-bind="click: navigateToAddOpening"><i class="icon-secondary fa fa-plus"></i>Opening</button>
                 <button class="btn-action horizontal-container" data-bind="click: navigateToCutlist"><i class="icon-secondary fa fa-th-list"></i>Cutlist</button>
                 <button class="btn-action horizontal-container" data-bind="click: navigateToSettings"><i class="icon-secondary fa fa-cog"></i>Settings</button>
+
+                <!-- ko if: !isFinished() -->
+                <button class="btn-action horizontal-container" data-bind="click: finishProject"><i class="icon-secondary fa fa-flag-checkered"></i>Finish Project</button>
+                <!-- /ko -->
+
+                <!-- ko if: isFinished() -->
+                <button class="btn-action horizontal-container" data-bind="click: unfinishProject"><i class="icon-secondary fa fa-undo"></i>Reopen Project</button>
+                <!-- /ko -->
             </div>
         </div>
 
-        <span class="page-sub-header">Cabinet Openings</span>
+        <!-- ko if: cabinetOpenings().length > 0 -->
+        <span class="page-sub-header" data-bind="text: 'Cabinet Openings (' + numberOfOpeningsInProject() + ')'"></span>
 
         <div class="horizontal-container horizontal-container--wrap">
             <!-- ko foreach: cabinetOpenings() -->
@@ -28,6 +37,7 @@
             </div>
             <!-- /ko -->
         </div>
+        <!-- /ko -->
     </div>
 </div>
 {% endblock body %}

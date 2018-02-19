@@ -31,3 +31,25 @@ def add_client():
         return redirect(url_for('index'))
     else:
         return render_template('forms/add-client-form.html', form=form, title='Create Client', user=current_user)
+
+
+@app.route('/clients/<string:id>/inactivate')
+@login_required
+def inactivate_client(id):
+    if(verify_valid_client(id)):
+        client = Client.objects(id=id)
+        client.is_active = False
+        client.save()
+
+
+@app.route('/clients/<string:id>/activate')
+@login_required
+def activate_client(id):
+    if(verify_valid_client(id)):
+        client = Client.objects(id=id)
+        client.is_active = True
+        client.save()
+
+
+def verify_valid_client(id):
+    return id in filter(lambda client: str(client.id), current_user.clients)

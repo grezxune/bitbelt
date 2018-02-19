@@ -15,5 +15,6 @@ export default class Client {
         this.zipCode = ko.observable(client.zipCode);
         this.phone = ko.observable(client.phone);
         this.email = ko.observable(client.email);
+        this.isActive = ko.observable(client.isActive);
     }
 }

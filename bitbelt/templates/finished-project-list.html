@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{% endblock styles %}
+
+{% block body %}
+<div id="project-list" class="vertical-container full-width">
+    <div class="horizontal-container__right-justified full-width">
+        <button class="btn-action horizontal-container" data-bind="click: navigateToActiveProjectList"><i class="icon-secondary fa fa-tasks"></i>Active Projects</button>
+    </div>
+
+    <!-- ko if: projects().length <= 0 -->
+    <span class="page-sub-header">You have no finished projects. Create a new project <a href="/projects/create">here</a>.</span>
+    <!-- /ko -->
+
+    <!-- ko if: projects().length > 0 -->
+    <span class="page-header" data-bind="text: 'Finished Project List (' + projects().length + ')'"></span>
+
+    <div class="horizontal-container horizontal-container--wrap">
+
+        <!-- ko foreach: projects() -->
+        <section class="project" data-bind="click: $parent.navigate">
+            <div class="horizontal-container__space-between-justified full-width">
+                <span data-bind="text: 'Project Name:'"></span>
+                <span data-bind="text: name()"></span>
+            </div>
+            <div class="horizontal-container__space-between-justified full-width">
+                <span data-bind="text: 'Client:'"></span>
+                <span data-bind="text: client().firstName() + ' ' + client().lastName()"></span>
+            </div>
+            <div class="horizontal-container__space-between-justified full-width">
+                <span data-bind="text: 'Date Created:'"></span>
+                <span data-bind="text: dateCreated()"></span>
+            </div>
+            <div class="horizontal-container__space-between-justified full-width">
+                <span data-bind="text: 'Last Modified:'"></span>
+                <span data-bind="text: lastModified()"></span>
+            </div>
+            <div class="horizontal-container__space-between-justified full-width">
+                <span data-bind="text: 'Cabinet Openings:'"></span>
+                <span data-bind="text: numberOfOpeningsInProject()"></span>
+            </div>
+        </section>
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+</div>
+{% endblock body %}
+
+
+{% block scripts %}
+<script>
+    var projectsFromServer = {{projects|tojson}};
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename='dist/project-list.bundle.js') }}"></script>
+{% endblock scripts %}

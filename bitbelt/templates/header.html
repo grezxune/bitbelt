@@ -11,7 +11,7 @@
             <a href="/projects/list">Project List</a>
         </div>
 
-        <span class="horizontal-container"><a href="/admin" class="horizontal-container"><i class="icon-primary fa fa-user"></i> {{user.first_name}} {{user.last_name}}</a> | <a href="/logout">Logout</a></span>
+        <span class="horizontal-container"><a href="/admin" class="horizontal-container"><i class="icon-primary fa fa-user"></i>{{user.first_name}} {{user.last_name}}</a> | <a href="/logout" class="horizontal-container"><i class="icon-primary fa fa-sign-out"></i>Logout</a></span>
         {% else %}
         <span class="horizontal-container"><a href="/users/sign-up">Sign Up</a> | <a href="/login">Login</a></span>
         {% endif %}

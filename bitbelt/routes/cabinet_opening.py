@@ -67,7 +67,7 @@ def create_cabinet_opening(project_id):
             return render_template('forms/cabinet-opening-form.html', title='Create Cabinet Opening', form=form, cabinet_opening=new_cabinet_opening.jsonify(), user=current_user, project_id=project_id, is_edit=False)
     else:
         print('project {0} not validated'.format(project_id))
-        return redirect(url_for('project_list'))
+        return redirect(url_for('active_project_list'))
 
 
 @app.route('/projects/<string:project_id>/cabinet-openings/<string:cabinet_opening_id>', methods=['GET', 'POST', 'DELETE'])
@@ -141,11 +141,11 @@ def cabinet_opening_details(project_id, cabinet_opening_id):
                     form.center_rail_width.data = cabinet_opening.center_rail_width
 
                     return render_template('forms/cabinet-opening-form.html', title='Edit Cabinet Opening', form=form, cabinet_opening=cabinet_opening.jsonify(), user=current_user, project_id=project_id, is_edit=True)
-            return redirect(url_for('project_list'))
+            return redirect(url_for('active_project_list'))
     else:
         print('Not validated')
         print('project id ({0}), opening id ({1})'.format(project_id, cabinet_opening_id))
-        return redirect(url_for('project_list'))
+        return redirect(url_for('active_project_list'))
 
 
 

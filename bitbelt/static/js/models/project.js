@@ -1,4 +1,5 @@
 import ko from 'knockout';
+import $ from 'jquery';
 
 import User from './user';
 import Client from './client';
@@ -53,5 +54,31 @@ export default class Project {
 
     navigateToCabinetOpening = (opening) => {
         window.location.href = '/projects/' + this.id() + '/cabinet-openings/' + opening.id();
+    }
+
+    finishProject = () => {
+        this.finishOrUnfinishProject(true);
+    }
+
+    unfinishProject = () => {
+        this.finishOrUnfinishProject(false);
+    }
+
+    finishOrUnfinishProject = (finishing) => {
+        $.ajax({
+            method: 'PUT',
+            url: `/projects/${this.id()}/${finishing ? 'finish' : 'unfinish'}`,
+            success: () => {
+                alert('Successfully finished project');
+                if(window.location.hostname === 'localhost') {
+                    window.location.href = `//${window.location.hostname}:5000/projects/${this.id()}`;
+                } else {
+                    window.location.href = `//${window.location.hostname}/projects/${this.id()}`;
+                }
+            },
+            error: (error) => {
+                alert('Failed to finish project');
+            }
+        });
     }
 }

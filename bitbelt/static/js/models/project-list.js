@@ -10,5 +10,13 @@ export default class ProjectList {
     navigate = (project) => {
         window.location.href = '/projects/' + project.id();
     }
+
+    navigateToFinishedProjectList = () => {
+        window.location.href = '/projects/finished-list';
+    }
+
+    navigateToActiveProjectList = () => {
+        window.location.href = '/projects/list';
+    }
 }
 

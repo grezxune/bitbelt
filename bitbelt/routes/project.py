@@ -56,9 +56,16 @@ def create_project():
 
 @app.route('/projects/list')
 @login_required
-def project_list():
-    projects = [proj.jsonify() for proj in current_user.projects]
-    return render_template('project-list.html', title='Project List', projects=projects, user=current_user)
+def active_project_list():
+    projects = [proj.jsonify() for proj in filter(lambda project: not project.is_finished, current_user.projects)]
+    return render_template('active-project-list.html', title='Active Project List', projects=projects, user=current_user)
+
+
+@app.route('/projects/finished-list')
+@login_required
+def project_finished_list():
+    projects = [proj.jsonify() for proj in filter(lambda project: project.is_finished, current_user.projects)]
+    return render_template('finished-project-list.html', title='Finished Project List', projects=projects, user=current_user)
 
 
 @app.route('/projects/<string:id>')
@@ -125,7 +132,7 @@ def project_settings(project_id):
 
             return render_template('forms/project-form.html', form=form, title='Edit Project', user=current_user, is_edit=True)
     else:
-        return redirect(url_for('project_list'))
+        return redirect(url_for('active_project_list'))
 
 
 @app.route('/projects/<string:id>/cutlist')
@@ -137,9 +144,29 @@ def project_cutlist(id):
         if(project is not None):
             return render_template('project-cutlist.html', title='Project Cutlist', user=current_user, project=project.jsonify())
         else:
-            return redirect(url_for('project_list'))
+            return redirect(url_for('active_project_list'))
     else:
-        return redirect(url_for('project_list'))
+        return redirect(url_for('active_project_list'))
+
+
+@app.route('/projects/<string:id>/finish', methods=['PUT'])
+@login_required
+def finish_project(id):
+    if(verify_valid_project(id)):
+        project = next(filter(lambda proj: str(proj.id) == id, current_user.projects), None)
+        project.is_finished = True
+        project.save()
+        return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
+
+
+@app.route('/projects/<string:id>/unfinish', methods=['PUT'])
+@login_required
+def unfinish_project(id):
+    if(verify_valid_project(id)):
+        project = next(filter(lambda proj: str(proj.id) == id, current_user.projects), None)
+        project.is_finished = False
+        project.save()
+        return json.dumps({'success' : True}), 200, {'ContentType' : 'application/json'} 
 
 
 def verify_valid_project(project_id):
