@@ -18,7 +18,7 @@ from bitbelt.models.default_values import DefaultValues
 def create_project():
     form = ProjectForm()
     clients = current_user.clients
-    form.client.choices = [(client.id, client.first_name + ' ' + client.last_name) for client in clients]
+    form.client.choices = [(client.id, client.first_name + ' ' + client.last_name) for client in filter(lambda client: client.is_active, clients)]
 
     if(form.validate_on_submit()):
         project = Project()
@@ -86,7 +86,7 @@ def project_settings(project_id):
     if(verify_valid_project(project_id)):
         project = next(filter(lambda proj: str(proj.id) == project_id, current_user.projects), None)
         clients = current_user.clients
-        form.client.choices = [(client.id, client.first_name + ' ' + client.last_name) for client in clients]
+        form.client.choices = [(client.id, client.first_name + ' ' + client.last_name) for client in filter(lambda client: client.is_active or client.id == project.client.id, clients)]
 
         if(form.validate_on_submit()):
             default_values = project.default_values

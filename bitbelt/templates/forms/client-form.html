@@ -1,0 +1,58 @@
+{% extends "forms/base-form.html" %}
+
+{% block styles %}
+{{ super() }}
+{% endblock styles %}
+
+{% block body %}
+<div id="client" class="full-width">
+    <form method="POST" class="vertical-container full-width">
+        <div class="horizontal-container full-width">
+            <div class="flex-1"></div>
+            {% if is_edit %}
+            <span class="page-header">Edit Client</span>
+
+            <div class="horizontal-container__right-justified flex-1">
+                <!-- ko if: !isActive() -->
+                <button class="btn-action horizontal-container" data-bind="click: activateClient"><i class="icon-secondary fa fa-undo"></i>Activate Client</button>
+                <!-- /ko -->
+
+                <!-- ko if: isActive() -->
+                <button class="btn-action horizontal-container" data-bind="click: deactivateClient"><i class="icon-secondary fa fa-flag-checkered"></i>Deactivate Client</button>
+                <!-- /ko -->
+            </div>
+            {% else %}
+            <span class="page-header">Add Client</span>
+            <div class="flex-1"></div>
+            {% endif %}
+        </div>
+        <div>
+            {{ form.hidden_tag() }}
+            {{ form.csrf_token }}
+            {{ render_field(form.first_name, class="text-input") }}
+            {{ render_field(form.last_name, class="text-input") }}
+            {{ render_field(form.address, class="text-input") }}
+            {{ render_field(form.city, class="text-input") }}
+            {{ render_field(form.state, class="text-input") }}
+            {{ render_field(form.zip_code, class="text-input") }}
+            {{ render_field(form.phone, class="text-input") }}
+            {{ render_field(form.email, class="text-input") }}
+        </div>
+
+        {% if is_edit %}
+        <input type="submit" class="btn-action" value="Save Client"/>
+        {% else %}
+        <input type="submit" class="btn-action" value="Add Client"/>
+        {% endif %}
+    </form>
+</div>
+{% endblock body %}
+
+{% block scripts %}
+{% if is_edit %}
+<script>
+    var clientFromServer = {{client|tojson}};
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename='dist/client.bundle.js') }}"></script>
+{% endif %}
+{% endblock scripts %}

@@ -178,21 +178,25 @@ export default class CabinetOpening {
         /************************/
 
         this.deleteCabinetOpening = (opening) => {
-            $.ajax({
-                method: 'DELETE',
-                url: `/projects/${this.projectId()}/cabinet-openings/${this.id()}`,
-                success: () => {
-                    alert('Successfully removed cabinet opening');
-                    if(window.location.hostname === 'localhost') {
-                        window.location.href = `//${window.location.hostname}:5000/projects/${this.projectId()}`;
-                    } else {
-                        window.location.href = `//${window.location.hostname}/projects/${this.projectId()}`;
+            const verification = confirm('WARNING!\nAre you sure you want to delete this cabinet opening?');
+
+            if(verification) {
+                $.ajax({
+                    method: 'DELETE',
+                    url: `/projects/${this.projectId()}/cabinet-openings/${this.id()}`,
+                    success: () => {
+                        alert('Successfully removed cabinet opening');
+                        if(window.location.hostname === 'localhost') {
+                            window.location.href = `//${window.location.hostname}:5000/projects/${this.projectId()}`;
+                        } else {
+                            window.location.href = `//${window.location.hostname}/projects/${this.projectId()}`;
+                        }
+                    },
+                    error: (error) => {
+                        alert('Failed to remove cabinet opening');
                     }
-                },
-                error: (error) => {
-                    alert('Failed to remove cabinet opening');
-                }
-            });
+                });
+            }
         }
     }
 }

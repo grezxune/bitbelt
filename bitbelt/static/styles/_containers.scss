@@ -54,3 +54,25 @@
 
     justify-content: space-between;
 }
+
+// Info Containers
+.info-container {
+    @extend .container;
+
+    font-size: $font-size-m;
+    background: $charcoal;
+    color: $downy;
+    flex-flow: column nowrap;
+    margin: $size-xl;
+}
+
+.info-container__header {
+    border-bottom: $downy 2px solid;
+    margin: $size-s;
+    text-align: center;
+}
+
+.info-container__body {
+    margin: $size-s;
+    text-align: left;
+}

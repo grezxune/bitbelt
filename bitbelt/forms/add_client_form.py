@@ -11,4 +11,4 @@ class AddClientForm(FlaskForm):
     state = StringField(label='State')
     zip_code = StringField(label='Zip Code')
     phone = StringField(label='Phone')
-    email = StringField(label='Email Address')
+    email = StringField(label='Email Address', validators=[required()])

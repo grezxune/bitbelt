@@ -20,10 +20,12 @@ const convertDecimalToFraction = function(decimal) {
 }
 
 const capitalizeFirstLetterOfEachWordAndLowercaseAllOthers = (word) => {
-    const words = word.split(' ');
+    if(word) {
+        const words = word.split(' ');
 
-    const finalVersion = words.map(w => w[0].toUpperCase() + w.slice(1).toLowerCase()).join(' ');
-    return finalVersion;
+        const finalVersion = words.map(w => w[0].toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+        return finalVersion;
+    }
 }
 
 const combineObjectKeysAddValues = (arrayOfObjects) => {

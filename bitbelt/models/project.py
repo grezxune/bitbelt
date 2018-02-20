@@ -17,6 +17,10 @@ class Project(Document):
     wood_species = StringField(required=False)
     is_finished = BooleanField(required=True)
 
+    meta = {
+        'ordering': ['-last_modified']
+    }
+
 
     def clean(self):
         currentTime = int(round(time.time() * 1000))

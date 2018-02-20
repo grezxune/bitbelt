@@ -8,6 +8,8 @@ const config = {
     entry:  {
         index: path.join(__dirname, 'js', 'index.js'),
         'project-list': path.join(__dirname, 'js', 'pages', 'project-list.js'),
+        'client-list': path.join(__dirname, 'js', 'pages', 'client-list.js'),
+        client: path.join(__dirname, 'js', 'pages', 'client.js'),
         project: path.join(__dirname, 'js', 'pages', 'project.js'),
         'cabinet-opening': path.join(__dirname, 'js', 'pages', 'cabinet-opening.js'),
         'project-cutlist': path.join(__dirname, 'js', 'pages', 'project-cutlist.js'),

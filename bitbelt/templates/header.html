@@ -1,13 +1,12 @@
 <header id="header">
     <div class="nav-links horizontal-container">
-        <a href="/">Home</a>
+        <a href="/">BitBelt</a>
     </div>
 
     <div class="nav-links horizontal-container">
         {% if user and user.first_name %}
         <div class="horizontal-container">
-            <a href="/clients/add">Add Client</a>
-            <a href="/projects/create">Add Project</a>
+            <a href="/clients/active/list">Client List</a>
             <a href="/projects/list">Project List</a>
         </div>
 

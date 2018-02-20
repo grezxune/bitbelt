@@ -18,5 +18,9 @@ export default class ProjectList {
     navigateToActiveProjectList = () => {
         window.location.href = '/projects/list';
     }
+
+    navigateToAddProject = () => {
+        window.location.href = '/projects/create';
+    }
 }
 

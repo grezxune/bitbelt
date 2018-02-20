@@ -12,6 +12,10 @@
         color: $downy;
 
         padding: $size-l;
+
+        a {
+            @include clickable-secondary();
+        }
     }
 }
 

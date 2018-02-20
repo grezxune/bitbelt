@@ -5,8 +5,6 @@
 
 {% block body %}
 <div id="project">
-    {% include 'flashed-messages.html' %}
-
     <div class="vertical-container">
         <div class="horizontal-container full-width">
             <div class="flex-1"></div>
@@ -37,6 +35,10 @@
             </div>
             <!-- /ko -->
         </div>
+        <!-- /ko -->
+
+        <!-- ko if: cabinetOpenings().length <= 0 -->
+        <span class="page-sub-header">This project has no openings. Add one to see it here.</span>
         <!-- /ko -->
     </div>
 </div>

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{% endblock styles %}
+
+{% block body %}
+<div id="client-list" class="vertical-container full-width">
+    <div class="horizontal-container__right-justified full-width">
+        <button class="btn-action horizontal-container" data-bind="click: navigateToAddClient"><i class="icon-secondary fa fa-plus"></i>Client</button>
+        <button class="btn-action horizontal-container" data-bind="click: navigateToActiveClientsList"><i class="icon-secondary fa fa-tasks"></i>Active Clients</button>
+    </div>
+
+    <!-- ko if: clients().length <= 0 -->
+    <span class="page-sub-header">You have no inactive clients. Create a new client <a href="/clients/add">here</a>.</span>
+    <!-- /ko -->
+
+    <!-- ko if: clients().length > 0 -->
+    <span class="page-header" data-bind="text: 'Inactive Client List (' + clients().length + ')'"></span>
+
+    <div class="horizontal-container horizontal-container--wrap">
+        <!-- ko foreach: clients() -->
+        <section class="project" data-bind="click: $parent.navigate">
+            <div class="horizontal-container__space-between-justified full-width">
+                <span data-bind="text: 'Name: ' + firstName() + ' ' + lastName()"></span>
+            </div>
+        </section>
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+</div>
+{% endblock body %}
+
+
+{% block scripts %}
+<script>
+    var clientsFromServer = {{clients|tojson}};
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename='dist/client-list.bundle.js') }}"></script>
+{% endblock scripts %}

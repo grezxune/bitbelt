@@ -13,8 +13,12 @@ class Client(Document):
     state = StringField()
     zip_code = StringField()
     phone = StringField()
-    email = EmailField()
+    email = EmailField(required=True)
     is_active = BooleanField(required=True)
+
+    meta = {
+        'ordering': ['-last_modified']
+    }
 
 
     def clean(self):
@@ -30,6 +34,7 @@ class Client(Document):
             'dateCreated': self.date_created,
             'lastModified': self.last_modified,
 
+            'id': str(self.id),
             'firstName': self.first_name,
             'lastName': self.last_name,
             'address': self.address,

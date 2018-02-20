@@ -29,6 +29,10 @@ class CabinetOpening(Document):
     center_rail_width = FloatField(default=0.0, precision=5)
     rough_sawn_overestimate = FloatField(default=0.0, precision=5)
 
+    meta = {
+        'ordering': ['-last_modified']
+    }
+
 
     def clean(self):
         currentTime = int(round(time.time() * 1000))

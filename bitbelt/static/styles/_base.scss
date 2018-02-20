@@ -90,6 +90,15 @@ a {
     height: 100%;
 }
 
+table {
+    border-collapse: collapse;
+}
+
+td {
+    padding: $size-m;
+    text-align: center;
+}
+
 // Mixins
 @import './mixins/clickable';
 
@@ -105,6 +114,8 @@ a {
 @import './pages/project';
 @import './pages/cabinet-opening';
 @import './pages/project-cutlist';
+@import './pages/client-list';
+@import './pages/home';
 
 // MISC
 @import './footer';
