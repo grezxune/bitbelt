@@ -76,14 +76,14 @@ def edit_client(id):
 @login_required
 def active_clients_list():
     clients = [client.jsonify() for client in filter(lambda client: client.is_active, current_user.clients)]
-    return render_template('active-clients-list.html', user=current_user, clients=clients)
+    return render_template('active-clients-list.html', title='Active Client List', user=current_user, clients=clients)
 
 
 @app.route('/clients/inactive/list')
 @login_required
 def inactive_clients_list():
     clients = [client.jsonify() for client in filter(lambda client: not client.is_active, current_user.clients)]
-    return render_template('inactive-clients-list.html', user=current_user, clients=clients)
+    return render_template('inactive-clients-list.html', title='Inactive Client List', user=current_user, clients=clients)
 
 
 @app.route('/clients/<string:id>/deactivate', methods=['PUT'])
