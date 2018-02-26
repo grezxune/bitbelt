@@ -1,5 +1,8 @@
-import fraction from 'mathjs/lib/type/fraction';
 import moment from 'moment';
+import core from 'mathjs/core';
+
+const math = core.create();
+math.import(require('mathjs/lib/type/fraction'));
 
 const momentFormat = 'dddd, MM/DD/YYYY, h:mm:ss a';
 
@@ -8,7 +11,7 @@ const formatMomentDate = millis => {
 };
 
 const convertDecimalToFraction = function(decimal) {
-    const value = fraction(decimal);
+    const value = math.fraction(decimal);
     let numerator = value.n;
     let denomenator = value.d;
 
