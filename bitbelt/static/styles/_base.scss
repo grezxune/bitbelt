@@ -109,14 +109,6 @@ td {
 // FORMS
 @import './forms/base-form';
 
-// PAGES
-@import './pages/project-list';
-@import './pages/project';
-@import './pages/cabinet-opening';
-@import './pages/project-cutlist';
-@import './pages/client-list';
-@import './pages/home';
-
 // MISC
 @import './footer';
 @import './header';
@@ -127,3 +119,11 @@ td {
 @import './text-types';
 @import './self-flex';
 @import './table';
+
+// PAGES
+@import './pages/project-list';
+@import './pages/project';
+@import './pages/cabinet-opening';
+@import './pages/project-cutlist';
+@import './pages/client-list';
+@import './pages/home';

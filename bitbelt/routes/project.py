@@ -38,9 +38,9 @@ def create_project():
         default_values.center_rail_width = form.center_rail_width.data
         default_values.save()
 
-        project.name = form.name.data
+        project.name = form.name.data.strip()
         project.client = form.client.data
-        project.wood_species = form.wood_species.data
+        project.wood_species = form.wood_species.data.strip()
 
         project.default_values = default_values
         project.save()
@@ -105,9 +105,9 @@ def project_settings(project_id):
             default_values.center_rail_width = form.center_rail_width.data
             default_values.save()
 
-            project.name = form.name.data
+            project.name = form.name.data.strip()
             project.client = form.client.data
-            project.wood_species = form.wood_species.data
+            project.wood_species = form.wood_species.data.strip()
 
             project.default_values = default_values
             project.save()
@@ -167,6 +167,18 @@ def unfinish_project(id):
         project.is_finished = False
         project.save()
         return json.dumps({'success' : True}), 200, {'ContentType' : 'application/json'} 
+
+
+@app.route('/projects/<string:id>/remove', methods=['PUT'])
+@login_required
+def remove_project(id):
+    if(verify_valid_project(id)):
+        project_to_remove = next(filter(lambda project: str(project.id) == id, current_user.projects), None)
+        print(project_to_remove.name)
+        project_to_remove.delete()
+        return json.dumps({'success': True}, 200, {'ContentType': 'application/json'})
+    else:
+        return json.dumps({'success': False}, 200, {'ContentType': 'application/json'})
 
 
 def verify_valid_project(project_id):

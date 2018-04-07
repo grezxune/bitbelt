@@ -14,14 +14,14 @@ def add_client():
     form = AddClientForm()
     client = Client()
     if(form.validate_on_submit()):
-        client.first_name = form.first_name.data
-        client.last_name = form.last_name.data
-        client.address = form.address.data
-        client.city = form.city.data
-        client.state = form.state.data
-        client.zip_code = form.zip_code.data
-        client.phone = form.phone.data
-        client.email = form.email.data
+        client.first_name = form.first_name.data.strip()
+        client.last_name = form.last_name.data.strip()
+        client.address = form.address.data.strip()
+        client.city = form.city.data.strip()
+        client.state = form.state.data.strip()
+        client.zip_code = form.zip_code.data.strip()
+        client.phone = form.phone.data.strip()
+        client.email = form.email.data.strip()
 
         client.user_id = ObjectId(current_user.user_id)
 
@@ -44,14 +44,14 @@ def edit_client(id):
         if(client is not None):
             form = AddClientForm()
             if(form.validate_on_submit()):
-                client.first_name = form.first_name.data
-                client.last_name = form.last_name.data
-                client.address = form.address.data
-                client.city = form.city.data
-                client.state = form.state.data
-                client.zip_code = form.zip_code.data
-                client.phone = form.phone.data
-                client.email = form.email.data
+                client.first_name = form.first_name.data.strip()
+                client.last_name = form.last_name.data.strip()
+                client.address = form.address.data.strip()
+                client.city = form.city.data.strip()
+                client.state = form.state.data.strip()
+                client.zip_code = form.zip_code.data.strip()
+                client.phone = form.phone.data.strip()
+                client.email = form.email.data.strip()
                 client.save()
                 return render_template('forms/client-form.html', form=form, title='Edit Client', user=current_user, is_edit=True, client=client.jsonify())
             else:
@@ -90,7 +90,7 @@ def inactive_clients_list():
 @login_required
 def deactivate_client(id):
     if(verify_valid_client(id)):
-        client = next(filter(lambda client: str(client.id) == id, current_user.clients))
+        client = next(filter(lambda client: str(client.id) == id, current_user.clients), None)
         client.is_active = False
         client.save()
         return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
@@ -100,10 +100,22 @@ def deactivate_client(id):
 @login_required
 def activate_client(id):
     if(verify_valid_client(id)):
-        client = next(filter(lambda client: str(client.id) == id, current_user.clients))
+        client = next(filter(lambda client: str(client.id) == id, current_user.clients), None)
         client.is_active = True
         client.save()
-        return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
+        return json.dumps({'success':True}), 200, {'ContentType': 'application/json'} 
+
+
+@app.route('/clients/<string:id>/remove', methods=['PUT'])
+@login_required
+def remove_client(id):
+    if(verify_valid_client(id)):
+        client_to_remove = next(filter(lambda client: str(client.id) == id, current_user.clients), None)
+        print(client_to_remove.first_name)
+        client_to_remove.delete()
+        return json.dumps({'success': True}, 200, {'ContentType': 'application/json'})
+    else:
+        return json.dumps({'success': False}, 200, {'ContentType': 'application/json'})
 
 
 def verify_valid_client(id):

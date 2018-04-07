@@ -10,3 +10,13 @@
 
     @include clickable-secondary();
 }
+
+.project__remove-btn--container {
+    text-align: center;
+}
+
+.project__remove-btn {
+    @extend .btn-secondary;
+
+    color: $catskill-white;
+}

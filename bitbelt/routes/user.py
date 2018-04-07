@@ -29,9 +29,9 @@ def sign_up():
             user_settings = UserSettings()
             user_settings.save()
 
-            user.first_name = form.first_name.data
-            user.last_name = form.last_name.data
-            user.email = form.email.data
+            user.first_name = form.first_name.data.strip()
+            user.last_name = form.last_name.data.strip()
+            user.email = form.email.data.strip()
 
             user.password = user.hash_password(form.password.data)
             user.settings = user_settings

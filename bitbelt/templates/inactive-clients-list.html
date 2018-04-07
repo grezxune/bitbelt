@@ -17,15 +17,12 @@
     <!-- ko if: clients().length > 0 -->
     <span class="page-header" data-bind="text: 'Inactive Client List (' + clients().length + ')'"></span>
 
-    <div class="horizontal-container horizontal-container--wrap">
         <!-- ko foreach: clients() -->
-        <section class="project" data-bind="click: $parent.navigate">
-            <div class="horizontal-container__space-between-justified full-width">
-                <span data-bind="text: 'Name: ' + firstName() + ' ' + lastName()"></span>
-            </div>
-        </section>
+        <div class="horizontal-container">
+            <div class="project" data-bind="click: $parent.navigate, text: firstName() + ' ' + lastName()"></div>
+            <button class="btn-action horizontal-container" data-bind="click: $data.removeClient"><i class="icon-secondary fa fa-minus"></i>Remove</button>
+        </div>
         <!-- /ko -->
-    </div>
     <!-- /ko -->
 </div>
 {% endblock body %}

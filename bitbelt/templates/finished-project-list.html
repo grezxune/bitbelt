@@ -20,28 +20,33 @@
     <div class="horizontal-container horizontal-container--wrap">
 
         <!-- ko foreach: projects() -->
-        <section class="project" data-bind="click: $parent.navigate">
-            <div class="horizontal-container__space-between-justified full-width">
-                <span data-bind="text: 'Project Name:'"></span>
-                <span data-bind="text: name()"></span>
+        <div class="vertical-container">
+            <section class="project" data-bind="click: $parent.navigate">
+                <div class="horizontal-container__space-between-justified full-width">
+                    <span data-bind="text: 'Project Name:'"></span>
+                    <span data-bind="text: name()"></span>
+                </div>
+                <div class="horizontal-container__space-between-justified full-width">
+                    <span data-bind="text: 'Client:'"></span>
+                    <span data-bind="text: client().firstName() + ' ' + client().lastName()"></span>
+                </div>
+                <div class="horizontal-container__space-between-justified full-width">
+                    <span data-bind="text: 'Date Created:'"></span>
+                    <span data-bind="text: dateCreated()"></span>
+                </div>
+                <div class="horizontal-container__space-between-justified full-width">
+                    <span data-bind="text: 'Last Modified:'"></span>
+                    <span data-bind="text: lastModified()"></span>
+                </div>
+                <div class="horizontal-container__space-between-justified full-width">
+                    <span data-bind="text: 'Cabinet Openings:'"></span>
+                    <span data-bind="text: numberOfOpeningsInProject()"></span>
+                </div>
+            </section>
+            <div class="project__remove-btn--container">
+                <button class="project__remove-btn" data-bind="click: removeProject">Remove</button>
             </div>
-            <div class="horizontal-container__space-between-justified full-width">
-                <span data-bind="text: 'Client:'"></span>
-                <span data-bind="text: client().firstName() + ' ' + client().lastName()"></span>
-            </div>
-            <div class="horizontal-container__space-between-justified full-width">
-                <span data-bind="text: 'Date Created:'"></span>
-                <span data-bind="text: dateCreated()"></span>
-            </div>
-            <div class="horizontal-container__space-between-justified full-width">
-                <span data-bind="text: 'Last Modified:'"></span>
-                <span data-bind="text: lastModified()"></span>
-            </div>
-            <div class="horizontal-container__space-between-justified full-width">
-                <span data-bind="text: 'Cabinet Openings:'"></span>
-                <span data-bind="text: numberOfOpeningsInProject()"></span>
-            </div>
-        </section>
+        </div>
         <!-- /ko -->
     </div>
     <!-- /ko -->

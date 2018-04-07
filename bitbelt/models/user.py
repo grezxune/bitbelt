@@ -1,4 +1,4 @@
-from mongoengine import Document, ObjectIdField, StringField, EmailField, ReferenceField, ListField, CASCADE, IntField
+from mongoengine import Document, ObjectIdField, StringField, EmailField, ReferenceField, ListField, DENY, PULL, IntField
 from passlib.hash import pbkdf2_sha256
 from bson.objectid import ObjectId
 import time
@@ -16,9 +16,9 @@ class User(Document):
     last_name = StringField(required=True)
     email = EmailField(required=True)
     password = StringField(required=True)
-    settings = ReferenceField('UserSettings', reverse_delete_rule=CASCADE, required=True)
-    projects = ListField(ReferenceField('Project', reverse_delete_rule=CASCADE, required=False))
-    clients = ListField(ReferenceField('Client', reverse_delete_rule=CASCADE, required=False))
+    settings = ReferenceField('UserSettings', reverse_delete_rule=DENY, required=True)
+    projects = ListField(ReferenceField('Project', reverse_delete_rule=PULL, required=False))
+    clients = ListField(ReferenceField('Client', reverse_delete_rule=PULL, required=False))
 
 
     @property

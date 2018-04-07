@@ -17,22 +17,11 @@
     <!-- ko if: clients().length > 0 -->
     <span class="page-header" data-bind="text: 'Active Client List (' + clients().length + ')'"></span>
 
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-        </tr>
-        <!-- ko foreach: clients() -->
-        <tr class="project" data-bind="click: $parent.navigate">
-            <td>
-                <span data-bind="text: firstName() + ' ' + lastName()"></span>
-            </td>
-            <td>
-                <span data-bind="text: email()"></span>
-            </td>
-        </tr>
-        <!-- /ko -->
-    </table>
+    <!-- ko foreach: clients() -->
+    <div class="horizontal-container">
+        <div class="project" data-bind="click: $parent.navigate, text: firstName() + ' ' + lastName()"></div>
+    </div>
+    <!-- /ko -->
     <!-- /ko -->
 </div>
 {% endblock body %}

@@ -1,6 +1,6 @@
 import datetime
 import time
-from mongoengine import Document, ReferenceField, ListField, DateTimeField, StringField, CASCADE, IntField, BooleanField
+from mongoengine import Document, ReferenceField, ListField, DateTimeField, StringField, DENY, IntField, BooleanField
 
 from bitbelt.models.default_values import DefaultValues
 from bitbelt.models.client import Client
@@ -11,9 +11,9 @@ class Project(Document):
     last_modified = IntField(required=True)
 
     name = StringField(required=True)
-    client = ReferenceField('Client', reverse_delete_rule=CASCADE, required=True)
-    default_values = ReferenceField('DefaultValues', reverse_delete_rule=CASCADE, required=True)
-    cabinet_openings = ListField(ReferenceField('CabinetOpening', reverse_delete_rule=CASCADE))
+    client = ReferenceField('Client', reverse_delete_rule=DENY, required=True)
+    default_values = ReferenceField('DefaultValues', reverse_delete_rule=DENY, required=True)
+    cabinet_openings = ListField(ReferenceField('CabinetOpening', reverse_delete_rule=DENY))
     wood_species = StringField(required=False)
     is_finished = BooleanField(required=True)
 
