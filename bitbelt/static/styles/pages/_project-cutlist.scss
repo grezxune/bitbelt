@@ -44,5 +44,9 @@
             background: white !important;
             color: $charcoal !important;
         }
+
+        .row {
+            page-break-inside: avoid;
+        }
     }
 }
