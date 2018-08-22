@@ -45,7 +45,11 @@
             color: $charcoal !important;
         }
 
-        .row {
+        tr {
+            page-break-inside: avoid;
+        }
+
+        .no-break {
             page-break-inside: avoid;
         }
     }
